@@ -1,0 +1,5 @@
+*.o
+*Thumbs.db
+*.exe
+build/*
+*.sublime-workspace

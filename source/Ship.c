@@ -3,12 +3,15 @@
 
 Ship *Ship_MainShip;
 
-void Ship_update(Ship* this, int dt){
-	this->x += this->v * this->dir[0] * dt;
-	this->y += this->v * this->dir[1] * dt;
-	this->z += this->v * this->dir[2] * dt;
+void Ship_update(double dt) {
+	Ship* this = Ship_MainShip;
+	this->z += this->v * dt;
 }
 
-void Ship_Update(int dt){
-	Ship_update(Ship* Ship_MainShip, int dt);
+void Ship_shoot(Ship* ship) {
+	Bullet* bullet;
+
+	bullet = Bullet_newBullet(ship->x, ship->y, ship->z, ship->gunDir[0], ship->gunDir[1], ship->gunDir[2]);
+
+	List_pushBack(bullets, bullet);
 }

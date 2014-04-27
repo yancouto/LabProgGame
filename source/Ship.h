@@ -8,13 +8,13 @@ typedef struct {
 	int x;      /* Posição horizontal da nave (0 no centro) */
 	int z;      /* Profundidade da nave (relativa à posição inicial do cenário) */
 	int v;      /* Velocidade da nave */
-	int dir[3]; /* Vetor que guarda tres valores para definir a orientação da arma da nave */
+	int gunDir[3]; /* Vetor que guarda tres valores para definir a orientação da arma da nave */
 } Ship;
 
 /* Função que atualiza a posição da nave após um timestep */
-void Ship_update(Ship* this, int dt);
+void Ship_update(double dt);
 
-/* Função que atualiza a nave (chama o SHip_update) */
-void Ship_Update(int dt);
+/* Função que cria um novo tiro que sai da nave */
+void Ship_shoot(Ship* ship);
 
 #endif

@@ -2,7 +2,7 @@
 
 static List *bullets = newList();
 
-Bullet* Bullet_new(int x, int y, int z, int dx, int dy, int dz) {
+Bullet* Bullet_new(double x, double y, double z, double dx, double dy, double dz, double h) {
 	Bullet* this;
 	
 	this->x = x;
@@ -11,17 +11,42 @@ Bullet* Bullet_new(int x, int y, int z, int dx, int dy, int dz) {
 	this->dir[0] = dx;
 	this->dir[1] = dy;
 	this->dir[2] = dz;
+	this->health = h;
 
 	return this;
 }
+
+void Bullet_delete(Bullet* bullet) {
+	free(bullet);
+}
+
 
 void Bullet_update(Bullet *this, double dt) {
 	this->x += this->v * this->dir[0] * dt;
 	this->y += this->v * this->dir[1] * dt;
 	this->z += this->v * this->dir[2] * dt;
+
+	if(this->health <=0){
+
+	}
 }
+
 void Bullet_Update(double dt) {
 	for(Node *n = bullets->head->next; n != bullets->head; n = n->next) {
-    	Bullet_update((Bullet*) n->item, dt); 
+    	if(n->health <= 0){
+    		Node *temp = n->next;
+    		Bullet_delete((Bullet*) n->item);
+    		Node_remove(n);
+    		n = temp;
+    	}
+    	else Bullet_update((Bullet*) n->item, dt); 
     }
+}
+
+void Bullet_shoot(Ship* ship) {
+	Bullet* bullet;
+
+	bullet = Bullet_newBullet(ship->x, ship->y, ship->z, ship->gunDir[0], ship->gunDir[1], ship->gunDir[2]);
+
+	List_pushBack(bullets, bullet);
 }

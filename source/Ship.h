@@ -4,15 +4,16 @@
 extern Ship *Ship_MainShip;
 
 typedef struct {
-	int y;        	 /* Posição vertical da nave/altura (0 no "chão") */
-	int x;         /* Posição horizontal da nave (0 no centro) */
-	int z;         /* Profundidade da nave (relativa à posição inicial do cenário) */
-	int v;         /* Velocidade da nave */
-	int gunDir[3]; /* Vetor que guarda tres valores para definir a orientação da arma da nave */
+	double y;         /* Posição vertical da nave/altura (0 no "chão") */
+	double x;         /* Posição horizontal da nave (0 no centro) */
+	double z;         /* Profundidade da nave (relativa à posição inicial do cenário) */
+	double v;         /* Velocidade da nave */
+	double gunDir[3]; /* Vetor que guarda tres valores para definir a orientação da arma da nave */
+	double health;    /* Vida do tiro*/
 } Ship;
 
 /* Função que cria uma nave nova */
-void Ship_new(int x, int y, int z, int v, int dx, int dy, int dz);
+void Ship_new(double x, double y, double z, double v, double dx, double dy, double dz, double h);
 
 /* Função que atualiza a posição da nave após um timestep */
 void Ship_update(double dt);

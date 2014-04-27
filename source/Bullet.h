@@ -2,17 +2,22 @@
 #define BULLET_H
 
 typedef struct {
-	int y;      /* Posição vertical do tiro/altura (0 no "chão") */
-	int x;      /* Posição horizontal do tiro (0 no centro) */
-	int z;      /* Profundidade do tiro (relativa à posição inicial do cenário) */
-	int v;      /* Velocidade do tiro */
-	int dir[3]; /* Vetor que guarda dois valores para definir a orientação do tiro */
+	double y;      /* Posição vertical do tiro/altura (0 no "chão") */
+	double x;      /* Posição horizontal do tiro (0 no centro) */
+	double z;      /* Profundidade do tiro (relativa à posição inicial do cenário) */
+	double v;      /* Velocidade do tiro */
+	double dir[3]; /* Vetor que guarda dois valores para definir a orientação do tiro */
+	double health; /* Vida do tiro*/
 } Bullet;
 
 /* Função que cria um novo tiro */
-Bullet* Bullet_new(int x, int y, int z, int dx, int dy, int dz);
+Bullet* Bullet_new(double x, double y, double z, double dx, double dy, double dz, double h);
 
-/* Função que atualiza a posição de um tiro após um timestep */
+/* Função que remove um novo tiro */
+void Bullet_delete(Bullet* bullet);
+
+/* Função que atualiza a posição de um tiro após um timestep, e
+   admnistra se o tiro precisa ser removido */
 void Bullet_update(Bullet* this, double dt);
 
 /* Função que atualiza a lista com todos os tiros após um timestep */

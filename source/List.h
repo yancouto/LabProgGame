@@ -8,7 +8,10 @@ struct node {
 	Node *prev;
 };
 
+/* next e prev começam com NULL */
 Node *newNode(void *item);
+
+/* Remove o no da lista e limpa a memoria */
 void Node_remove(Node *n);
 
 /* Lista duplamente ligada circular com cabeça pra facilitar a vida */
@@ -18,7 +21,14 @@ typedef struct {
 } List;
 
 List* newList();
-void List_pushBack(List* this, void *item);
+
+/* Adiciona no comeco da lista */
+void List_pushBack(List *this, void *item);
+
+/* Adiciona no final da lista */
 void List_pushFront(List *this, void *item);
+
+/* Destroi a lista e limpa a memoria */
+void Lista_delete(List *this);
 
 #endif

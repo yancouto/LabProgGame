@@ -2,7 +2,7 @@
 
 static List *bullets = newList();
 
-Bullet* Bullet_newBullet(int x, int y, int z, int dx, int dy, int dz) {
+Bullet* Bullet_new(int x, int y, int z, int dx, int dy, int dz) {
 	Bullet* this;
 	
 	this->x = x;

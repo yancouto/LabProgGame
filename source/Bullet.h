@@ -10,12 +10,15 @@ typedef struct {
 } Bullet;
 
 /* Função que cria um novo tiro */
-Bullet* Bullet_newBullet(int x, int y, int z, int dx, int dy, int dz);
+Bullet* Bullet_new(int x, int y, int z, int dx, int dy, int dz);
 
 /* Função que atualiza a posição de um tiro após um timestep */
 void Bullet_update(Bullet* this, double dt);
 
 /* Função que atualiza a lista com todos os tiros após um timestep */
 void Bullet_Update(double dt);
+
+/* Função que cria um novo tiro que sai da nave */
+void Bullet_shoot(Ship* ship);
 
 #endif

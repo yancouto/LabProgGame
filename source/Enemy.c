@@ -4,6 +4,8 @@
 #include "Enemy.h"
 #include "Ship.h"
 #include "Bullet.h"
+#include "Section.h"
+#include "Utils.h"
 
 Enemy* Enemy_new(int x, int y, int z, double precision, int freq, int range) {
 	Enemy* inst = (Enemy*) malloc(sizeof(Enemy));
@@ -18,9 +20,9 @@ Enemy* Enemy_new(int x, int y, int z, double precision, int freq, int range) {
 }
 
 void Enemy_shoot(Enemy* this) {
-	/* double dx = this->precision * (rand() % 10); A implementar
-	double dy = this->precision * (rand() % 10);
-	double dz = this->precision * (rand() % 10); */
+	double dx = this->precision * random()*4;
+	double dy = this->precision * random()*4;
+	double dz = this->precision * random()*4;
 
 	double x = Ship_MainShip->x - this->x;
 	double y = Ship_MainShip->y - this->y;
@@ -46,4 +48,20 @@ void Enemy_delete(Enemy* this) {
 
 void Enemy_Init(void) {}
 
-void Enemy_Update(double dt) {}
+void Enemy_Update(double dt) {
+	Node* i;
+	Node* j;
+
+	for(i = Scene_MainScene->entities->head; i != NULL; i = i->next) {
+		List* list = ((Section*) i->item)->entities;
+		for(j = list->head; j != NULL; j = j->next) {
+			Enemy* e = (Enemy*) j->item;
+			Enemy_update(e, dt);
+			if(e->health <= 0) {
+				j = j->prev;
+				list->remove(e);
+				Enemy_delete(e);
+			}
+		}
+	}
+}

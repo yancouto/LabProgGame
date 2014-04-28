@@ -34,7 +34,4 @@ void Enemy_Init(void);
 /* Update para todos os Enemies. */
 void Enemy_Update(double dt);
 
-/* Adiciona o Enemy para a lista de Enemies. */
-void Enemy_Add(Enemy* this);
-
 #endif

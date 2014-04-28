@@ -44,10 +44,6 @@ void Enemy_delete(Enemy* this) {
 	free(this);
 }
 
-void Enemy_Init(void) {
+void Enemy_Init(void) {}
 
-}
-
-void Enemy_Update(double dt) {
-
-}
+void Enemy_Update(double dt) {}

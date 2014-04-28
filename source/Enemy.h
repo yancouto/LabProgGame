@@ -28,9 +28,13 @@ void Enemy_shoot(Enemy* this);
 /* Destroi e limpa a instancia dada. */
 void Enemy_delete(Enemy* this);
 
+/* Initializa variaveis estaticas. */
 void Enemy_Init(void);
 
 /* Update para todos os Enemies. */
 void Enemy_Update(double dt);
+
+/* Adiciona o Enemy para a lista de Enemies. */
+void Enemy_Add(Enemy* this);
 
 #endif

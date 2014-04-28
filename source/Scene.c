@@ -25,10 +25,7 @@ Scene* Scene_Init(double width, double height, double length, int scenes) {
 }
 
 void Scene_Update(double dt) {
-	Scene *s = Scene_MainScene;
-	List_pushBack(s->sections, 
-		Section_new(0, 0, ((Section*) s->sections->head->prev->item)->z + s->length, 
-			s->width, s->height, s->length, randomInterval(2, 5)));
+	
 }
 
 void Scene_Recycle() {
@@ -37,4 +34,7 @@ void Scene_Recycle() {
 	printf("Adicionando nova secao.\n");
 	Section_delete(n->item);
 	Node_remove(n);
+	List_pushBack(s->sections, 
+		Section_new(0, 0, ((Section*) s->sections->head->prev->item)->z + s->length, 
+			s->width, s->height, s->length, randomInterval(2, 5)));
 }

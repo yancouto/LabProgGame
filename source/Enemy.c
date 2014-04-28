@@ -37,8 +37,10 @@ void Enemy_shoot(Enemy* this) {
 }
 
 void Enemy_update(Enemy* this, double dt) {
-	if(this->_dfreq > this->freq)
+	if(this->_dfreq > this->freq) {
 		Enemy_shoot(this);
+		this->_dfreq = 0;
+	}
 	this->_dfreq += dt;
 }
 

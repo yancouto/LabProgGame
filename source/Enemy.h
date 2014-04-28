@@ -33,4 +33,4 @@ void Enemy_Init(void);
 /* Update para todos os Enemies. */
 void Enemy_Update(double dt);
 
-#endif ENEMY_H
+#endif

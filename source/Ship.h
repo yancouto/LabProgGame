@@ -1,8 +1,6 @@
 #ifndef SHIP_H
 #define SHIP_H
 
-extern Ship *Ship_MainShip;
-
 typedef struct {
 	double y;         /* Posição vertical da nave/altura (0 no "chão") */
 	double x;         /* Posição horizontal da nave (0 no centro) */
@@ -12,8 +10,9 @@ typedef struct {
 	double health;    /* Vida do tiro*/
 } Ship;
 
-/* Função que cria uma nave nova */
-void Ship_new(double x, double y, double z, double v, double dx, double dy, double dz, double h);
+extern Ship *Ship_MainShip;
+
+void Ship_Init();
 
 /* Função que atualiza a posição da nave após um timestep */
 void Ship_update(double dt);

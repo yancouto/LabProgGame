@@ -1,18 +1,17 @@
 #include "Ship.h"
 #include "Bullet.h"
+#include <stdlib.h>
 
 Ship *Ship_MainShip;
 
-void Ship_new(double x, double y, double z, double v, double dx, double dy, double dz, double h) {
-	
-	Ship_MainShip->x = x;
-	Ship_MainShip->y = y;
-	Ship_MainShip->z = z;
-	Ship_MainShip->v = v;
-	Ship_MainShip->dir[0] = dx;
-	Ship_MainShip->dir[1] = dy;
-	Ship_MainShip->dir[2] = dz;
-	Ship_MainShip->health = h;
+void Ship_Init(double x, double y, double z, double v, double dx, double dy, double dz, double h) {
+	Ship *s;
+	s = Ship_MainShip = (Ship*) malloc(sizeof(Ship));
+	s->x = s->y = s->z = 0;
+	s->v = 100; /* ?? Mudar */
+	s->gunDir[0] = s->gunDir[1] = 0;
+	s->gunDir[2] = 1;
+	s->health = 100;
 }
 
 void Ship_update(double dt) {

@@ -9,7 +9,7 @@ struct node {
 };
 
 /* next e prev começam com NULL */
-Node *newNode(void *item);
+Node *Node_new(void *item);
 
 /* Remove o no da lista e limpa a memoria */
 void Node_remove(Node *n);
@@ -20,7 +20,7 @@ typedef struct {
 	/* Alguma outra coisa util */
 } List;
 
-List* newList();
+List *List_new();
 
 /* Adiciona no comeco da lista */
 void List_pushBack(List *this, void *item);

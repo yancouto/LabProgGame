@@ -5,8 +5,6 @@
 #include "Ship.h"
 #include "Bullet.h"
 
-static List* enemies;
-
 Enemy* Enemy_new(int x, int y, int z, double precision, int freq, int range) {
 	Enemy* inst = (Enemy*) malloc(sizeof(Enemy));
 	
@@ -20,9 +18,9 @@ Enemy* Enemy_new(int x, int y, int z, double precision, int freq, int range) {
 }
 
 void Enemy_shoot(Enemy* this) {
-	double dx = this->precision * (rand()%10);
-	double dy = this->precision * (rand()%10);
-	double dz = this->precision * (rand()%10);
+	/* double dx = this->precision * (rand() % 10); A implementar
+	double dy = this->precision * (rand() % 10);
+	double dz = this->precision * (rand() % 10); */
 
 	double x = Ship_MainShip->x - this->x;
 	double y = Ship_MainShip->y - this->y;
@@ -47,14 +45,9 @@ void Enemy_delete(Enemy* this) {
 }
 
 void Enemy_Init(void) {
-	enemies = List_new();
+
 }
 
 void Enemy_Update(double dt) {
-	Node* it;
 
-	for(it = enemies->head; it!=NULL; it = it->next) {
-		Enemy* e = (Enemy*) it->item;
-		Enemy_update(e, dt);
-	}
 }

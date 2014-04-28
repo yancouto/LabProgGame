@@ -1,5 +1,7 @@
 #ifndef BULLET_H
 #define BULLET_H
+#include "Ship.h"
+#include "Enemy.h"
 
 typedef struct {
 	double y;      /* Posição vertical do tiro/altura (0 no "chão") */
@@ -28,7 +30,9 @@ void Bullet_update(Bullet* this, double dt);
 
 
 /* Função que cria um novo tiro que sai da nave */
-void Bullet_shoot(Ship* ship);
+void Bullet_shipShoot(Ship* ship);
+
+void Bullet_enemyShoot(Enemy *enemy);
 
 
 

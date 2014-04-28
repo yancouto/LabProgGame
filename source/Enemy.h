@@ -14,6 +14,8 @@ typedef struct {
 
 	double _dfreq;		/* Pseudo-private. Conta a frequencia. */
 	double freq;		/* Cadencia de disparo da arma. */
+
+	unsigned id;
 } Enemy;
 
 #include "Bullet.h"
@@ -38,5 +40,7 @@ void Enemy_Init(void);
 
 /* Update para todos os Enemies. */
 void Enemy_Update(double dt);
+
+void Enemy_Print();
 
 #endif

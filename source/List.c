@@ -37,7 +37,7 @@ void List_pushBack(List *this, void *item) {
 	addAfter(this->head->prev, item);
 }
 
-void Lista_delete(List *this) {
+void List_delete(List *this) {
 	while(this->head->next != this->head)
 		Node_remove(this->head->next);
 	free(this->head);

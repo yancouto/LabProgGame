@@ -21,4 +21,6 @@ Section* Section_new(double x, double y, double z,
 /* Atualiza a Section. */
 void Section_update(double dt);
 
+void Section_delete(Section*);
+
 #endif

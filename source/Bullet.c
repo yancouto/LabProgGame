@@ -40,7 +40,7 @@ void Bullet_update(Bullet *this, double dt) {
 	this->y += this->v * this->dir[1] * dt;
 	this->z += this->v * this->dir[2] * dt;
 
-	if(1 &&
+	if(this->owner != s &&
 		collidesPoint(s->x, s->y, s->z, s->width, s->height, s->length, this->x, this->y, this->y)) {
 		printf("Tiro %d atingiu a nave.\n", this->id);
 		s->health -= 10;

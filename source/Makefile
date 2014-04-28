@@ -1,7 +1,7 @@
 CC = gcc
 CFLAGS = -ansi -Wall -pedantic -O2
 
-all: List.o Main.o Controller.o Util.o Bullet.o Ship.o Enemy.o
+all: List.o Main.o Controller.o Util.o Bullet.o Ship.o Enemy.o Scene.o Section.o
 	$(CC) $? $(CFLAGS) -o game
 
 Main.o: Main.c Main.h Util.h Controller.h Bullet.h Ship.h Enemy.h
@@ -16,14 +16,20 @@ Util.o: Util.c Util.h
 List.o: List.c List.h
 	$(CC) $(CFLAGS) List.c -c -o List.o
 
-Ship.o: Ship.c List.h Ship.h
+Ship.o: Ship.c List.h Ship.h Scene.h Section.h
 	$(CC) $(CFLAGS) Ship.c -c -o Ship.o
 
-Enemy.o: Enemy.c Enemy.h
+Bullet.o: Bullet.c Bullet.h List.h Ship.h Enemy.h Util.h
+	$(CC) $(CFLAGS) Bullet.c -c -o Bullet.o
+
+Enemy.o: Enemy.c Enemy.h Bullet.h Ship.h
 	$(CC) $(CFLAGS) Enemy.c -c -o Enemy.o
 
-Bullet.o: Bullet.c Bullet.h List.h Ship.h Enemy.h
-	$(CC) $(CFLAGS) Bullet.c -c -o Bullet.o
+Scene.o: Scene.c Scene.h Section.h List.h
+	$(CC) $(CFLAGS) Scene.c -c -o Scene.o
+
+Section.o: Section.c Section.h Enemy.h Util.h List.h
+	$(CC) $(CFLAGS) Section.c -c -o Section.o
 
 clean:
 	rm *.o game

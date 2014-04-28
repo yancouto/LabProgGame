@@ -1,5 +1,6 @@
 #ifndef SCENE_H
 #define SCENE_H
+#include "List.h"
 
 typedef struct {
 	double width;		/* Comprimento das Sections. */
@@ -18,5 +19,8 @@ Scene* Scene_Init(double width, double length, double height, int enemies);
 
 /* Atualiza a Scene. */
 void Scene_Update(double dt);
+
+/* Apaga a primeira cena e coloca uma no final */
+void Scene_Recycle();
 
 #endif

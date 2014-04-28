@@ -1,5 +1,6 @@
 #ifndef SECTION_H
 #define SECTION_H
+#include "List.h"
 
 typedef struct {
 	double x;			

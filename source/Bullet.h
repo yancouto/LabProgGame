@@ -9,7 +9,8 @@ typedef struct {
 	double z;      /* Profundidade do tiro (relativa à posição inicial do cenário) */
 	double v;      /* Velocidade do tiro */
 	double dir[3]; /* Vetor que guarda dois valores para definir a orientação do tiro */
-	double health; /* Vida do tiro*/
+	double health; /* Vida do tiro */
+	unsigned id;
 } Bullet;
 
 /* Função que inicializa a lista de tiros */
@@ -30,9 +31,12 @@ void Bullet_update(Bullet* this, double dt);
 
 
 /* Função que cria um novo tiro que sai da nave */
-void Bullet_shipShoot(Ship* ship);
+void Bullet_ShipShoot(Ship* ship);
 
-void Bullet_enemyShoot(Enemy *enemy);
+void Bullet_EnemyShoot(Enemy *enemy);
+
+/* Imprime todos os tiros */
+void Bullet_Print();
 
 
 

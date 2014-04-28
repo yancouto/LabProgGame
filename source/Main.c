@@ -15,7 +15,7 @@ static void init() {
 }
 
 int main(int argsN, char *args[]) {
-	puts("Bem vindo ao LabProgGame!\n\n");
+	puts("Bem vindo ao LabProgGame!\n\nUse o comando \"ajuda\" se precisar de alguma!\n\n");
 	init();
 
 	while(executeInstruction());
@@ -25,5 +25,7 @@ int main(int argsN, char *args[]) {
 }
 
 void mainStep(double dt) {
-	/* update stuff */
+	Bullet_Update(dt);
+	Ship_Update(dt);
+	Enemy_Update(dt);
 }

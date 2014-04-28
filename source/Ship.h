@@ -15,6 +15,8 @@ extern Ship *Ship_MainShip;
 void Ship_Init();
 
 /* Função que atualiza a posição da nave após um timestep */
-void Ship_update(double dt);
+void Ship_Update(double dt);
+
+void Ship_Print();
 
 #endif

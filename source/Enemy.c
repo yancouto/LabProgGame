@@ -31,7 +31,7 @@ void Enemy_shoot(Enemy* this) {
 
 	this->gunDir[0] = x, this->gunDir[1] = y, this->gunDir[2] = z;
 
-	Bullet_enemyShoot(this);
+	Bullet_EnemyShoot(this);
 }
 
 void Enemy_update(Enemy* this, double dt) {

@@ -7,7 +7,7 @@ all: List.o Main.o Controller.o Util.o Bullet.o Ship.o Enemy.o
 Main.o: Main.c Main.h Util.h Controller.h Bullet.h Ship.h Enemy.h
 	$(CC) $(CFLAGS) Main.c -c -o Main.o
 
-Controller.o: Controller.c Controller.h Main.h Util.h
+Controller.o: Controller.c Controller.h Main.h Util.h Bullet.h Ship.h Enemy.h
 	$(CC) $(CFLAGS) Controller.c -c -o Controller.o
 
 Util.o: Util.c Util.h

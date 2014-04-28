@@ -1,6 +1,7 @@
 #include "Ship.h"
 #include "Bullet.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 Ship *Ship_MainShip;
 
@@ -14,7 +15,12 @@ void Ship_Init(double x, double y, double z, double v, double dx, double dy, dou
 	s->health = 100;
 }
 
-void Ship_update(double dt) {
+void Ship_Update(double dt) {
 	Ship* this = Ship_MainShip;
 	this->z += this->v * dt;
+}
+
+void Ship_Print() {
+	Ship *s = Ship_MainShip;
+	printf("Nave na posicao (%g, %g, %g)\n", s->x, s->y, s->z);
 }

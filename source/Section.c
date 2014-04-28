@@ -2,6 +2,7 @@
 #include "Enemy.h"
 #include "Util.h"
 #include "Scene.h"
+#include "List.h"
 #include <stdlib.h>
 
 Section* Section_new(double x, double y, double z,
@@ -24,4 +25,9 @@ Section* Section_new(double x, double y, double z,
 
 void Section_update(double dt) {
 	
+}
+
+void Section_delete(Section *s) {
+	List_delete(s->entities);
+	free(s);
 }

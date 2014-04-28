@@ -3,6 +3,7 @@
 #include "Util.h"
 
 #include <stdlib.h>
+#include <stdio.h>
 
 Scene* Scene_MainScene;
 
@@ -31,5 +32,9 @@ void Scene_Update(double dt) {
 }
 
 void Scene_Recycle() {
-
+	Scene *s = Scene_MainScene;
+	Node *n = s->sections->head->next;
+	printf("Adicionando nova secao.\n");
+	Section_delete(n->item);
+	Node_remove(n);
 }

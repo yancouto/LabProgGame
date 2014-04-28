@@ -15,6 +15,7 @@ static void processStep() {
 static void processPrint() {
 	Ship_Print();
 	Bullet_Print();
+	Enemy_Print();
 }
 
 static void processShipPosition() {

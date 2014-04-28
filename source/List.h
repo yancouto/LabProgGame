@@ -29,6 +29,6 @@ void List_pushBack(List *this, void *item);
 void List_pushFront(List *this, void *item);
 
 /* Destroi a lista e limpa a memoria */
-void Lista_delete(List *this);
+void List_delete(List *this);
 
 #endif

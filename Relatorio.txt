@@ -51,6 +51,16 @@ para facilitar a colisão.
 posição e direção definidas pelas iniciais da nave. Tiros tambpem foram decididos inicialmente
 para serem pontos em vez de terem tamanhos 3D como inimigos ou a nave principal (novamente para
 facilitar na hora de colisão nessa etapa de desenvolvimento).
+    Sobre o Cenário decidimos da seguinte forma:
+    O Cenário, chamado de Scene, é composto de partições, ditas Sections, por meio de uma lista
+ligada do tipo FIFO. Essas partições são, por sua vez, compostas de um vetor posição (x, y, z),
+um vetor dimensão (width, height, length) e uma lista de inimigos. Quando o jogador, que controla
+a nave descrita em Ship, entra em uma Section, a anterior é destruída, implicando na destruição
+dos inimigos contidos na partição. Em seguida, nós criamos uma nova partição no final da lista de
+partições presente em Scene.
+    Cada Section, quando criada, constrói um número de inimigos gerado pseudo-aleatoriamente em
+posições diferentes mas que estejam dentro do paralelepípedo gerado por (x, y, z) e
+(width, height, length).
 
 
 ######################
@@ -61,4 +71,4 @@ facilitar na hora de colisão nessa etapa de desenvolvimento).
 tivemos que acelerar muito pra terminar a tempo, logo não só prejudicando o pensamento de ideias
 boas para o projeto, como não podendo sofisticar a parte de testes e melhora-lo. Isso será algo
 que mais focaremos em outras fases: Organização.
-
+    Então no começo de testar todas as funções, a parte de colisão especialmente ficou corrida

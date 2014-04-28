@@ -34,7 +34,7 @@ tratar vários aspectos do jogo.
 		    -Uma nave que andaria em 3 dimensões
 		    -Inimigos que atiram na nave
 		    -Cenário que vai se deslocando com uma lista de inimigos
-			    que se aproximam relativamente da nave
+			      que se aproximam relativamente da nave
 
 	  Logo no começo foi visto decisões sobre movimentos dos objetos dos jogo. Naves se moveriam
 sempre para frente com uma velocidade que pode variar, e além disso se moveriam lateralmente 

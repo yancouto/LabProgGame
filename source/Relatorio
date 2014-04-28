@@ -3,6 +3,25 @@ Relatório sobre trabalho de Laborátorio de Programação - 2014
 ------------------------FASE 1------------------------------
 Ground control to Major Gubi: commence countdown report go!
 
+                           *     .--.
+                                / /  `
+               +               | |
+                      '         \ \__,
+                  *          +   '--'  *
+                      +   /\
+         +              .'  '.   *
+                *      /======\      +
+                      ;:.  _   ;
+                      |:. (_)  |
+                      |:.  _   |
+            +         |:. (_)  |          *
+                      ;:.      ;
+                    .' \:.    / `.
+                   / .-'':._.'`-. \
+                   |/    /||\    \|
+                 _..--"""````"""--.._
+           _.-'``                    ``'-._
+         -'                                '-
 
 ######################
 1.Decisões Tomadas
@@ -27,6 +46,8 @@ Cenário (x,y,z), uma velocidade e os valores de direção da "arma" acoplada ne
 da tela já que nos testes iniciais utilizamos apenas o terminal, sem nenhuma parte gráfica. Por
 essa mesma razão de praticidade por enquanto só mudamos diretamente a posição x e y da nave,
 sem nenhuma aceleração individual nessas cordenadas para o movimento.
+	Logo a direção "vetorial" será mais utilizada no tiros, que ao serem criados, terão sua
+posição e direção definidas pelas iniciais da nave.
 
 ######################
 2.Problemas

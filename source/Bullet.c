@@ -25,10 +25,6 @@ void Bullet_update(Bullet *this, double dt) {
 	this->x += this->v * this->dir[0] * dt;
 	this->y += this->v * this->dir[1] * dt;
 	this->z += this->v * this->dir[2] * dt;
-
-	if(this->health <=0){
-
-	}
 }
 
 void Bullet_Update(double dt) {
@@ -43,10 +39,18 @@ void Bullet_Update(double dt) {
     }
 }
 
-void Bullet_shoot(Ship* ship) {
+void Bullet_shipShoot(Ship* ship) {
 	Bullet* bullet;
 
 	bullet = Bullet_newBullet(ship->x, ship->y, ship->z, ship->gunDir[0], ship->gunDir[1], ship->gunDir[2]);
+
+	List_pushBack(bullets, bullet);
+}
+
+void Bullet_enemyShoot(Enemy* enemy) {
+	Bullet* bullet;
+
+	bullet = Bullet_newBullet(enemy->x, enemy->y, enemy->z, enemy->gunDir[0], enemy->gunDir[1], enemy->gunDir[2]);
 
 	List_pushBack(bullets, bullet);
 }

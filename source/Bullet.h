@@ -10,20 +10,26 @@ typedef struct {
 	double health; /* Vida do tiro*/
 } Bullet;
 
+/* Função que inicializa a lista de tiros */
+void Bullet_Init(void);
+
+/* Função que atualiza a lista com todos os tiros após um timestep, e
+   admnistra se o tiro precisa ser removido */
+void Bullet_Update(double dt);
+
 /* Função que cria um novo tiro */
 Bullet* Bullet_new(double x, double y, double z, double dx, double dy, double dz, double h);
 
 /* Função que remove um novo tiro */
 void Bullet_delete(Bullet* bullet);
 
-/* Função que atualiza a posição de um tiro após um timestep, e
-   admnistra se o tiro precisa ser removido */
+/* Função que atualiza a posição de um tiro após um timestep */
 void Bullet_update(Bullet* this, double dt);
 
-/* Função que atualiza a lista com todos os tiros após um timestep */
-void Bullet_Update(double dt);
 
 /* Função que cria um novo tiro que sai da nave */
 void Bullet_shoot(Ship* ship);
+
+
 
 #endif

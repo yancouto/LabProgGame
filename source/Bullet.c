@@ -2,6 +2,10 @@
 
 static List *bullets = newList();
 
+void Bullet_Init(void){
+	
+}
+
 Bullet* Bullet_new(double x, double y, double z, double dx, double dy, double dz, double h) {
 	Bullet* this;
 	

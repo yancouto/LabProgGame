@@ -27,27 +27,27 @@ Ground control to Major Gubi: commencing countdown, report go-bi!
 1.Decisões Tomadas
 ######################
 
-	Para fazer o trabalho, mesmo na fase inicial, nosso grupo se reuniu para discutir como
+    Para fazer o trabalho, mesmo na fase inicial, nosso grupo se reuniu para discutir como
 tratar vários aspectos do jogo.
 	
-	Primeiramente utilizamos muitos das idéias básicas que definem o tipo e base do jogo:
-		-Uma nave que andaria em 3 dimensões
-		-Inimigos que atiram na nave
-		-Cenário que vai se deslocando com uma lista de inimigos
-			que se aproximam relativamente da nave
+	  Primeiramente utilizamos muitos das idéias básicas que definem o tipo e base do jogo:
+		    -Uma nave que andaria em 3 dimensões
+		    -Inimigos que atiram na nave
+		    -Cenário que vai se deslocando com uma lista de inimigos
+			    que se aproximam relativamente da nave
 
-	Logo no começo foi visto decisões sobre movimentos dos objetos dos jogo. Naves se moveriam
+	  Logo no começo foi visto decisões sobre movimentos dos objetos dos jogo. Naves se moveriam
 sempre para frente com uma velocidade que pode variar, e além disso se moveriam lateralmente 
 e verticalmente em relação à tela. Entretanto decidimos por praticidade fazer ela temporariamente
 paralela ao "chão", ou seja angularmente o que variaria nela seria apenas o inicio do percurso
 dos projéteis atirados. Logo a nave teria como características sua posição em coordenadas no
 Cenário (x,y,z), uma velocidade e os valores de direção da "arma" acoplada nela.
-	Com essa decisão não teriamos de nos preocupar muito no inicio com colisões ou a nave "fugir"
+	  Com essa decisão não teriamos de nos preocupar muito no inicio com colisões ou a nave "fugir"
 da tela já que nos testes iniciais utilizamos apenas o terminal, sem nenhuma parte gráfica. Por
 essa mesma razão de praticidade por enquanto só mudamos diretamente a posição x e y da nave,
 sem nenhuma aceleração individual nessas cordenadas para o movimento, e não rotacionamos a nave
 para facilitar a colisão.
-	Logo a direção "vetorial" será mais utilizada no tiros, que ao serem criados, terão sua
+	  Logo a direção "vetorial" será mais utilizada no tiros, que ao serem criados, terão sua
 posição e direção definidas pelas iniciais da nave. Tiros tambpem foram decididos inicialmente
 para serem pontos em vez de terem tamanhos 3D como inimigos ou a nave principal (novamente para
 facilitar na hora de colisão nessa etapa de desenvolvimento).
@@ -57,7 +57,7 @@ facilitar na hora de colisão nessa etapa de desenvolvimento).
 2.Problemas
 ######################
 
-	O maior problema que tivemos foi ter atrasado muito para começar o projeto, e por culpa disso
+	  O maior problema que tivemos foi ter atrasado muito para começar o projeto, e por culpa disso
 tivemos que acelerar muito pra terminar a tempo, logo não só prejudicando o pensamento de ideias
 boas para o projeto, como não podendo sofisticar a parte de testes e melhora-lo. Isso será algo
 que mais focaremos em outras fases: Organização.

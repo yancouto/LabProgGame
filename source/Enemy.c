@@ -7,10 +7,6 @@
 
 static List* enemies;
 
-void Enemy_Init(void) {
-	enemies = List_new();
-}
-
 Enemy* Enemy_new(int x, int y, int z, double precision, int freq, int range) {
 	Enemy* inst = (Enemy*) malloc(sizeof(Enemy));
 	
@@ -41,6 +37,24 @@ void Enemy_shoot(Enemy* this) {
 }
 
 void Enemy_update(Enemy* this, double dt) {
-	
+	if(this->_dfreq > this->freq)
+		Enemy_shoot(this);
+	this->_dfreq += dt;
 }
 
+void Enemy_delete(Enemy* this) {
+	free(this);
+}
+
+void Enemy_Init(void) {
+	enemies = List_new();
+}
+
+void Enemy_Update(double dt) {
+	Node* it;
+
+	for(it = enemies->head; it!=NULL; it = it->next) {
+		Enemy* e = (Enemy*) it->item;
+		Enemy_update(e, dt);
+	}
+}

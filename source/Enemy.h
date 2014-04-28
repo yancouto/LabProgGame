@@ -1,8 +1,6 @@
 #ifndef ENEMY_H	
 #define ENEMY_H
 
-#include "List.h"
-
 typedef struct {
 	double x;			/* Vetor posicao (x, y, z) */
 	double y;
@@ -14,7 +12,7 @@ typedef struct {
 
 	double gunDir[3];
 
-	double 
+	double _dfreq;		/* Pseudo-private. Conta a frequencia. */
 	double freq;		/* Cadencia de disparo da arma. */
 } Enemy;
 

@@ -1,0 +1,11 @@
+######################
+~~~~Manual do Jogo~~~~
+######################
+
+Para utilizar o estado atual do projeto (fase teste):
+
+-Use "make" para compilar
+-Use "make clean" ou "make cleanWindows" para limpar
+-Use "./game" ou "game" para executar
+
+-Com o jogo inicializado, digite ajuda para os comandos

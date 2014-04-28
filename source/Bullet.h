@@ -1,7 +1,5 @@
 #ifndef BULLET_H
 #define BULLET_H
-#include "Ship.h"
-#include "Enemy.h"
 
 typedef struct {
 	double y;      /* Posição vertical do tiro/altura (0 no "chão") */
@@ -10,8 +8,12 @@ typedef struct {
 	double v;      /* Velocidade do tiro */
 	double dir[3]; /* Vetor que guarda dois valores para definir a orientação do tiro */
 	double health; /* Vida do tiro */
-	unsigned id;
+	unsigned id;   /* ID do tiro */
+	void *owner;   /* quem atirou */
 } Bullet;
+
+#include "Ship.h"
+#include "Enemy.h"
 
 /* Função que inicializa a lista de tiros */
 void Bullet_Init(void);
@@ -21,7 +23,7 @@ void Bullet_Init(void);
 void Bullet_Update(double dt);
 
 /* Função que cria um novo tiro */
-Bullet* Bullet_new(double x, double y, double z, double dx, double dy, double dz, double h);
+Bullet *Bullet_new(double x, double y, double z, double dx, double dy, double dz, double h, void *owner);
 
 /* Função que remove um novo tiro */
 void Bullet_delete(Bullet* bullet);

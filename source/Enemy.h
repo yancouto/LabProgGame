@@ -16,6 +16,8 @@ typedef struct {
 	double freq;		/* Cadencia de disparo da arma. */
 } Enemy;
 
+#include "Bullet.h"
+
 /* Constructor para Enemy. */
 Enemy* Enemy_new(int x, int y, int z, double precision, int freq, int range);
 
@@ -27,6 +29,9 @@ void Enemy_shoot(Enemy* this);
 
 /* Destroi e limpa a instancia dada. */
 void Enemy_delete(Enemy* this);
+
+/* Checa se o tiro colide com algum inimigo e retorna ele nesse caso */
+Enemy *Enemy_BulletCollide(Bullet *b);
 
 /* Initializa variaveis estaticas. */
 void Enemy_Init(void);

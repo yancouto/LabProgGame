@@ -9,10 +9,15 @@ bool collides(double x1, double y1, double z1, double dx1, double dy1, double dz
 	return true;
 }
 
+bool collidesPoint(double x1, double y1, double z1, double dx1, double dy1, double dz1,
+		double x2, double y2, double z2) {
+	return collides(x1, y1, z1, dx1, dy1, dz1, x2, y2, z2, 0, 0, 0);
+}
+
 double random() {
 	return (double) rand() / (RAND_MAX + 1);
 }
 
-int randInterval(int from, int to) {
+int randomInterval(int from, int to) {
 	return (int) (random() * (to - from) + from);
 }

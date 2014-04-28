@@ -5,7 +5,8 @@
 #include "Ship.h"
 #include "Bullet.h"
 #include "Section.h"
-#include "Utils.h"
+#include "Util.h"
+#include "Scene.h"
 
 Enemy* Enemy_new(int x, int y, int z, double precision, int freq, int range) {
 	Enemy* inst = (Enemy*) malloc(sizeof(Enemy));
@@ -42,6 +43,10 @@ void Enemy_update(Enemy* this, double dt) {
 	this->_dfreq += dt;
 }
 
+Enemy *Enemy_BulletCollide(Bullet *b) {
+	return NULL;
+}
+
 void Enemy_delete(Enemy* this) {
 	free(this);
 }
@@ -52,14 +57,14 @@ void Enemy_Update(double dt) {
 	Node* i;
 	Node* j;
 
-	for(i = Scene_MainScene->entities->head; i != NULL; i = i->next) {
+	for(i = Scene_MainScene->sections->head; i != NULL; i = i->next) {
 		List* list = ((Section*) i->item)->entities;
 		for(j = list->head; j != NULL; j = j->next) {
 			Enemy* e = (Enemy*) j->item;
 			Enemy_update(e, dt);
 			if(e->health <= 0) {
 				j = j->prev;
-				list->remove(e);
+				Node_remove(j->next);
 				Enemy_delete(e);
 			}
 		}

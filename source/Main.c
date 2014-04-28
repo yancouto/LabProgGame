@@ -2,6 +2,7 @@
 #include "Controller.h"
 #include "Bullet.h"
 #include "Ship.h"
+#include "Scene.h"
 #include <stdio.h>
 #include <time.h>
 #include <stdlib.h>
@@ -12,6 +13,7 @@ static void init() {
 
 	Bullet_Init();
 	Ship_Init();
+	Scene_Init(1200, 1200, 100, 12);
 }
 
 int main(int argsN, char *args[]) {

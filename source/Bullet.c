@@ -52,6 +52,9 @@ void Bullet_update(Bullet *this, double dt) {
 			this->health = 0;
 		}
 	}
+
+	if(this->x < 0 || this->x > 1200 || this-> y < 0 || this->y > 0 || this->z < s->z || this->z > s->z + 1200)
+		this->health = 0;
 }
 
 void Bullet_Update(double dt) {

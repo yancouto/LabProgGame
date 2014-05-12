@@ -7,7 +7,7 @@ typedef struct {
 	double z;      /* Profundidade do tiro (relativa à posição inicial do cenário) */
 	double v;      /* Velocidade do tiro */
 	double dir[3]; /* Vetor que guarda dois valores para definir a orientação do tiro */
-	double health; /* Vida do tiro */
+	int health; /* Vida do tiro */
 	unsigned id;   /* ID do tiro */
 	void *owner;   /* quem atirou */
 } Bullet;

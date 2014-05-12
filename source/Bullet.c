@@ -14,7 +14,7 @@ void Bullet_Init() {
 Bullet* Bullet_new(double x, double y, double z, double dx, double dy, double dz, double h, void *owner) {
 	static unsigned i = 0;
 	Bullet* this = (Bullet*) malloc(sizeof(Bullet));
-	
+
 	this->x = x;
 	this->y = y;
 	this->z = z;
@@ -42,19 +42,22 @@ void Bullet_update(Bullet *this, double dt) {
 
 	if(this->owner != s &&
 		collidesPoint(s->x, s->y, s->z, s->width, s->height, s->length, this->x, this->y, this->y)) {
-		printf("Tiro %d atingiu a nave.\n", this->id);
+		printf("Tiro %u atingiu a nave.\n", this->id);
 		s->health -= 10;
 		this->health = 0;
 	} else {
 		Enemy *e = Enemy_BulletCollide(this);
 		if(e && e != this->owner) {
+			printf("Tiro %u atingiu o inimigo %d.\n", this->id, e->id);
 			e->health -= 10;
 			this->health = 0;
 		}
 	}
 
-	if(this->x < 0 || this->x > 1200 || this-> y < 0 || this->y > 0 || this->z < s->z || this->z > s->z + 1200)
+	if(this->x < 0 || this->x > 1200 || this-> y < 0 || this->y > 1200 || this->z < s->z - 100 || this->z > s->z + 1200) {
+		printf("Tiro %u saiu da tela \t(%6g, %6g, %6g)\n", this->id, this->x, this->y, this->z);
 		this->health = 0;
+	}
 }
 
 void Bullet_Update(double dt) {
@@ -67,7 +70,7 @@ void Bullet_Update(double dt) {
 		Bullet *b = (Bullet*) n->item;
 		if(b->health <= 0) {
 			Node *temp = n->next;
-			printf("Tiro %d explodiu!\n", b->id);
+			printf("Tiro %u explodiu!\n", b->id);
 			Bullet_delete(b);
 			Node_remove(n);
 			n = temp;
@@ -96,6 +99,6 @@ void Bullet_Print() {
 
 	for(n = bullets->head->next; n != bullets->head; n = n->next) {
 		Bullet *b = (Bullet*) n->item;
-		printf("Tiro %d em (%g, %g, %g)\n", b->id, b->x, b->y, b->z);
+		printf("Tiro %u em \t(%6g, %6g, %6g)\n", b->id, b->x, b->y, b->z);
 	}
 }

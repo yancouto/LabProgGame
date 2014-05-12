@@ -9,6 +9,8 @@
 #include "Util.h"
 #include "Scene.h"
 
+const int Enemy_DefaultSize = 20;
+
 Enemy* Enemy_new(int x, int y, int z, double precision, int freq, int range) {
 	static unsigned i = 0;
 
@@ -42,11 +44,19 @@ void Enemy_shoot(Enemy* this) {
 }
 
 void Enemy_update(Enemy* this, double dt) {
+	Ship *s = Ship_MainShip;
 	if(this->_dfreq > this->freq) {
 		Enemy_shoot(this);
 		this->_dfreq = 0;
 	}
 	this->_dfreq += dt;
+
+	if(collides(s->x, s->y, s->z, s->width, s->height, s->length,
+		 this->x, this->y, this->z, Enemy_DefaultSize, Enemy_DefaultSize, Enemy_DefaultSize)) {
+		printf("Inimigo %u colidiu com a nave!\n", this->id);
+		this->health = 0;
+		s->health -= 25;
+	}
 }
 
 Enemy *Enemy_BulletCollide(Bullet *b) {
@@ -69,7 +79,7 @@ void Enemy_Update(double dt) {
 			Enemy* e = (Enemy*) j->item;
 			Enemy_update(e, dt);
 			if(e->health <= 0) {
-				printf("Inimigo %d explodiu!\n", e->id);
+				printf("Inimigo %u explodiu!\n", e->id);
 				j = j->prev;
 				Node_remove(j->next);
 				Enemy_delete(e);
@@ -86,7 +96,7 @@ void Enemy_Print() {
 		List* list = ((Section*) i->item)->entities;
 		for(j = list->head->next; j != list->head; j = j->next) {
 			Enemy* e = (Enemy*) j->item;
-			printf("Inimigo %d em (%g, %g, %g)\n", e->id, e->x, e->y, e->z);
+			printf("Inimigo %u em \t(%6g, %6g, %6g) \t- %u de vida\n", e->id, e->x, e->y, e->z, e->health);
 		}
 	}
 }

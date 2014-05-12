@@ -2,6 +2,7 @@
 #include "Main.h"
 #include "Ship.h"
 #include "Bullet.h"
+#include "Player.h"
 #include <stdio.h>
 #include <string.h>
 #include <math.h>
@@ -9,7 +10,7 @@
 static void processStep() {
 	unsigned n;
 	scanf("%u", &n);
-	while(n--) mainStep(STEP);
+	while(n--) Main_Step(STEP);
 }
 
 static void processPrint() {
@@ -46,7 +47,12 @@ static void processHelp() {
 		"4. arma_dir X Y Z - aponta a arma da nave na direcao e sentido do vetor (X, Y, Z)\n\t"
 		"5. atirar - atira com a arma da nave para a posicao que esta apontando\n\t"
 		"6. sair - fecha o programa\n\t"
-		"7. ajuda - Como voce chegou aqui se nao sabe?\n");
+		"7. info - informacoes do jogador (vidas, pontuacao, ...)"
+		"8. ajuda - Como voce chegou aqui se nao sabe?\n");
+}
+
+static void processInfo() {
+	printf("\tVidas: %d\n\tPontuacao: %d\n\n", Player_Lives, Player_Score);
 }
 
 char command[128];
@@ -63,7 +69,8 @@ bool executeInstruction() {
 	else if(strcmp(command, "arma_dir") == 0) processGunDir();
 	else if(strcmp(command, "atirar") == 0) processShoot();
 	else if(strcmp(command, "ajuda") == 0) processHelp();
+	else if(strcmp(command, "info") == 0) processInfo();
 	else printf("Comando \"%s\" nao reconhecido.\n", command);
 
-	return Ship_MainShip->health >= 0; /* No futuro colocar return Ship_MainShip->health > 0 */
+	return true;
 }

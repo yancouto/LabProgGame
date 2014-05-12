@@ -3,6 +3,7 @@
 #include "Bullet.h"
 #include "Ship.h"
 #include "Scene.h"
+#include "Player.h"
 #include <stdio.h>
 #include <time.h>
 #include <stdlib.h>
@@ -10,6 +11,9 @@
 static void init() {
 	srand(time(NULL));
 	rand(); rand();
+
+	Player_Score = 0;
+	Player_Lives = 3;
 
 	Bullet_Init();
 	Ship_Init();
@@ -26,8 +30,13 @@ int main(int argsN, char *args[]) {
 	return 0;
 }
 
-void mainStep(double dt) {
+void Main_Step(double dt) {
 	Bullet_Update(dt);
 	Ship_Update(dt);
 	Enemy_Update(dt);
+}
+
+void Main_LoseGame() {
+	printf("\n\nVoce perdeu o jogo!\nAdeus!");
+	exit(0);
 }

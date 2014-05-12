@@ -10,7 +10,7 @@ typedef struct {
 	double length;
 	double v;         /* Velocidade da nave */
 	double gunDir[3]; /* Vetor que guarda tres valores para definir a orientação da arma da nave */
-	double health;    /* Vida do tiro*/
+	int health;    /* Vida da nave*/
 } Ship;
 
 extern Ship *Ship_MainShip;

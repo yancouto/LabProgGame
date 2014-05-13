@@ -26,9 +26,6 @@ Bullet* Bullet_new(double x, double y, double z, double dx, double dy, double dz
 	this->owner = owner;
 	this->v = 200;
 
-	printf("Novo Tiro(%u) em (%6g, %6g, %6g)\n", this->id,
-		this->x, this->y, this->z, this->dir[0] * this->v, this->dir[1] * this->v, this->dir[2] * this->v);
-
 	return this;
 }
 
@@ -58,7 +55,7 @@ void Bullet_update(Bullet *this, double dt) {
 	}
 
 	if(this->x < 0 || this->x > 1200 || this-> y < 0 || this->y > 1200 || this->z < s->z - 100 || this->z > s->z + 1200) {
-		printf("Tiro %u saiu da tela \t(%6g, %6g, %6g)\n", this->id, this->x, this->y, this->z);
+		printf("Tiro %u saiu da tela.\n", this->id);
 		this->health = 0;
 	}
 }

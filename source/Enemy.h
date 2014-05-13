@@ -34,6 +34,7 @@ void Enemy_shoot(Enemy* this);
 /* Destroi e limpa a instancia dada. */
 void Enemy_delete(Enemy* this);
 
+
 /* Checa se o tiro colide com algum inimigo e retorna ele nesse caso */
 Enemy *Enemy_BulletCollide(Bullet *b);
 

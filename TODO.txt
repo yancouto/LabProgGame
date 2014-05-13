@@ -2,3 +2,14 @@
 - Melhor geração das seções (inimigos não colidem)
 - Mudar x, y, z para um vetor de 3 posições pos (e width, height, length para size)
 - Já usar o openGL para ter um feedback visual?
+- Gravidade para os tiros
+	- Por enquanto eles tem uma velocidade e uma direção, isso
+		é ruim para colocar gravidade, então temos que discutir
+		se mudamos isso (deixar só um vetor de velocidade mesmo,
+		e o módulo dela muda) ou ficar calculando o versor do vetor
+		em todo update...
+	- Outro problema é calcular a direção que o inimigo tem que
+		atirar para acertar a nave. Sem gravidade já não está
+		acertando, imagina com... (E tb tem que ter erro)
+- Usar 'range' dos inimigos
+- O prof falou pra diminuir o 'z' de todo o resto em vez de aumentar o z da nave, mudamos?

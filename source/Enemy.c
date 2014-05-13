@@ -40,7 +40,7 @@ void Enemy_shoot(Enemy* this) {
 
 	this->gunDir[0] = x, this->gunDir[1] = y, this->gunDir[2] = z;
 
-	printf("Inimigo %u atirou na nave!\n", this->id);
+	printf("Inimigo %u atirou na nave.\n", this->id);
 
 	Bullet_EnemyShoot(this);
 }
@@ -78,6 +78,7 @@ Enemy *Enemy_BulletCollide(Bullet *b) {
 }
 
 void Enemy_delete(Enemy* this) {
+	printf("Inimigo %u explodiu!\n", this->id);
 	free(this);
 }
 
@@ -93,7 +94,6 @@ void Enemy_Update(double dt) {
 			Enemy* e = (Enemy*) j->item;
 			Enemy_update(e, dt);
 			if(e->health <= 0) {
-				printf("Inimigo %u explodiu!\n", e->id);
 				j = j->prev;
 				Node_remove(j->next);
 				Enemy_delete(e);

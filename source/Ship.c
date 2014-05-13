@@ -16,7 +16,7 @@ void Ship_Init() {
 	s = Ship_MainShip = (Ship*) malloc(sizeof(Ship));
 	s->x = s->y = s->z = 0;
 	s->v = 100;
-	s->gunDir[0] = s->gunDir[1] = 600;
+	s->gunDir[0] = s->gunDir[1] = 0;
 	s->gunDir[2] = 1;
 	s->health = Ship_DefaultHealth;
 
@@ -42,4 +42,11 @@ void Ship_Update(double dt) {
 void Ship_Print() {
 	Ship *s = Ship_MainShip;
 	printf("Nave em \t(%6g, %6g, %6g) \t- %d de vida\n", s->x, s->y, s->z, s->health);
+}
+
+void Ship_Shoot() {
+	Ship *s = Ship_MainShip;
+	printf("A nave atirou!\n");
+
+	Bullet_ShipShoot(s);
 }

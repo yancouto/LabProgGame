@@ -37,7 +37,7 @@ static void processGunDir() {
 }
 
 static void processShoot() {
-	Bullet_ShipShoot(Ship_MainShip);
+	Ship_Shoot();
 }
 
 static void processHelp() {
@@ -47,7 +47,7 @@ static void processHelp() {
 		"4. arma_dir X Y Z - aponta a arma da nave na direcao e sentido do vetor (X, Y, Z)\n\t"
 		"5. atirar - atira com a arma da nave para a posicao que esta apontando\n\t"
 		"6. sair - fecha o programa\n\t"
-		"7. info - informacoes do jogador (vidas, pontuacao, ...)"
+		"7. info - informacoes do jogador (vidas, pontuacao, ...)\n\t"
 		"8. ajuda - Como voce chegou aqui se nao sabe?\n");
 }
 

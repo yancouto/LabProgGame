@@ -1,0 +1,4 @@
+- Inimigos de tamanhos diferentes
+- Melhor geração das seções (inimigos não colidem)
+- Mudar x, y, z para um vetor de 3 posições pos (e width, height, length para size)
+- Já usar o openGL para ter um feedback visual?

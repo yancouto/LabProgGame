@@ -26,6 +26,9 @@ Bullet* Bullet_new(double x, double y, double z, double dx, double dy, double dz
 	this->owner = owner;
 	this->v = 200;
 
+	printf("Novo Tiro(%u) em (%6g, %6g, %6g)\n", this->id,
+		this->x, this->y, this->z, this->dir[0] * this->v, this->dir[1] * this->v, this->dir[2] * this->v);
+
 	return this;
 }
 
@@ -81,7 +84,8 @@ void Bullet_Update(double dt) {
 void Bullet_ShipShoot(Ship* ship) {
 	Bullet* bullet;
 
-	bullet = Bullet_new(ship->x, ship->y, ship->z, ship->gunDir[0], ship->gunDir[1], ship->gunDir[2], 1, ship);
+	bullet = Bullet_new(ship->x + ship->width/2, ship->y + ship->height/2,
+		ship->z + ship->length, ship->gunDir[0], ship->gunDir[1], ship->gunDir[2], 1, ship);
 
 	List_pushBack(bullets, bullet);
 }

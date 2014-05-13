@@ -20,6 +20,10 @@ void Ship_Init();
 /* Função que atualiza a posição da nave após um timestep */
 void Ship_Update(double dt);
 
+/* Imprime informacoes importantes da nave */
 void Ship_Print();
+
+/* Atira na direca em que esta apontando */
+void Ship_Shoot();
 
 #endif

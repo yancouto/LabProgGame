@@ -11,8 +11,8 @@ Section* Section_new(double x, double y, double z,
 	
 	int i;
 
-	inst->x = x, inst->y = y, inst->z = z;
-	inst->width = width, inst->length = length, inst->height = height;
+	inst->pos[0] = x, inst->pos[1] = y, inst->pos[2] = z;
+	inst->size[0] = width, inst->size[1] = length, inst->size[2] = height;
 	inst->entities = List_new();
 
 	for(i = 0; i < enemies; ++i)

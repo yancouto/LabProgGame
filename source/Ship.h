@@ -1,15 +1,13 @@
 #ifndef SHIP_H
 #define SHIP_H
 
+#include "Vector.h"
+
 typedef struct {
-	double y;         /* Posição vertical da nave/altura (0 no "chão") */
-	double x;         /* Posição horizontal da nave (0 no centro) */
-	double z;         /* Profundidade da nave (relativa à posição inicial do cenário) */
-	double width;
-	double height;    /* Tamanho da nave */
-	double length;
+	Vector pos; /* Posicao da nave. */
+	Vector size; /* Tamanho da nave. */
 	double v;         /* Velocidade da nave */
-	double gunDir[3]; /* Vetor que guarda tres valores para definir a orientação da arma da nave */
+	Vector gunDir; /* Vetor que guarda tres valores para definir a orientação da arma da nave */
 	int health;    /* Vida da nave*/
 } Ship;
 

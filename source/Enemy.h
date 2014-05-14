@@ -1,10 +1,10 @@
 #ifndef ENEMY_H	
 #define ENEMY_H
 
+#include "Vector.h"
+
 typedef struct {
-	double x;			/* Vetor posicao (x, y, z) */
-	double y;
-	double z;
+	Vector pos;
 
 	int health;			/* Vida do inimigo. */
 	int range;			/* Alcance da arma. */
@@ -20,7 +20,7 @@ typedef struct {
 
 #include "Bullet.h"
 
-extern const int Enemy_DefaultSize;
+extern int Enemy_DefaultSize;
 
 /* Constructor para Enemy. */
 Enemy* Enemy_new(int x, int y, int z, double precision, int freq, int range);

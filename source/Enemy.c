@@ -9,14 +9,14 @@
 #include "Util.h"
 #include "Scene.h"
 
-const int Enemy_DefaultSize = 20;
+Vector Enemy_DEF_SIZE = {20, 20, 20};
 
 Enemy* Enemy_new(int x, int y, int z, double precision, int freq, int range) {
 	static unsigned i = 0;
 
 	Enemy* inst = (Enemy*) malloc(sizeof(Enemy));
 	
-	inst->x = x, inst->y = y, inst->z = z;
+	inst->pos[0] = x, inst->pos[1] = y, inst->pos[2] = z;
 	inst->precision = precision;
 	inst->freq = freq;
 	inst->range = range;
@@ -31,9 +31,9 @@ void Enemy_shoot(Enemy* this) {
 	double dy = this->precision * random()*4;
 	double dz = this->precision * random()*4;*/
 
-	double x = Ship_MainShip->x - this->x;
-	double y = Ship_MainShip->y - this->y;
-	double z = Ship_MainShip->z - this->z;
+	double x = Ship_MainShip->pos[0] - this->pos[0];
+	double y = Ship_MainShip->pos[1] - this->pos[1];
+	double z = Ship_MainShip->pos[2] - this->pos[2];
 
 	double norm = sqrt(x*x + y*y + z*z);
 	x /= norm, y /= norm, z /= norm;
@@ -53,8 +53,7 @@ void Enemy_update(Enemy* this, double dt) {
 	}
 	this->_dfreq += dt;
 
-	if(collides(s->x, s->y, s->z, s->width, s->height, s->length,
-		 this->x, this->y, this->z, Enemy_DefaultSize, Enemy_DefaultSize, Enemy_DefaultSize)) {
+	if(collides(s->pos, Enemy_DEF_SIZE, this->pos, Enemy_DEF_SIZE)) {
 		printf("Inimigo %u colidiu com a nave!\n", this->id);
 		this->health = 0;
 		s->health -= 25;
@@ -69,8 +68,7 @@ Enemy *Enemy_BulletCollide(Bullet *b) {
 		List* list = ((Section*) i->item)->entities;
 		for(j = list->head->next; j != list->head; j = j->next) {
 			Enemy* e = (Enemy*) j->item;
-			if(collidesPoint(e->x, e->y, e->z, Enemy_DefaultSize, Enemy_DefaultSize, Enemy_DefaultSize,
-				b->x, b->y, b->z)) return e;
+			if(collidesPoint(e->pos, Enemy_DEF_SIZE, b->pos)) return e;
 		}
 	}
 
@@ -110,7 +108,7 @@ void Enemy_Print() {
 		List* list = ((Section*) i->item)->entities;
 		for(j = list->head->next; j != list->head; j = j->next) {
 			Enemy* e = (Enemy*) j->item;
-			printf("Inimigo %u em \t(%6g, %6g, %6g) \t- %u de vida\n", e->id, e->x, e->y, e->z, e->health);
+			printf("Inimigo %u em \t(%6g, %6g, %6g) \t- %u de vida\n", e->id, e->pos[0], e->pos[1], e->pos[2], e->health);
 		}
 	}
 }

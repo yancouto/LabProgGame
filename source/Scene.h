@@ -1,11 +1,11 @@
 #ifndef SCENE_H
 #define SCENE_H
+
 #include "List.h"
+#include "Vector.h"
 
 typedef struct {
-	double width;		/* Comprimento das Sections. */
-	double length;		/* Largura das Sections. */
-	double height;		/* Altura das Sections. */
+	Vector size;		/* Tamanho da Section. */
 
 	int enemies;		/* The average number of Enemies in each Section. */
 

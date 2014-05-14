@@ -14,22 +14,22 @@ static const int Ship_DefaultHealth = 100;
 void Ship_Init() {
 	Ship *s;
 	s = Ship_MainShip = (Ship*) malloc(sizeof(Ship));
-	s->x = s->y = s->z = 0;
+	s->pos[0] = s->pos[1] = s->pos[2] = 0;
 	s->v = 100;
 	s->gunDir[0] = s->gunDir[1] = 0;
 	s->gunDir[2] = 1;
 	s->health = Ship_DefaultHealth;
 
-	s->width = s->height = 25;
-	s->length = 50;
+	s->size[0] = s->size[1] = 25;
+	s->size[2] = 50;
 }
 
 void Ship_Update(double dt) {
 	Ship *this = Ship_MainShip;
 	Section *first = (Section*) Scene_MainScene->sections->head->next->item;
-	this->z += this->v * dt;
+	this->pos[2] += this->v * dt;
 
-	if(this->z > first->z + first->length) Scene_Recycle();
+	if(this->pos[2] > first->pos[2] + first->size[2]) Scene_Recycle();
 	if(this->health <= 0) {
 		if(Player_Lives == 0)
 			Main_LoseGame();
@@ -41,7 +41,7 @@ void Ship_Update(double dt) {
 
 void Ship_Print() {
 	Ship *s = Ship_MainShip;
-	printf("Nave em \t(%6g, %6g, %6g) \t- %d de vida\n", s->x, s->y, s->z, s->health);
+	printf("Nave em \t(%6g, %6g, %6g) \t- %d de vida\n", s->pos[0], s->pos[1], s->pos[2], s->health);
 }
 
 void Ship_Shoot() {

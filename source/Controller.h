@@ -3,6 +3,6 @@
 #include "Util.h"
 
 /* retorna false se o programa deve fechar */
-bool executeInstruction();
+bool Controller_ExecuteInstruction();
 
 #endif

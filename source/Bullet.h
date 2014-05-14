@@ -39,6 +39,6 @@ void Bullet_EnemyShoot(Enemy *enemy);
 /* Imprime todos os tiros */
 void Bullet_Print();
 
-
+void Bullet_Draw();
 
 #endif

@@ -26,4 +26,6 @@ void Ship_Print();
 /* Atira na direca em que esta apontando */
 void Ship_Shoot();
 
+void Ship_Draw();
+
 #endif

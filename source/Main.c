@@ -4,6 +4,8 @@
 #include "Ship.h"
 #include "Scene.h"
 #include "Player.h"
+#include "Main.h"
+#include "Graphics.h"
 #include <stdio.h>
 #include <time.h>
 #include <stdlib.h>
@@ -21,16 +23,17 @@ static void init() {
 }
 
 int main(int argsN, char *args[]) {
-	puts("Bem vindo ao LabProgGame!\n\nUse o comando \"ajuda\" se precisar de alguma!\n\n");
 	init();
+	Graphics_Init(&argsN, args);
 
-	while(executeInstruction());
+	Graphics_SetMainLoop(Main_Step);
 
-	puts("\nAdeus!");
+	Graphics_Start();
 	return 0;
 }
 
-void Main_Step(double dt) {
+void Main_Step() {
+	double dt = 1./60;
 	Bullet_Update(dt);
 	Ship_Update(dt);
 	Enemy_Update(dt);

@@ -2,6 +2,8 @@
 #include "List.h"
 #include "Enemy.h"
 #include "Util.h"
+#include "Graphics.h"
+
 #include <stdlib.h>
 #include <stdio.h>
 
@@ -102,4 +104,8 @@ void Bullet_Print() {
 		Bullet *b = (Bullet*) n->item;
 		printf("Tiro %u em \t(%6g, %6g, %6g)\n", b->id, b->x, b->y, b->z);
 	}
+}
+
+void Bullet_Draw() {
+
 }

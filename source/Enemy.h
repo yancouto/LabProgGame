@@ -46,4 +46,6 @@ void Enemy_Update(double dt);
 
 void Enemy_Print();
 
+void Enemy_Draw();
+
 #endif

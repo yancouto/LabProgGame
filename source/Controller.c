@@ -57,7 +57,7 @@ static void processInfo() {
 
 char command[128];
 /* retorna false se o programa deve fechar */
-bool executeInstruction() {
+bool Controller_ExecuteInstruction() {
 	printf(">: ");
 	scanf(" %s", command);
 

@@ -15,7 +15,7 @@ bool collidesPoint(double x1, double y1, double z1, double dx1, double dy1, doub
 }
 
 double random() {
-	return (double) rand() / (RAND_MAX + 1);
+	return (double) rand() / RAND_MAX;
 }
 
 int randomInterval(int from, int to) {

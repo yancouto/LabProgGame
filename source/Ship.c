@@ -4,6 +4,7 @@
 #include "Section.h"
 #include "Player.h"
 #include "Main.h"
+#include "Graphics.h"
 #include <stdlib.h>
 #include <stdio.h>
 
@@ -14,8 +15,9 @@ static const int Ship_DefaultHealth = 100;
 void Ship_Init() {
 	Ship *s;
 	s = Ship_MainShip = (Ship*) malloc(sizeof(Ship));
-	s->x = s->y = s->z = 0;
-	s->v = 100;
+	s->x = s->y = 0;
+	s->z = 0;
+	s->v = .3;
 	s->gunDir[0] = s->gunDir[1] = 0;
 	s->gunDir[2] = 1;
 	s->health = Ship_DefaultHealth;
@@ -49,4 +51,9 @@ void Ship_Shoot() {
 	printf("A nave atirou!\n");
 
 	Bullet_ShipShoot(s);
+}
+
+void Ship_Draw() {
+	Ship *s = Ship_MainShip;
+	Graphics_DrawTeapotAt(s->x, s->y, s->z);
 }

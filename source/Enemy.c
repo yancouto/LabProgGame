@@ -8,6 +8,8 @@
 #include "Section.h"
 #include "Util.h"
 #include "Scene.h"
+#include "Graphics.h"
+
 
 const int Enemy_DefaultSize = 20;
 
@@ -27,13 +29,14 @@ Enemy* Enemy_new(int x, int y, int z, double precision, int freq, int range) {
 }
 
 void Enemy_shoot(Enemy* this) {
+	Ship *s = Ship_MainShip;
 	/*double dx = this->precision * random()*4;	
 	double dy = this->precision * random()*4;
 	double dz = this->precision * random()*4;*/
 
-	double x = Ship_MainShip->x - this->x;
-	double y = Ship_MainShip->y - this->y;
-	double z = Ship_MainShip->z - this->z;
+	double x = s->x + s->width/2 - this->x;
+	double y = s->y + s->height/2 - this->y;
+	double z = s->z + s->length - this->z;
 
 	double norm = sqrt(x*x + y*y + z*z);
 	x /= norm, y /= norm, z /= norm;
@@ -113,4 +116,8 @@ void Enemy_Print() {
 			printf("Inimigo %u em \t(%6g, %6g, %6g) \t- %u de vida\n", e->id, e->x, e->y, e->z, e->health);
 		}
 	}
+}
+
+void Enemy_Draw() {
+
 }

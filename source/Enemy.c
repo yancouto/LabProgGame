@@ -47,7 +47,7 @@ void Enemy_shoot(Enemy* this) {
 
 void Enemy_update(Enemy* this, double dt) {
 	Ship *s = Ship_MainShip;
-	if(this->_dfreq > this->freq) {
+	if(this->_dfreq > this->freq /* && distSqr(this, s) <= range * range */) {
 		Enemy_shoot(this);
 		this->_dfreq = 0;
 	}

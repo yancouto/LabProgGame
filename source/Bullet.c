@@ -18,13 +18,12 @@ Bullet* Bullet_new(double x, double y, double z, double dx, double dy, double dz
 	this->x = x;
 	this->y = y;
 	this->z = z;
-	this->dir[0] = dx;
-	this->dir[1] = dy;
-	this->dir[2] = dz;
+	this->v[0] = dx * 200;
+	this->v[1] = dy * 200;
+	this->v[2] = dz * 200;
 	this->health = h;
 	this->id = i++;
 	this->owner = owner;
-	this->v = 200;
 
 	return this;
 }
@@ -36,9 +35,10 @@ void Bullet_delete(Bullet* bullet) {
 
 void Bullet_update(Bullet *this, double dt) {
 	Ship *s = Ship_MainShip;
-	this->x += this->v * this->dir[0] * dt;
-	this->y += this->v * this->dir[1] * dt;
-	this->z += this->v * this->dir[2] * dt;
+	this->v[1] += 30 * dt; /* Gravidade, tweekar o valor */
+	this->x += this->v[0] * dt;
+	this->y += this->v[1] * dt;
+	this->z += this->v[2] * dt;
 
 	if(this->owner != s &&
 		collidesPoint(s->x, s->y, s->z, s->width, s->height, s->length, this->x, this->y, this->y)) {

@@ -5,8 +5,7 @@ typedef struct {
 	double y;      /* Posição vertical do tiro/altura (0 no "chão") */
 	double x;      /* Posição horizontal do tiro (0 no centro) */
 	double z;      /* Profundidade do tiro (relativa à posição inicial do cenário) */
-	double v;      /* Velocidade do tiro */
-	double dir[3]; /* Vetor que guarda dois valores para definir a orientação do tiro */
+	double v[3]; /* Velocidade do tiro */
 	int health; /* Vida do tiro */
 	unsigned id;   /* ID do tiro */
 	void *owner;   /* quem atirou */

@@ -15,4 +15,6 @@ void Graphics_DrawShip();
 
 void Graphics_SetColor(double r, double g, double b);
 
+void Graphics_SetMousePassiveMotionCallback(void (*func)(int x, int y));
+
 #endif

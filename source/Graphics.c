@@ -2,6 +2,7 @@
 #include "Enemy.h"
 #include "Ship.h"
 #include "Bullet.h"
+#include "Camera.h"
 #include <GL/gl.h>
 #include <GL/glu.h>
 #include <GL/freeglut.h>
@@ -28,15 +29,18 @@ static bool initGL() {
 	return err == GL_NO_ERROR;
 }
 
-static void render() {
+static void handleCamera() {
 	Ship *s = Ship_MainShip;
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
 	glMatrixMode(GL_PROJECTION);
-  	glLoadIdentity();
-  	gluPerspective(60.0f, (double)SCREEN_WIDTH/SCREEN_HEIGHT, 0.1f, 300.0f);
+	glLoadIdentity();
+	gluPerspective(60.0f, (double) SCREEN_WIDTH / SCREEN_HEIGHT, 0.1f, 300.0f);
 	
-	gluLookAt(s->pos[0] - 2, s->pos[1] + 2, -s->pos[2] + 8, s->pos[0], s->pos[1], -s->pos[2], 0, 1, 0);
+	gluLookAt(Camera_GetX(), Camera_GetY(), -Camera_GetZ(), s->pos[0], s->pos[1], -s->pos[2], 0, 1, 0);
+}
+
+static void render() {
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	handleCamera();
 	
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();	
@@ -99,4 +103,8 @@ void Graphics_DrawShip() {
 	glutWireCube(1);
 
 	glPopMatrix();
+}
+
+void Graphics_SetMousePassiveMotionCallback(void (*func)(int x, int y)) {
+	glutPassiveMotionFunc(func);
 }

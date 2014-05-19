@@ -6,6 +6,7 @@
 #include "Player.h"
 #include "Main.h"
 #include "Graphics.h"
+#include "Camera.h"
 #include <stdio.h>
 #include <time.h>
 #include <stdlib.h>
@@ -19,14 +20,15 @@ static void init() {
 
 	Bullet_Init();
 	Ship_Init();
+	Camera_Init();
 	Scene_Init(1200, 1200, 100, 12);
 }
 
 int main(int argsN, char *args[]) {
-	init();
 	Graphics_Init(&argsN, args);
 
 	Graphics_SetMainLoop(Main_Step);
+	init();
 
 	Graphics_Start();
 	return 0;

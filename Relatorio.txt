@@ -37,7 +37,7 @@ tratar vários aspectos do jogo.
 			      que se aproximam relativamente da nave
 
 	  Logo no começo foi visto decisões sobre movimentos dos objetos dos jogo. Naves se moveriam
-sempre para frente com uma velocidade que pode variar, e além disso se moveriam lateralmente 
+sempre para frente com uma velocidade que pode variar, e além disso se moveriam lateralmente
 e verticalmente em relação à tela. Entretanto decidimos por praticidade fazer ela temporariamente
 paralela ao "chão", ou seja angularmente o que variaria nela seria apenas o inicio do percurso
 dos projéteis atirados. Logo a nave teria como características sua posição em coordenadas no

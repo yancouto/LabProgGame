@@ -22,8 +22,8 @@ static void processPrint() {
 static void processShipPosition() {
 	double x, y;
 	scanf("%lf %lf", &x, &y);
-	Ship_MainShip->x = x;
-	Ship_MainShip->y = y;
+	Ship_MainShip->pos[0] = x;
+	Ship_MainShip->pos[1] = y;
 }
 
 static void processGunDir() {

@@ -11,4 +11,8 @@ void Graphics_Start();
 
 void Graphics_DrawTeapotAt(double x, double y, double z);
 
+void Graphics_DrawShip();
+
+void Graphics_SetColor(double r, double g, double b);
+
 #endif

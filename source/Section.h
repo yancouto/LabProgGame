@@ -1,21 +1,18 @@
 #ifndef SECTION_H
 #define SECTION_H
+
 #include "List.h"
+#include "Vector.h"
 
 typedef struct {
-	double x;			
-	double y;
-	double z;
-
-	double width;
-	double length;
-	double height;
+	Vector pos;
+	Vector size;
 
 	List* entities;
 } Section;
 
 /* Constructor de Section. */
-Section* Section_new(double x, double y, double z, 
+Section* Section_new(double x, double y, double z,
 	double width, double height, double length, int enemies);
 
 /* Atualiza a Section. */

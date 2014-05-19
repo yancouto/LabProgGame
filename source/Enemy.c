@@ -11,14 +11,14 @@
 #include "Graphics.h"
 
 
-const int Enemy_DefaultSize = 20;
+Vector Enemy_DEF_SIZE = {20, 20, 20};
 
-Enemy* Enemy_new(int x, int y, int z, double precision, int freq, int range) {
+Enemy* Enemy_new(int x, int y, int z, double precision, int freq, double range) {
 	static unsigned i = 0;
 
 	Enemy* inst = (Enemy*) malloc(sizeof(Enemy));
 	
-	inst->x = x, inst->y = y, inst->z = z;
+	inst->pos[0] = x, inst->pos[1] = y, inst->pos[2] = z;
 	inst->precision = precision;
 	inst->freq = freq;
 	inst->range = range;
@@ -29,35 +29,36 @@ Enemy* Enemy_new(int x, int y, int z, double precision, int freq, int range) {
 }
 
 void Enemy_shoot(Enemy* this) {
-	Ship *s = Ship_MainShip;
 	/*double dx = this->precision * random()*4;	
 	double dy = this->precision * random()*4;
-	double dz = this->precision * random()*4;*/
+	double dz = this->precision * random()*4; */
 
-	double x = s->x + s->width/2 - this->x;
-	double y = s->y + s->height/2 - this->y;
-	double z = s->z + s->length - this->z;
+	Vector dir;
+	double norm;
+	Vector_setVector(dir, Ship_MainShip->pos);
+	Vector_subVector(dir, this->pos);
 
-	double norm = sqrt(x*x + y*y + z*z);
-	x /= norm, y /= norm, z /= norm;
+	norm = Vector_normSqr(dir);
+	if(norm > this->range * this->range) return;
 
-	this->gunDir[0] = x, this->gunDir[1] = y, this->gunDir[2] = z;
+	norm = 1 / sqrt(norm);
+	Vector_setVector(this->gunDir, dir);
+	Vector_mult(this->gunDir, norm, norm, norm);
 
 	printf("Inimigo %u atirou na nave.\n", this->id);
 
 	Bullet_EnemyShoot(this);
+	this->_dfreq = 0;
 }
 
 void Enemy_update(Enemy* this, double dt) {
 	Ship *s = Ship_MainShip;
-	if(this->_dfreq > this->freq /* && distSqr(this, s) <= range * range */) {
+	if(this->_dfreq > this->freq) {
 		Enemy_shoot(this);
-		this->_dfreq = 0;
 	}
-	this->_dfreq += dt;
+	else this->_dfreq += dt;
 
-	if(collides(s->x, s->y, s->z, s->width, s->height, s->length,
-		 this->x, this->y, this->z, Enemy_DefaultSize, Enemy_DefaultSize, Enemy_DefaultSize)) {
+	if(collides(s->pos, Enemy_DEF_SIZE, this->pos, Enemy_DEF_SIZE)) {
 		printf("Inimigo %u colidiu com a nave!\n", this->id);
 		this->health = 0;
 		s->health -= 25;
@@ -72,8 +73,7 @@ Enemy *Enemy_BulletCollide(Bullet *b) {
 		List* list = ((Section*) i->item)->entities;
 		for(j = list->head->next; j != list->head; j = j->next) {
 			Enemy* e = (Enemy*) j->item;
-			if(collidesPoint(e->x, e->y, e->z, Enemy_DefaultSize, Enemy_DefaultSize, Enemy_DefaultSize,
-				b->x, b->y, b->z)) return e;
+			if(collidesPoint(e->pos, Enemy_DEF_SIZE, b->pos)) return e;
 		}
 	}
 
@@ -113,11 +113,19 @@ void Enemy_Print() {
 		List* list = ((Section*) i->item)->entities;
 		for(j = list->head->next; j != list->head; j = j->next) {
 			Enemy* e = (Enemy*) j->item;
-			printf("Inimigo %u em \t(%6g, %6g, %6g) \t- %u de vida\n", e->id, e->x, e->y, e->z, e->health);
+			printf("Inimigo %u em \t(%6g, %6g, %6g) \t- %u de vida\n", e->id, e->pos[0], e->pos[1], e->pos[2], e->health);
 		}
 	}
 }
 
 void Enemy_Draw() {
-
+	Node *i, *j;
+	Graphics_SetColor(0, 1, 0);
+	for(i = Scene_MainScene->sections->head->next; i != Scene_MainScene->sections->head; i = i->next) {
+		List* list = ((Section*) i->item)->entities;
+		for(j = list->head->next; j != list->head; j = j->next) {
+			Enemy* e = (Enemy*) j->item;
+			Graphics_DrawTeapotAt(e->pos[0], e->pos[1], e->pos[2]);
+		}
+	}
 }

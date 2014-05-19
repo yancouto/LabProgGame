@@ -14,6 +14,12 @@ static bool initGL() {
 	GLenum err;
 
 	glClearColor(0.f, 0.f, 0.f, 1.f);
+	glClearDepth(1.f);
+	glEnable(GL_DEPTH_TEST);
+	glDepthFunc(GL_LEQUAL);
+	glShadeModel(GL_SMOOTH);
+	glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
+	gluPerspective(45.0f, (GLfloat) SCREEN_WIDTH / SCREEN_HEIGHT, 0.1f, 100.0f);
 
 	err = glGetError();
 	if(err != GL_NO_ERROR)
@@ -23,7 +29,17 @@ static bool initGL() {
 }
 
 static void render() {
-	glClear(GL_COLOR_BUFFER_BIT);
+	Ship *s = Ship_MainShip;
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+	glMatrixMode(GL_PROJECTION);
+  	glLoadIdentity();
+  	gluPerspective(60.0f, (double)SCREEN_WIDTH/SCREEN_HEIGHT, 0.1f, 300.0f);
+	
+	gluLookAt(s->pos[0] - 2, s->pos[1] + 2, -s->pos[2] + 8, s->pos[0], s->pos[1], -s->pos[2], 0, 1, 0);
+	
+	glMatrixMode(GL_MODELVIEW);
+	glLoadIdentity();	
 
 	Enemy_Draw();
 	Bullet_Draw();
@@ -40,10 +56,10 @@ bool Graphics_Init(int *argN, char *args[]) {
 	glutInitDisplayMode(GLUT_DOUBLE);
 	glutInitWindowSize(SCREEN_WIDTH, SCREEN_HEIGHT);
 	glutCreateWindow("LabProgGame");
+	glutDisplayFunc(render);
 
 	if(!initGL()) return false;
 
-	glutDisplayFunc(render);
 
 	return true;
 }
@@ -52,7 +68,7 @@ static void (*func)(void);
 static void mainLoop(int);
 static void mainLoop(int a) {
 	func();
-	render();
+	glutPostRedisplay();
 	glutTimerFunc(1000 / SCREEN_FPS, mainLoop, 0);
 }
 
@@ -65,9 +81,22 @@ void Graphics_Start() {
 	glutMainLoop();
 }
 
+void Graphics_SetColor(double r, double g, double b) {
+	glColor3f(r, g, b);
+}
+
 void Graphics_DrawTeapotAt(double x, double y, double z) {
 	glPushMatrix();
-		glTranslatef(x, y, z);
-		glutSolidTeapot(.1);
+		glTranslatef(x, y, -z);
+		glutWireCube(1);
+	glPopMatrix();
+}
+
+void Graphics_DrawShip() {
+	Ship *s = Ship_MainShip;
+	glPushMatrix();
+	glTranslatef(s->pos[0], s->pos[1], -s->pos[2]);
+	glutWireCube(1);
+
 	glPopMatrix();
 }

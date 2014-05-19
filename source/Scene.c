@@ -11,9 +11,9 @@ Scene* Scene_Init(double width, double height, double length, int scenes) {
 	int i;
 	Scene_MainScene = (Scene*) malloc(sizeof(Scene));
 
-	Scene_MainScene->width = width;
-	Scene_MainScene->length = length;
-	Scene_MainScene->height = height;
+	Scene_MainScene->size[0] = width;
+	Scene_MainScene->size[1] = height;
+	Scene_MainScene->size[2] = length;
 	Scene_MainScene->sections = List_new();
 
 	for(i = 0; i < scenes; ++i)
@@ -31,10 +31,10 @@ void Scene_Update(double dt) {
 void Scene_Recycle() {
 	Scene *s = Scene_MainScene;
 	Node *n = s->sections->head->next;
-	printf("Adicionando nova secao.\n");
+	puts("Adicionando nova secao.\n");
 	Section_delete(n->item);
 	Node_remove(n);
 	List_pushBack(s->sections, 
-		Section_new(0, 0, ((Section*) s->sections->head->prev->item)->z + s->length, 
-			s->width, s->height, s->length, randomInterval(2, 5)));
+		Section_new(0, 0, ((Section*) s->sections->head->prev->item)->pos[2] + s->size[2], 
+			s->size[0], s->size[1], s->size[2], randomInterval(2, 5)));
 }

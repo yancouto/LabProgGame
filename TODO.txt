@@ -1,0 +1,15 @@
+- Inimigos de tamanhos diferentes
+- Melhor geração das seções (inimigos não colidem)
+- Já usar o openGL para ter um feedback visual?
+- Gravidade para os tiros
+	- Outro problema é calcular a direção que o inimigo tem que
+		atirar para acertar a nave. (E tb tem que ter erro)
+- O prof falou pra diminuir o 'z' de todo o resto em vez de aumentar o z da nave, mudamos?
+- Fazer os inimigos só carregarem o tiro quando estiverem perto da nave
+- Fazer número de tiros limitados
+- Power-ups:
+	- Tiros com mais dano
+	- Invulneravel por um tempo
+	- Homing missiles
+	- Mais tiros
+	- etc.

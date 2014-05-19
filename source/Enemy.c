@@ -9,16 +9,18 @@
 #include "Util.h"
 #include "Scene.h"
 
-Enemy* Enemy_new(int x, int y, int z, double precision, int freq, int range) {
+Vector Enemy_DEF_SIZE = {20, 20, 20};
+
+Enemy* Enemy_new(int x, int y, int z, double precision, int freq, double range) {
 	static unsigned i = 0;
 
 	Enemy* inst = (Enemy*) malloc(sizeof(Enemy));
 	
-	inst->x = x, inst->y = y, inst->z = z;
+	inst->pos[0] = x, inst->pos[1] = y, inst->pos[2] = z;
 	inst->precision = precision;
 	inst->freq = freq;
 	inst->range = range;
-	inst->health = 100;
+	inst->health = 30;
 	inst->id = i++;
 	
 	return inst;
@@ -29,31 +31,55 @@ void Enemy_shoot(Enemy* this) {
 	double dy = this->precision * random()*4;
 	double dz = this->precision * random()*4;*/
 
-	double x = Ship_MainShip->x - this->x;
-	double y = Ship_MainShip->y - this->y;
-	double z = Ship_MainShip->z - this->z;
+	Vector dir;
+	double norm;
+	Vector_setVector(dir, Ship_MainShip->pos);
+	Vector_subVector(dir, this->pos);
 
-	double norm = sqrt(x*x + y*y + z*z);
-	x /= norm, y /= norm, z /= norm;
+	norm = Vector_normSqr(dir);
+	if(norm > this->range * this->range) return;
 
-	this->gunDir[0] = x, this->gunDir[1] = y, this->gunDir[2] = z;
+	norm = 1 / sqrt(norm);
+	Vector_setVector(this->gunDir, dir);
+	Vector_mult(this->gunDir, norm, norm, norm);
+
+	printf("Inimigo %u atirou na nave.\n", this->id);
 
 	Bullet_EnemyShoot(this);
 }
 
 void Enemy_update(Enemy* this, double dt) {
-	if(this->_dfreq > this->freq) {
+	Ship *s = Ship_MainShip;
+	if(this->_dfreq > this->freq /* && distSqr(this, s) <= range * range */) {
 		Enemy_shoot(this);
 		this->_dfreq = 0;
 	}
 	this->_dfreq += dt;
+
+	if(collides(s->pos, Enemy_DEF_SIZE, this->pos, Enemy_DEF_SIZE)) {
+		printf("Inimigo %u colidiu com a nave!\n", this->id);
+		this->health = 0;
+		s->health -= 25;
+	}
 }
 
 Enemy *Enemy_BulletCollide(Bullet *b) {
+	Node* i;
+	Node* j;
+
+	for(i = Scene_MainScene->sections->head->next; i != Scene_MainScene->sections->head; i = i->next) {
+		List* list = ((Section*) i->item)->entities;
+		for(j = list->head->next; j != list->head; j = j->next) {
+			Enemy* e = (Enemy*) j->item;
+			if(collidesPoint(e->pos, Enemy_DEF_SIZE, b->pos)) return e;
+		}
+	}
+
 	return NULL;
 }
 
 void Enemy_delete(Enemy* this) {
+	printf("Inimigo %u explodiu!\n", this->id);
 	free(this);
 }
 
@@ -69,7 +95,6 @@ void Enemy_Update(double dt) {
 			Enemy* e = (Enemy*) j->item;
 			Enemy_update(e, dt);
 			if(e->health <= 0) {
-				printf("Inimigo %d explodiu!\n", e->id);
 				j = j->prev;
 				Node_remove(j->next);
 				Enemy_delete(e);
@@ -86,7 +111,7 @@ void Enemy_Print() {
 		List* list = ((Section*) i->item)->entities;
 		for(j = list->head->next; j != list->head; j = j->next) {
 			Enemy* e = (Enemy*) j->item;
-			printf("Inimigo %d em (%g, %g, %g)\n", e->id, e->x, e->y, e->z);
+			printf("Inimigo %u em \t(%6g, %6g, %6g) \t- %u de vida\n", e->id, e->pos[0], e->pos[1], e->pos[2], e->health);
 		}
 	}
 }

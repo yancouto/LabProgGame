@@ -12,8 +12,8 @@ Scene* Scene_Init(double width, double height, double length, int scenes) {
 	Scene_MainScene = (Scene*) malloc(sizeof(Scene));
 
 	Scene_MainScene->size[0] = width;
-	Scene_MainScene->size[1] = length;
-	Scene_MainScene->size[2] = height;
+	Scene_MainScene->size[1] = height;
+	Scene_MainScene->size[2] = length;
 	Scene_MainScene->sections = List_new();
 
 	for(i = 0; i < scenes; ++i)

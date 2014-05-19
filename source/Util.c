@@ -11,7 +11,7 @@ bool collides_comp(double x1, double y1, double z1, double dx1, double dy1, doub
 	return true;
 }
 
-bool collides(Vector v1, Vector v2, Vector d1, Vector d2) {
+bool collides(Vector v1, Vector d1, Vector v2, Vector d2) {
 	if(v2[0] + d2[0] < v1[0] || v2[0] > v1[0] + d1[0]) return false;
 	if(v2[1] + d2[1] < v1[1] || v2[1] > v1[1] + d1[1]) return false;
 	if(v2[2] + d2[2] < v1[2] || v2[2] > v1[2] + d1[2]) return false;

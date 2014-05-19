@@ -11,7 +11,7 @@
 
 Vector Enemy_DEF_SIZE = {20, 20, 20};
 
-Enemy* Enemy_new(int x, int y, int z, double precision, int freq, int range) {
+Enemy* Enemy_new(int x, int y, int z, double precision, int freq, double range) {
 	static unsigned i = 0;
 
 	Enemy* inst = (Enemy*) malloc(sizeof(Enemy));
@@ -31,14 +31,17 @@ void Enemy_shoot(Enemy* this) {
 	double dy = this->precision * random()*4;
 	double dz = this->precision * random()*4;*/
 
-	double x = Ship_MainShip->pos[0] - this->pos[0];
-	double y = Ship_MainShip->pos[1] - this->pos[1];
-	double z = Ship_MainShip->pos[2] - this->pos[2];
+	Vector dir;
+	double norm;
+	Vector_setVector(dir, Ship_MainShip->pos);
+	Vector_subVector(dir, this->pos);
 
-	double norm = sqrt(x*x + y*y + z*z);
-	x /= norm, y /= norm, z /= norm;
+	norm = Vector_normSqr(dir);
+	if(norm > this->range * this->range) return;
 
-	this->gunDir[0] = x, this->gunDir[1] = y, this->gunDir[2] = z;
+	norm = 1 / sqrt(norm);
+	Vector_setVector(this->gunDir, dir);
+	Vector_mult(this->gunDir, norm, norm, norm);
 
 	printf("Inimigo %u atirou na nave.\n", this->id);
 

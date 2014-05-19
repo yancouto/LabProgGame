@@ -14,9 +14,13 @@ double* Vector_add(Vector, double, double, double);
 
 double* Vector_addVector(Vector, Vector);
 
+double* Vector_subVector(Vector, Vector);
+
 double* Vector_mult(Vector, double, double, double);
 
 double* Vector_multVector(Vector, Vector);
+
+double Vector_normSqr(Vector);
 
 double* Vector_normalize(Vector);
 

@@ -59,6 +59,13 @@ double* Vector_addVector(Vector this, Vector that) {
 	return this;
 }
 
+double* Vector_subVector(Vector this, Vector that) {
+	this[0] -= that[0];
+	this[1] -= that[1];
+	this[2] -= that[2];
+	return this;
+}
+
 double* Vector_mult(Vector this, double x, double y, double z) {
 	this[0] *= x;
 	this[1] *= y;
@@ -71,6 +78,10 @@ double* Vector_multVector(Vector this, Vector that) {
 	this[1] *= that[1];
 	this[2] *= that[2];
 	return this;
+}
+
+double Vector_normSqr(Vector v) {
+	return v[0] * v[0] + v[1] * v[1] + v[2] * v[2];
 }
 
 double* Vector_normalize(Vector this) {

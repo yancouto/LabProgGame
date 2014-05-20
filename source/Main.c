@@ -21,6 +21,7 @@ static void init() {
 	Bullet_Init();
 	Ship_Init();
 	Camera_Init();
+	Controller_Init();
 	Scene_Init(1200, 1200, 100, 12);
 }
 

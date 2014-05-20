@@ -5,6 +5,7 @@
 #include "Player.h"
 #include "Main.h"
 #include "Graphics.h"
+#include "Controller.h"
 #include <stdlib.h>
 #include <stdio.h>
 
@@ -17,7 +18,7 @@ void Ship_Init() {
 	s = Ship_MainShip = (Ship*) malloc(sizeof(Ship));
 	s->pos[0] = s->pos[1] = 600;
 	s->pos[2] = 20;
-	s->v = 100;
+	s->v = 200;
 	s->gunDir[0] = s->gunDir[1] = 0;
 	s->gunDir[2] = 1;
 	s->health = Ship_DefaultHealth;
@@ -29,6 +30,11 @@ void Ship_Init() {
 void Ship_Update(double dt) {
 	Ship *this = Ship_MainShip;
 	Section *first = (Section*) Scene_MainScene->sections->head->next->item;
+	if(Controller_keyPressed['w']) this->pos[1] += this->v / 1.4 * dt;
+	if(Controller_keyPressed['s']) this->pos[1] -= this->v / 1.4 * dt;
+	if(Controller_keyPressed['a']) this->pos[0] -= this->v / 1.4 * dt;
+	if(Controller_keyPressed['d']) this->pos[0] += this->v / 1.4 * dt;
+
 	this->pos[2] += this->v * dt;
 
 	if(this->pos[2] > first->pos[2] + first->size[2]) Scene_Recycle();

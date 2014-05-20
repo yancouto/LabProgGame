@@ -8,6 +8,8 @@
 #include <GL/freeglut.h>
 #include <stdio.h>
 
+
+
 static bool initGL() {
 	GLenum err;
 
@@ -59,7 +61,7 @@ bool Graphics_Init(int *argN, char *args[]) {
 
 	glutInitContextVersion(2, 1);
 
-	glutInitDisplayMode(GLUT_DOUBLE);
+	glutInitDisplayMode(GLUT_DOUBLE | GLUT_DEPTH | GLUT_RGBA);
 	glutInitWindowSize(SCREEN_WIDTH, SCREEN_HEIGHT);
 	glutCreateWindow("LabProgGame");
 	glutDisplayFunc(render);
@@ -140,4 +142,20 @@ void Graphics_DrawShip() {
 
 void Graphics_SetMousePassiveMotionCallback(void (*func)(int x, int y)) {
 	glutPassiveMotionFunc(func);
+}
+
+void Graphics_SetMouseActiveMotionCallback(void (*func)(int x, int y)) {
+	glutMotionFunc(func);
+}
+
+void Graphics_SetMouseClickCallback(void (*func)(int button, int state, int x, int y)) {
+	glutMouseFunc(func);
+}
+
+void Graphics_SetKeyDownCallback(void (*func)(uchar key, int x, int y)) {
+	glutKeyboardFunc(func);
+}
+
+void Graphics_SetKeyUpCallback(void (*func)(uchar key, int x, int y)) {
+	glutKeyboardUpFunc(func);
 }

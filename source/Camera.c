@@ -11,15 +11,24 @@ static void mouseMove(int x, int y) {
 	y -= prevy;
 	prevx += x;
 	prevy += y;
-	dx += x / 20.f;
-	dy -= y / 20.f;
+	dx += x / 4.f;
+	dy -= y / 4.f;
+}
+
+static void mouseHandler1(int x, int y) {
+	mouseMove(x, y);
+}
+
+static void mouseHandler2(int x, int y) {
+	mouseMove(x, y);
 }
 
 void Camera_Init() {
 	prevx = 400;
 	prevy = 300;
 	dx = dy = 0;
-	Graphics_SetMousePassiveMotionCallback(mouseMove);
+	Graphics_SetMousePassiveMotionCallback(mouseHandler1);
+	Graphics_SetMouseActiveMotionCallback(mouseHandler2);
 }
 
 double Camera_GetX() {

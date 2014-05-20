@@ -20,9 +20,9 @@ Bullet* Bullet_new(double x, double y, double z, double dx, double dy, double dz
 	this->pos[0] = x;
 	this->pos[1] = y;
 	this->pos[2] = z;
-	this->v[0] = dx * 200;
-	this->v[1] = dy * 200;
-	this->v[2] = dz * 200;
+	this->v[0] = dx * 300;
+	this->v[1] = dy * 300;
+	this->v[2] = dz * 300;
 	this->health = h;
 	this->id = i++;
 	this->owner = owner;
@@ -37,7 +37,7 @@ void Bullet_delete(Bullet* bullet) {
 
 void Bullet_update(Bullet *this, double dt) {
 	Ship *s = Ship_MainShip;
-	this->v[1] -= 30 * dt; /* Gravidade, tweekar o valor */
+	this->v[1] -= 50 * dt; /* Gravidade, tweekar o valor */
 	this->pos[0] += this->v[0] * dt;
 	this->pos[1] += this->v[1] * dt;
 	this->pos[2] += this->v[2] * dt;

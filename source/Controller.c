@@ -3,9 +3,14 @@
 #include "Ship.h"
 #include "Bullet.h"
 #include "Player.h"
+#include "Graphics.h"
+#include "Camera.h"
 #include <stdio.h>
 #include <string.h>
 #include <math.h>
+#include <string.h>
+
+bool Controller_keyPressed[256];
 
 static void processStep() {
 	unsigned n;
@@ -73,4 +78,29 @@ bool Controller_ExecuteInstruction() {
 	else printf("Comando \"%s\" nao reconhecido.\n", command);
 
 	return true;
+}
+
+static void mouseClicked(int but, int state, int x, int y) {
+	Ship *s = Ship_MainShip;
+	if(state) return;
+	Vector_setVector(s->gunDir, s->pos);
+	Vector_add(s->gunDir, s->size[0] / 2 - Camera_GetX(), s->size[1] / 2 - Camera_GetY(),
+	 s->size[2] - Camera_GetZ());
+	Vector_normalize(s->gunDir);
+	Ship_Shoot();
+}
+
+static void keyCliked(uchar key, int x, int y) {
+	Controller_keyPressed[key] = true;
+}
+
+static void keyReleased(uchar key, int x, int y) {
+	Controller_keyPressed[key] = false;
+}
+
+void Controller_Init() {
+	memset(Controller_keyPressed, 0, sizeof(Controller_keyPressed));
+	Graphics_SetMouseClickCallback(mouseClicked);
+	Graphics_SetKeyDownCallback(keyCliked);
+	Graphics_SetKeyUpCallback(keyReleased);
 }

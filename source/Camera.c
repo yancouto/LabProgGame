@@ -11,9 +11,8 @@ static void mouseMove(int x, int y) {
 	y -= prevy;
 	prevx += x;
 	prevy += y;
-	dx += x / 80.f;
-	dy -= y / 80.f;
-	printf("x%d \ty%d\n", x, y);
+	dx += x / 20.f;
+	dy -= y / 20.f;
 }
 
 void Camera_Init() {
@@ -24,13 +23,13 @@ void Camera_Init() {
 }
 
 double Camera_GetX() {
-	return Ship_MainShip->pos[0] + dx;
+	return Ship_MainShip->pos[0] + Ship_MainShip->size[0] / 2 + dx;
 }
 
 double Camera_GetY() {
-	return Ship_MainShip->pos[1] + dy;
+	return Ship_MainShip->pos[1] + Ship_MainShip->size[1] / 2 + dy;
 }
 
 double Camera_GetZ() {
-	return Ship_MainShip->pos[2] - 5;
+	return Ship_MainShip->pos[2] - 80;
 }

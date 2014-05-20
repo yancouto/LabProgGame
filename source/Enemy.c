@@ -125,7 +125,7 @@ void Enemy_Draw() {
 		List* list = ((Section*) i->item)->entities;
 		for(j = list->head->next; j != list->head; j = j->next) {
 			Enemy* e = (Enemy*) j->item;
-			Graphics_DrawTeapotAt(e->pos[0], e->pos[1], e->pos[2]);
+			Graphics_DrawBlock(e->pos, Enemy_DEF_SIZE);
 		}
 	}
 }

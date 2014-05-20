@@ -107,10 +107,11 @@ void Bullet_Print() {
 }
 
 void Bullet_Draw() {
+	static Vector size = {1, 1, 1};
 	Node *n;
 	Graphics_SetColor(0, 1, 1);
 	for(n = bullets->head->next; n != bullets->head; n = n->next) {
 		Bullet *b = (Bullet*) n->item;
-		Graphics_DrawTeapotAt(b->pos[0], b->pos[1], b->pos[2]);
+		Graphics_DrawBlock(b->pos, size);
 	}
 }

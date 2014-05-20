@@ -17,7 +17,7 @@ void Ship_Init() {
 	s = Ship_MainShip = (Ship*) malloc(sizeof(Ship));
 	s->pos[0] = s->pos[1] = 600;
 	s->pos[2] = 20;
-	s->v = 1;
+	s->v = 100;
 	s->gunDir[0] = s->gunDir[1] = 0;
 	s->gunDir[2] = 1;
 	s->health = Ship_DefaultHealth;
@@ -47,14 +47,12 @@ void Ship_Print() {
 }
 
 void Ship_Shoot() {
-	Ship *s = Ship_MainShip;
 	printf("A nave atirou!\n");
 
-	Bullet_ShipShoot(s);
+	Bullet_ShipShoot(Ship_MainShip);
 }
 
 void Ship_Draw() {
-	Ship *s = Ship_MainShip;
 	Graphics_SetColor(1, 0, 0);
 	Graphics_DrawShip();
 }

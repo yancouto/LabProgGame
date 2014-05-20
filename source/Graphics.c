@@ -7,9 +7,6 @@
 #include <GL/glu.h>
 #include <GL/freeglut.h>
 #include <stdio.h>
-#define SCREEN_WIDTH 800
-#define SCREEN_HEIGHT 600
-#define SCREEN_FPS 60
 
 static bool initGL() {
 	GLenum err;
@@ -20,7 +17,6 @@ static bool initGL() {
 	glDepthFunc(GL_LEQUAL);
 	glShadeModel(GL_SMOOTH);
 	glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
-	gluPerspective(45.0f, (GLfloat) SCREEN_WIDTH / SCREEN_HEIGHT, 0.1f, 100.0f);
 
 	err = glGetError();
 	if(err != GL_NO_ERROR)
@@ -33,17 +29,23 @@ static void handleCamera() {
 	Ship *s = Ship_MainShip;
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
-	gluPerspective(60.0f, (double) SCREEN_WIDTH / SCREEN_HEIGHT, 0.1f, 300.0f);
+	gluPerspective(60.0f, (double) SCREEN_WIDTH / SCREEN_HEIGHT, 0.1f, 1700.0f);
 	
-	gluLookAt(Camera_GetX(), Camera_GetY(), -Camera_GetZ(), s->pos[0], s->pos[1], -s->pos[2], 0, 1, 0);
+	gluLookAt(Camera_GetX(), Camera_GetY(), -Camera_GetZ(), 
+		s->pos[0] + s->size[0] / 2, s->pos[1] + s->size[1] / 2,
+		-s->pos[2] - s->size[2] / 2, 0, 1, 0);
 }
 
 static void render() {
+	Vector worldBounds = {0, 0, 0};
+	worldBounds[2] += Ship_MainShip->pos[2];
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	handleCamera();
 	
 	glMatrixMode(GL_MODELVIEW);
-	glLoadIdentity();	
+	glLoadIdentity();
+
+	Graphics_DrawBlock(worldBounds, Vector_BOUNDS);
 
 	Enemy_Draw();
 	Bullet_Draw();
@@ -89,20 +91,51 @@ void Graphics_SetColor(double r, double g, double b) {
 	glColor3f(r, g, b);
 }
 
-void Graphics_DrawTeapotAt(double x, double y, double z) {
-	glPushMatrix();
-		glTranslatef(x, y, -z);
-		glutWireCube(1);
-	glPopMatrix();
+void Graphics_DrawBlock(Vector p, Vector s) {
+	double x = p[0], y = p[1], z = -p[2];
+	double dx = s[0], dy = s[1], dz = -s[2];
+	glBegin(GL_LINES);
+		glVertex3f(x, y, z);
+		glVertex3f(x + dx, y, z);
+
+		glVertex3f(x + dx, y, z);
+		glVertex3f(x + dx, y + dy, z);
+
+		glVertex3f(x + dx, y + dy, z);
+		glVertex3f(x, y + dy, z);
+
+		glVertex3f(x, y + dy, z);
+		glVertex3f(x, y, z);
+
+		glVertex3f(x, y, z);
+		glVertex3f(x, y, z + dz);
+
+		glVertex3f(x + dx, y, z);
+		glVertex3f(x + dx, y, z + dz);
+
+		glVertex3f(x, y + dy, z);
+		glVertex3f(x, y + dy, z + dz);
+
+		glVertex3f(x + dx, y + dy, z);
+		glVertex3f(x + dx, y + dy, z + dz);
+
+		glVertex3f(x, y, z + dz);
+		glVertex3f(x + dx, y, z + dz);
+
+		glVertex3f(x + dx, y, z + dz);
+		glVertex3f(x + dx, y + dy, z + dz);
+
+		glVertex3f(x + dx, y + dy, z + dz);
+		glVertex3f(x, y + dy, z + dz);
+
+		glVertex3f(x, y + dy, z + dz);
+		glVertex3f(x, y, z + dz);
+	glEnd();
 }
 
 void Graphics_DrawShip() {
 	Ship *s = Ship_MainShip;
-	glPushMatrix();
-	glTranslatef(s->pos[0], s->pos[1], -s->pos[2]);
-	glutWireCube(1);
-
-	glPopMatrix();
+	Graphics_DrawBlock(s->pos, s->size);
 }
 
 void Graphics_SetMousePassiveMotionCallback(void (*func)(int x, int y)) {

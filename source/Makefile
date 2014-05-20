@@ -17,13 +17,13 @@ Util.o: Util.c Util.h Vector.h
 List.o: List.c List.h
 	$(CC) $(CFLAGS) List.c -c -o List.o
 
-Ship.o: Ship.c List.h Ship.h Scene.h Section.h Player.h Main.h Vector.h Graphics.h
+Ship.o: Ship.c List.h Ship.h Scene.h Section.h Player.h Main.h Vector.h Graphics.h Util.h
 	$(CC) $(CFLAGS) Ship.c -c -o Ship.o
 
 Bullet.o: Bullet.c Bullet.h List.h Ship.h Enemy.h Util.h Vector.h Graphics.h
 	$(CC) $(CFLAGS) Bullet.c -c -o Bullet.o
 
-Enemy.o: Enemy.c Enemy.h Bullet.h Ship.h Vector.h Graphics.h
+Enemy.o: Enemy.c Enemy.h Bullet.h Ship.h Vector.h Graphics.h Util.h
 	$(CC) $(CFLAGS) Enemy.c -c -o Enemy.o
 
 Scene.o: Scene.c Scene.h Section.h List.h Vector.h
@@ -41,7 +41,7 @@ Graphics.o: Graphics.c Graphics.h Util.h Bullet.h Ship.h Enemy.h Camera.h
 Vector.o: Vector.c Vector.h
 	$(CC) $(CFLAGS) Vector.c -c -o Vector.o
 
-Camera.o: Camera.c Camera.h Ship.h Graphics.h
+Camera.o: Camera.c Camera.h Ship.h Graphics.h Util.h
 	$(CC) $(CFLAGS) Camera.c -c -o Camera.o
 
 clean:

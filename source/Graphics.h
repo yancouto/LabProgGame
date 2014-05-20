@@ -2,6 +2,9 @@
 #define GRAPHICS_H
 
 #include "Util.h"
+#define SCREEN_WIDTH 800
+#define SCREEN_HEIGHT 600
+#define SCREEN_FPS 60
 
 bool Graphics_Init(int *argN, char *args[]);
 
@@ -9,7 +12,7 @@ void Graphics_SetMainLoop(void (*)(void));
 
 void Graphics_Start();
 
-void Graphics_DrawTeapotAt(double x, double y, double z);
+void Graphics_DrawBlock(Vector p, Vector s);
 
 void Graphics_DrawShip();
 

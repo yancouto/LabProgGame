@@ -8,8 +8,6 @@
 #include <GL/freeglut.h>
 #include <stdio.h>
 
-
-
 static bool initGL() {
 	GLenum err;
 
@@ -91,6 +89,14 @@ void Graphics_Start() {
 
 void Graphics_SetColor(double r, double g, double b) {
 	glColor3f(r, g, b);
+}
+
+int Graphics_GetWindowWidth() {
+	return glutGet(GLUT_WINDOW_WIDTH);
+}
+
+int Graphics_GetWindowHeight() {
+	return glutGet(GLUT_WINDOW_HEIGHT);
 }
 
 void Graphics_DrawBlock(Vector p, Vector s) {

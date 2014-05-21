@@ -36,5 +36,5 @@ void Scene_Recycle() {
 	Node_remove(n);
 	List_pushBack(s->sections,
 		Section_new(0, 0, ((Section*) s->sections->head->prev->item)->pos[2] + s->size[2],
-			s->size[0], s->size[1], s->size[2], randomInterval(2, 5)));
+			s->size[0], s->size[1], s->size[2], randomInterval(7, 10)));
 }

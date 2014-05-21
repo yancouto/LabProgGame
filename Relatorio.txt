@@ -78,3 +78,16 @@ posições diferentes mas que estejam dentro do paralelepípedo gerado por (x, y
 tivemos que acelerar muito pra terminar a tempo, logo não só prejudicando o pensamento de ideias
 boas para o projeto, como não podendo sofisticar a parte de testes e melhora-lo. Isso será algo
 que mais focaremos em outras fases: Organização.
+
+Pt II
+
+    Já tinhamos feito uma considerável parte da parte II na primeira parte, como o laço de execução e
+já lidar com o input do usuário. Primeiramente nessa segunda parte começamos tirando os bugs residuais
+da primeira fase (tiros explodiam sem colidir com nada, algumas coisas não estavam sendo deletadas, ...) 
+e adicionando novas coisas que estavam faltando (nave e tiros colidem com inimigos, gravidade afeta os
+tiros, ...).
+    Também percebemos que estava muito difícil jogar o jogo e perceber se o que estava acontecendo estava
+correto sem nenhum feedback além de texto dizendo 'o tiro colidiu com o inimigo', então, depois de um tempo
+decidimos já começar fazer a visualização 3D do jogo. Depois de quebrar muito a cabeça com o OpenGL, conseguimos
+uma teapot na tela. Com um pouco mais de trabalho, colocamos a nave, os inimigos e os tiros na tela, colidindo
+corretamente e podendo controlar o jogo usando o mouse e o teclado. (...)

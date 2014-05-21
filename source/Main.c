@@ -37,12 +37,13 @@ int main(int argsN, char *args[]) {
 
 void Main_Step() {
 	double dt = 1./60;
+	Camera_Update(dt);
 	Bullet_Update(dt);
 	Ship_Update(dt);
 	Enemy_Update(dt);
 }
 
 void Main_LoseGame() {
-	printf("\n\nVoce perdeu o jogo!\nAdeus!");
+	printf("\n\nVoce perdeu o jogo!\nAdeus!\n");
 	exit(0);
 }

@@ -31,7 +31,6 @@ void Scene_Update(double dt) {
 void Scene_Recycle() {
 	Scene *s = Scene_MainScene;
 	Node *n = s->sections->head->next;
-	puts("Adicionando nova secao.\n");
 	Section_delete(n->item);
 	Node_remove(n);
 	List_pushBack(s->sections,

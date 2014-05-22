@@ -30,6 +30,7 @@ void Ship_Init() {
 void Ship_Update(double dt) {
 	Ship *this = Ship_MainShip;
 	Section *first = (Section*) Scene_MainScene->sections->head->next->item;
+	/* Melhorar o movimento (usar aceleracao ou alog assim) */
 	if(Controller_keyPressed['w']) this->pos[1] += this->v / 1.4 * dt;
 	if(Controller_keyPressed['s']) this->pos[1] -= this->v / 1.4 * dt;
 	if(Controller_keyPressed['a']) this->pos[0] -= this->v / 1.4 * dt;
@@ -53,8 +54,6 @@ void Ship_Print() {
 }
 
 void Ship_Shoot() {
-	printf("A nave atirou!\n");
-
 	Bullet_ShipShoot(Ship_MainShip);
 }
 

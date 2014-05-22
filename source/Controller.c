@@ -85,7 +85,7 @@ static void mouseClicked(int but, int state, int x, int y) {
 	if(state) return;
 	Vector_setVector(s->gunDir, s->pos);
 	Vector_add(s->gunDir, s->size[0] / 2 - Camera_GetX(), s->size[1] / 2 - Camera_GetY(),
-	 s->size[2] - Camera_GetZ());
+	 -10 - Camera_GetZ());
 	Vector_normalize(s->gunDir);
 	Ship_Shoot();
 }

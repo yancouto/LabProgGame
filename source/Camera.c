@@ -1,35 +1,50 @@
 #include "Camera.h"
 #include "Ship.h"
 #include "Graphics.h"
+#include "Util.h"
 #include <stdio.h>
 #include <math.h>
 #define CAMERA_DIST 80.
 #define PI 3.14159265358979323846
 
-static int mouseX, mouseY;
+static double mouseXRelative, mouseYRelative;
 static double x, y, z;
 
+static void mouseMove(int x, int y) {
+	static bool changeMousePos = true;
+	int width = Graphics_GetWindowWidth();
+	int height = Graphics_GetWindowHeight();
+	mouseXRelative += (double) x / width - .5;
+	mouseYRelative += (double) y / height - .5;
+	if(mouseXRelative > 1.) mouseXRelative = 1.;
+	else if(mouseXRelative < -1.) mouseXRelative = -1.;
+	if(mouseYRelative > 1.) mouseYRelative = 1.;
+	else if(mouseYRelative < -1.) mouseYRelative = -1.;
+
+	/* Se mudar a posicao toda vez o jogo trava */
+	if(changeMousePos) Graphics_ChangeMousePosition(width / 2, height / 2);
+	changeMousePos = !changeMousePos;
+}
+
 static void mouseHandler1(int x, int y) {
-	mouseX = x;
-	mouseY = y;
+	mouseMove(x, y);
 }
 
 static void mouseHandler2(int x, int y) {
-	mouseX = x;
-	mouseY = y;
+	mouseMove(x, y);
 }
 
 void Camera_Init() {
-	mouseX = mouseY = 0;
+	mouseXRelative = mouseYRelative = 0;
 	Graphics_SetMousePassiveMotionCallback(mouseHandler1);
 	Graphics_SetMouseActiveMotionCallback(mouseHandler2);
 }
 
 void Camera_Update(double dt) {
-	static const double angleVarX = 120. * PI / 180.;
-	static const double angleVarY = 80. * PI / 180.;
-	double ax = (double) mouseX / Graphics_GetWindowWidth() - .5;
-	double ay = (double) mouseY / Graphics_GetWindowHeight() - .5;
+	static const double angleVarX = 80. * PI / 180.;
+	static const double angleVarY = 60. * PI / 180.;
+	double ax = mouseXRelative;
+	double ay = mouseYRelative;
 	double cosY;
 	ax = ax * angleVarX / 2.;
 	ay = ay * angleVarY / 2.;

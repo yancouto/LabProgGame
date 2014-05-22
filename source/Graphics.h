@@ -23,6 +23,8 @@ int Graphics_GetWindowWidth();
 
 int Graphics_GetWindowHeight();
 
+void Graphics_ChangeMousePosition(int x, int y);
+
 void Graphics_SetMousePassiveMotionCallback(void (*func)(int x, int y));
 
 void Graphics_SetMouseActiveMotionCallback(void (*func)(int x, int y));

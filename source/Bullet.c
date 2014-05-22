@@ -44,7 +44,7 @@ void Bullet_update(Bullet *this, double dt) {
 
 	if(this->owner != s && collidesPoint(s->pos, s->size, this->pos)) {
 		printf("Tiro %u atingiu a nave.\n", this->id);
-		s->health -= 10;
+		s->health -= 15;
 		this->health = 0;
 	} else {
 		Enemy *e = Enemy_BulletCollide(this);
@@ -56,7 +56,6 @@ void Bullet_update(Bullet *this, double dt) {
 	}
 
 	if(outOfBounds(this->pos)) {
-		printf("Tiro %u saiu da tela.\n", this->id);
 		this->health = 0;
 	}
 }
@@ -71,7 +70,6 @@ void Bullet_Update(double dt) {
 		Bullet *b = (Bullet*) n->item;
 		if(b->health <= 0) {
 			Node *temp = n->next;
-			printf("Tiro %u explodiu!\n", b->id);
 			Bullet_delete(b);
 			Node_remove(n);
 			n = temp;

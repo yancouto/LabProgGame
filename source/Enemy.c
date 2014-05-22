@@ -45,8 +45,6 @@ void Enemy_shoot(Enemy* this) {
 	Vector_setVector(this->gunDir, dir);
 	Vector_mult(this->gunDir, norm, norm, norm);
 
-	printf("Inimigo %u atirou na nave.\n", this->id);
-
 	Bullet_EnemyShoot(this);
 	this->_dfreq = 0;
 }
@@ -81,7 +79,6 @@ Enemy *Enemy_BulletCollide(Bullet *b) {
 }
 
 void Enemy_delete(Enemy* this) {
-	printf("Inimigo %u explodiu!\n", this->id);
 	free(this);
 }
 

@@ -63,6 +63,7 @@ bool Graphics_Init(int *argN, char *args[]) {
 	glutInitWindowSize(SCREEN_WIDTH, SCREEN_HEIGHT);
 	glutCreateWindow("LabProgGame");
 	glutDisplayFunc(render);
+	glutSetCursor(GLUT_CURSOR_NONE);
 
 	if(!initGL()) return false;
 
@@ -144,6 +145,10 @@ void Graphics_DrawBlock(Vector p, Vector s) {
 void Graphics_DrawShip() {
 	Ship *s = Ship_MainShip;
 	Graphics_DrawBlock(s->pos, s->size);
+}
+
+void Graphics_ChangeMousePosition(int x, int y) {
+	glutWarpPointer(x, y);
 }
 
 void Graphics_SetMousePassiveMotionCallback(void (*func)(int x, int y)) {

@@ -1,19 +1,27 @@
-- Inimigos de tamanhos diferentes
-- Melhor geração das seções (inimigos não colidem)
+Muito Importante:
 - Seções estão ficando com menos inimigos com o tempo (pelo menos parece isso)
+- Acho que o tamanho do corredor está grande demais, diminuir.
+- Calcular a direção que o inimigo tem que atirar para acertar a nave. (E tb tem que ter erro)
+- Fazer o relatório em pdf
+- Melhor geração das seções (inimigos não colidem)
+- Fazer pause
+- (Texto na tela com informações)
+
+Menos Importante:
+- Inimigos de diferentes
 - Melhorar os 'gráficos' (As vezes não da nem pra saber se algo está 
 	na frente ou atrás de outra coisa, se aproximando ou se afastando)
-- Acho que o tamanho do corredor está grande demais, diminuir.
-- Fazer o relatório em pdf
-- Gravidade para os tiros
-	- Calcular a direção que o inimigo tem que
-		atirar para acertar a nave. (E tb tem que ter erro)
-- O prof falou pra diminuir o 'z' de todo o resto em vez de aumentar o z da nave, mudamos?
+	- Nova nave, sem mais linhas...
+	- Fundo
+	- Texto na tela com informações
 - Fazer os inimigos só carregarem o tiro quando estiverem perto da nave (ou não)
 - Fazer número de tiros limitados
-- Power-ups:
+Power-ups:
 	- Tiros com mais dano
 	- Invulneravel por um tempo
 	- Homing missiles
 	- Mais tiros
 	- etc.
+- Segurar para atirar
+- Linha saindo da nave mostrando a direção do tiro (ou algo similar pra ajudar)
+- Melhorar o movimento para os lados (mais smooth, com aceleracao e tals)

@@ -19,7 +19,7 @@ Scene* Scene_Init(double width, double height, double length, int scenes) {
 	for(i = 0; i < scenes; ++i)
 		List_pushBack(Scene_MainScene->sections,
 			Section_new(0, 0, i * length,
-				width, height, length, randomInterval(2, 5)));
+				width, height, length, randomInterval(2, 4)));
 
 	return Scene_MainScene;
 }
@@ -35,5 +35,5 @@ void Scene_Recycle() {
 	Node_remove(n);
 	List_pushBack(s->sections,
 		Section_new(0, 0, ((Section*) s->sections->head->prev->item)->pos[2] + s->size[2],
-			s->size[0], s->size[1], s->size[2], randomInterval(7, 10)));
+			s->size[0], s->size[1], s->size[2], randomInterval(2, 4)));
 }

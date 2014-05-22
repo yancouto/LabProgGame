@@ -1,6 +1,4 @@
 Muito Importante:
-- Seções estão ficando com menos inimigos com o tempo (pelo menos parece isso)
-- Acho que o tamanho do corredor está grande demais, diminuir.
 - Calcular a direção que o inimigo tem que atirar para acertar a nave. (E tb tem que ter erro)
 - Fazer o relatório em pdf
 - Melhor geração das seções (inimigos não colidem)

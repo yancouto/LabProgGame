@@ -18,7 +18,7 @@
 /* End of Gambs */
 
 Vector Vector_ZERO = {0, 0, 0};
-Vector Vector_BOUNDS = {1200, 1200, 1200};
+Vector Vector_BOUNDS = {400, 400, 1200};
 
 static char* ftos(double n) {
 	int i, size;

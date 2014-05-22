@@ -7,6 +7,7 @@
 #include "Main.h"
 #include "Graphics.h"
 #include "Camera.h"
+#include "Vector.h"
 #include <stdio.h>
 #include <time.h>
 #include <stdlib.h>
@@ -22,7 +23,7 @@ static void init() {
 	Ship_Init();
 	Camera_Init();
 	Controller_Init();
-	Scene_Init(1200, 1200, 100, 12);
+	Scene_Init(Vector_BOUNDS[0], Vector_BOUNDS[1], 100, 12);
 }
 
 int main(int argsN, char *args[]) {

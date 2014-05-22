@@ -16,7 +16,8 @@ static const int Ship_DefaultHealth = 100;
 void Ship_Init() {
 	Ship *s;
 	s = Ship_MainShip = (Ship*) malloc(sizeof(Ship));
-	s->pos[0] = s->pos[1] = 600;
+	s->pos[0] = Vector_BOUNDS[0] / 2;
+	s->pos[1] = Vector_BOUNDS[1] / 2;
 	s->pos[2] = 20;
 	s->v = 200;
 	s->gunDir[0] = s->gunDir[1] = 0;

@@ -5,7 +5,7 @@ CFLAGS = -ansi -Wall -pedantic -lm -O2 -lGL -lGLU -lglut -Wno-unused-result
 all: List.o Main.o Controller.o Util.o Bullet.o Ship.o Enemy.o Scene.o Section.o Player.o Vector.o  Graphics.o Camera.o
 	$(CC) $? $(CFLAGS) -o game
 
-Main.o: Main.c Main.h Util.h Controller.h Bullet.h Ship.h Enemy.h Player.h Vector.h Graphics.h Camera.h
+Main.o: Main.c Main.h Util.h Controller.h Bullet.h Ship.h Enemy.h Player.h Vector.h Graphics.h Camera.h Vector.h
 	$(CC) $(CFLAGS) Main.c -c -o Main.o
 
 Controller.o: Controller.c Controller.h Main.h Util.h Bullet.h Ship.h Enemy.h Player.h Vector.h Graphics.h Camera.h

@@ -1,12 +1,13 @@
 Muito Importante:
-- Calcular a direção que o inimigo tem que atirar para acertar a nave. (E tb tem que ter erro)
-- Fazer o relatório em pdf
-- Melhor geração das seções (inimigos não colidem)
+~~~ Fazer o relatório em pdf ~~~
+~~~ Refazer o manual (colocando agora cos comandos do teclado (WASD+mouse)) ~~~
 - Fazer pause
 - (Texto na tela com informações)
 
 Menos Importante:
-- Inimigos de diferentes
+- Calcular a direção que o inimigo tem que atirar para acertar a nave. (E tb tem que ter erro)
+- Melhor geração das seções (inimigos não colidem)
+- Inimigos de tipos diferentes
 - Melhorar os 'gráficos' (As vezes não da nem pra saber se algo está 
 	na frente ou atrás de outra coisa, se aproximando ou se afastando)
 	- Nova nave, sem mais linhas...

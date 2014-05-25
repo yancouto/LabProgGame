@@ -4,9 +4,9 @@
 #include "Vector.h"
 
 typedef struct {
-	Vector pos; /* Posicao da nave. */
-	Vector size; /* Tamanho da nave. */
-	double v;         /* Velocidade da nave */
+	Vector pos;    /* Posicao da nave. */
+	Vector size;   /* Tamanho da nave. */
+	double v;      /* Velocidade da nave */
 	Vector gunDir; /* Vetor que guarda tres valores para definir a orientação da arma da nave */
 	int health;    /* Vida da nave*/
 } Ship;

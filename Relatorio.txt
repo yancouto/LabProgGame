@@ -90,4 +90,9 @@ tiros, ...).
 correto sem nenhum feedback além de texto dizendo 'o tiro colidiu com o inimigo', então, depois de um tempo
 decidimos já começar fazer a visualização 3D do jogo. Depois de quebrar muito a cabeça com o OpenGL, conseguimos
 uma teapot na tela. Com um pouco mais de trabalho, colocamos a nave, os inimigos e os tiros na tela, colidindo
-corretamente e podendo controlar o jogo usando o mouse e o teclado. (...)
+corretamente e podendo controlar o jogo usando o mouse e o teclado. Poder controlar a camera com o mouse foi um
+desafio, no começo ficou bem ruim, a distância da camera à nave não era constante e parecia ruim, mas com um
+pouco de trabalho conseguimos deixar um pouco melhor (ainda da pra melhorar bastante)(...)
+    Para a terceira parte do projeto, planejamos polir mais o jogo. Deixar os gráficos melhores (os cubos
+como estão dificultam a percepção de distância e orientação), colocar mais conteúdo (power ups, mais inimigos,
+mais tiros, ...), arrumar bugs e deixar o jogo mais fluído.

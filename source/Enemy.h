@@ -20,7 +20,7 @@ typedef struct {
 
 #include "Bullet.h"
 
-extern int Enemy_DefaultSize;
+extern Vector Enemy_DEF_SIZE;
 
 /* Constructor para Enemy. */
 Enemy* Enemy_new(int x, int y, int z, double precision, int freq, double range);

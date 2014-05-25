@@ -1,6 +1,17 @@
 CC = gcc
 
-CFLAGS = -ansi -Wall -pedantic -lm -O2 -lGL -lGLU -lglut -Wno-unused-result
+# If SystemRoot, then Windows. Else, *NIX.
+ifdef SystemRoot
+	# OpenGL for Windows
+	GLFLAGS = -w -Wl,-subsystem,windows -lOpenGL32 -lglu32 -lfreeGLUT
+	CLEAN = del *.o game.exe
+else
+	# OpenGL for *NIX
+	GLFLAGS = -lGL -lGLU -lglut
+	CLEAN = rm *.o game
+endif
+
+CFLAGS = -ansi -Wall -pedantic -lm -O2 -Wno-unused-result $(GLFLAGS)
 
 all: List.o Main.o Controller.o Util.o Bullet.o Ship.o Enemy.o Scene.o Section.o Player.o Vector.o  Graphics.o Camera.o
 	$(CC) $? $(CFLAGS) -o game
@@ -45,7 +56,4 @@ Camera.o: Camera.c Camera.h Ship.h Graphics.h Util.h
 	$(CC) $(CFLAGS) Camera.c -c -o Camera.o
 
 clean:
-	rm *.o game
-
-cleanWindows:
-	del *.o game.exe
+	$(CLEAN)

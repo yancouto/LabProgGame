@@ -24,6 +24,14 @@ double Vector_normSqr(Vector);
 
 double* Vector_normalize(Vector);
 
+double Vector_norm(Vector);
+
+#define Vector_dist(p, q) Vector_norm(Vector_subVector((p), (q)))
+
+#define Vector_distSqr(p, q) Vector_normSqr(Vector_subVector((p), (q)))
+
+#define Vector_distVector(p, q) Vector_subVector((q), (p))
+
 char* Vector_toString(Vector);
 
 #endif

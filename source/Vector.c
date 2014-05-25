@@ -59,6 +59,13 @@ double* Vector_addVector(Vector this, Vector that) {
 	return this;
 }
 
+double* Vector_sub(Vector this, double x, double y, double z) {
+	this[0] -= x;
+	this[1] -= y;
+	this[2] -= z;
+	return this;
+}
+
 double* Vector_subVector(Vector this, Vector that) {
 	this[0] -= that[0];
 	this[1] -= that[1];
@@ -90,6 +97,10 @@ double* Vector_normalize(Vector this) {
 	this[1] /= norm;
 	this[2] /= norm;
 	return this;
+}
+
+double Vector_norm(Vector this) {
+	return sqrt(this[0]*this[0] + this[1]*this[1] + this[2]*this[2]);
 }
 
 char* Vector_toString(Vector this) {

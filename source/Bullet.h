@@ -6,6 +6,7 @@
 typedef struct {
 	Vector pos; /* Posicao do tiro. */
 	Vector v; /* Velocidade do tiro */
+	double speed; /* Velocidade escalar do tiro. */
 	int health; /* Vida do tiro */
 	unsigned id;   /* ID do tiro */
 	void *owner;   /* quem atirou */

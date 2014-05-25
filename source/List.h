@@ -1,18 +1,30 @@
 #ifndef LIST_H
 #define LIST_H
 
-typedef struct node Node;
-struct node {
+/******************** Node stuff **********************/
+
+typedef struct _struct_node Node;
+struct _struct_node {
 	void *item;
 	Node *next;
 	Node *prev;
 };
+
+/* Pseudo-iterador. Para facilitar a vida mas mesmo assim deixar 
+ * conciso, Node tambem e' um "iterador". 
+ */
+typedef Node Iterator;
 
 /* next e prev começam com NULL */
 Node *Node_new(void *item);
 
 /* Remove o no da lista e limpa a memoria */
 void Node_remove(Node *n);
+
+/* "Cria" um novo iterador. */
+#define Iterator_new(list) (list)->head->next;
+
+/******************** List stuff **********************/
 
 /* Lista duplamente ligada circular com cabeça pra facilitar a vida */
 typedef struct {

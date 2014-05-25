@@ -6,6 +6,7 @@
 #include "Graphics.h"
 #include "Camera.h"
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include <math.h>
 #include <string.h>
@@ -96,6 +97,8 @@ static void keyCliked(uchar key, int x, int y) {
 
 static void keyReleased(uchar key, int x, int y) {
 	Controller_keyPressed[key] = false;
+
+	if(key == 'q') exit(0);
 }
 
 void Controller_Init() {

@@ -27,6 +27,8 @@ static void init() {
 }
 
 int main(int argsN, char *args[]) {
+
+	printf("penis");
 	Graphics_Init(&argsN, args);
 
 	Graphics_SetMainLoop(Main_Step);

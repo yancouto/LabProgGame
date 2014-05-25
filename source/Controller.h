@@ -9,4 +9,6 @@ bool Controller_ExecuteInstruction();
 
 void Controller_Init();
 
+bool Controller_isPaused();
+
 #endif

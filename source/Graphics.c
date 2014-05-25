@@ -7,6 +7,7 @@
 #include <GL/glu.h>
 #include <GL/freeglut.h>
 #include <stdio.h>
+#include <string.h>
 
 static bool initGL() {
 	GLenum err;
@@ -145,6 +146,19 @@ void Graphics_DrawBlock(Vector p, Vector s) {
 void Graphics_DrawShip() {
 	Ship *s = Ship_MainShip;
 	Graphics_DrawBlock(s->pos, s->size);
+}
+
+/* Função em teste pra dar print em textos no jogo */
+void Graphics_Print(int x, int y, char *string) {
+	int i, len;
+	glColor3f( 1, 0, 0);
+	glRasterPos2f(x,y);
+
+	len = (int) strlen(string);
+
+	for (i = 0; i < len; i++) {
+		glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, string[i]);
+	}
 }
 
 void Graphics_ChangeMousePosition(int x, int y) {

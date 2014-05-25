@@ -15,6 +15,7 @@
 bool Controller_keyPressed[256];
 bool lmbdown; /* variavel booleana que diz de o botao esquerdo do mouse esta pressionado */
 double ts;
+bool pause;
 
 static void processStep() {
 	unsigned n;
@@ -83,7 +84,12 @@ bool Controller_ExecuteInstruction() {
 
 	return true;
 }
+/* Função para click de mouse */
+static void mouseClick(int but, int state, int x, int y) {
 
+}
+
+/* Função que verifica se o botão esquerdo do mouse esta sendo pressionado */
 static void mouseHold(int but, int state, int x, int y) {
 	if (but == GLUT_LEFT_BUTTON) {
 		if (state == GLUT_DOWN)
@@ -102,12 +108,19 @@ static void keyReleased(uchar key, int x, int y) {
 	Controller_keyPressed[key] = false;
 
 	if(key == 'q') exit(0);
+	if(key == 'p') pause = -pause;
+}
+
+bool Controller_isPaused() {
+	return pause;
 }
 
 void Controller_Init() {
 	lmbdown = false;
 	ts = 0.;
+	pause = false;
 	memset(Controller_keyPressed, 0, sizeof(Controller_keyPressed));
+	Graphics_SetMouseClickCallback(mouseClick);
 	Graphics_SetMouseClickCallback(mouseHold);
 	Graphics_SetKeyDownCallback(keyCliked);
 	Graphics_SetKeyUpCallback(keyReleased);
@@ -120,11 +133,14 @@ void Controller_Update(double dt) {
 	if(ts >= .3) {
 		if (lmbdown == true) {
 			ts = 0;              /* Jeito não tão bom de resetar já que perde um pouco do que tinha antes, mas garante que voce atira um tiro quando vai clicar (sem delay)*/     
+			
 			Vector_setVector(s->gunDir, s->pos);
 			Vector_add(s->gunDir, s->size[0] / 2 - Camera_GetX(), s->size[1] / 2 - Camera_GetY(),
 	 		 -10 - Camera_GetZ());
 			Vector_normalize(s->gunDir);
+			
 			Ship_Shoot();
 		}
 	}
+	Graphics_Print(0,0, "penis"); /* Teste para dar print em texto */
 }

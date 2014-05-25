@@ -1,7 +1,5 @@
 Muito Importante:
 ~~~ Fazer o relatório em pdf ~~~
-~~~ Refazer o manual (colocando agora cos comandos do teclado (WASD+mouse)) ~~~
-- Fazer pause
 - (Texto na tela com informações)
 
 Menos Importante:

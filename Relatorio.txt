@@ -125,7 +125,7 @@ This is ground control to Major Gubi, you've really made the grade!
 1.Decisões Tomadas
 ######################
 
-    Já tinhamos feito uma considerável parte da parte II na primeira parte, como o laço de execução e
+    Já tinhamos feito uma considerável parte da segunda fase na anterior, como o laço de execução e
 já lidar com o input do usuário. Primeiramente nessa segunda parte começamos tirando os bugs residuais
 da primeira fase (tiros explodiam sem colidir com nada, algumas coisas não estavam sendo deletadas, ...) 
 e adicionando novas coisas que estavam faltando (nave e tiros colidem com inimigos, gravidade afeta os
@@ -136,7 +136,7 @@ fazer parte da visualização 3D do jogo.
     Inicialmente utilizamos um bule 3D para testar o OpenGL. Posteriormente colocamos a nave, tiros e inimigos
 na tela, com as colisões funcionando, e já com uma implementação de mouse e teclado para o input do usuário.
     Decidimos deixar o movimento da nave independente da câmera do jogo, ou seja ela pode se mover
-nos eixos X e Y sempre orientada para frente e com velocidade constante. A camerâ, controlada pelo mouse,
+nos eixos X e Y sempre orientada para frente e com velocidade constante. A âamera, controlada pelo mouse,
 como definido na parte 1, muda a orientação da "arma da nave", ou seja a orientação que os tiros serão disparados.
 Para poder testar colocamos temporariamente uma cruz como cursos para definir onde a nave está mirando.
 
@@ -159,4 +159,4 @@ para aperfeiçoar.
   
     Para a terceira parte do projeto, planejamos polir mais o jogo. Deixar os gráficos melhores (os cubos
 atualmente dificultam a percepção de distância e orientação), colocar mais conteúdo (power ups, mais inimigos,
-mais tiros, e o que mais vier a nossa cabeça), arrumar bugs e deixar o jogo mais fluído.w
+mais tiros, e o que mais vier a nossa cabeça), arrumar bugs e deixar o jogo mais fluído.

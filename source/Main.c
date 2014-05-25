@@ -28,7 +28,6 @@ static void init() {
 
 int main(int argsN, char *args[]) {
 
-	printf("penis");
 	Graphics_Init(&argsN, args);
 
 	Graphics_SetMainLoop(Main_Step);
@@ -39,12 +38,14 @@ int main(int argsN, char *args[]) {
 }
 
 void Main_Step() {
-	double dt = 1./60;
-	Camera_Update(dt);
-	Bullet_Update(dt);
-	Ship_Update(dt);
-	Enemy_Update(dt);
-	Controller_Update(dt);
+	if (Controller_isPaused() == false) {
+		double dt = 1./60;
+		Camera_Update(dt);
+		Bullet_Update(dt);
+		Ship_Update(dt);
+		Enemy_Update(dt);
+		Controller_Update(dt);
+	}
 }
 
 void Main_LoseGame() {

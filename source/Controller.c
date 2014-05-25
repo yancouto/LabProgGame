@@ -108,7 +108,7 @@ static void keyReleased(uchar key, int x, int y) {
 	Controller_keyPressed[key] = false;
 
 	if(key == 'q') exit(0);
-	if(key == 'p') pause = -pause;
+	if(key == 'p') pause = !pause;
 }
 
 bool Controller_isPaused() {

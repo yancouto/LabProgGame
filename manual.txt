@@ -16,4 +16,6 @@ Para utilizar o estado atual do projeto (fase teste):
 
 	-Segure o botão esquerdo do mouse para atirar
 
+	-Aperte 'p' para pausar
+
 	-Aperte 'q' para fechar o programa 

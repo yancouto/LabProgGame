@@ -10,8 +10,11 @@
 #include <string.h>
 #include <math.h>
 #include <string.h>
+#include <GL/glut.h>
 
 bool Controller_keyPressed[256];
+bool lmbdown; /* variavel booleana que diz de o botao esquerdo do mouse esta pressionado */
+double ts;
 
 static void processStep() {
 	unsigned n;
@@ -81,15 +84,15 @@ bool Controller_ExecuteInstruction() {
 	return true;
 }
 
-static void mouseClicked(int but, int state, int x, int y) {
-	Ship *s = Ship_MainShip;
-	if(state) return;
-	Vector_setVector(s->gunDir, s->pos);
-	Vector_add(s->gunDir, s->size[0] / 2 - Camera_GetX(), s->size[1] / 2 - Camera_GetY(),
-	 -10 - Camera_GetZ());
-	Vector_normalize(s->gunDir);
-	Ship_Shoot();
+static void mouseHold(int but, int state, int x, int y) {
+	if (but == GLUT_LEFT_BUTTON) {
+		if (state == GLUT_DOWN)
+			lmbdown = true;
+		else
+			lmbdown = false;
+	}
 }
+
 
 static void keyCliked(uchar key, int x, int y) {
 	Controller_keyPressed[key] = true;
@@ -102,8 +105,26 @@ static void keyReleased(uchar key, int x, int y) {
 }
 
 void Controller_Init() {
+	lmbdown = false;
+	ts = 0.;
 	memset(Controller_keyPressed, 0, sizeof(Controller_keyPressed));
-	Graphics_SetMouseClickCallback(mouseClicked);
+	Graphics_SetMouseClickCallback(mouseHold);
 	Graphics_SetKeyDownCallback(keyCliked);
 	Graphics_SetKeyUpCallback(keyReleased);
+}
+
+void Controller_Update(double dt) {
+	/* timer tosco para fase de testes */
+	Ship *s = Ship_MainShip;
+	ts += dt;
+	if(ts >= .3) {
+		if (lmbdown == true) {
+			ts = 0;              /* Jeito não tão bom de resetar já que perde um pouco do que tinha antes, mas garante que voce atira um tiro quando vai clicar (sem delay)*/     
+			Vector_setVector(s->gunDir, s->pos);
+			Vector_add(s->gunDir, s->size[0] / 2 - Camera_GetX(), s->size[1] / 2 - Camera_GetY(),
+	 		 -10 - Camera_GetZ());
+			Vector_normalize(s->gunDir);
+			Ship_Shoot();
+		}
+	}
 }

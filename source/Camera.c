@@ -46,8 +46,8 @@ void Camera_Update(double dt) {
 	double ax = mouseXRelative;
 	double ay = mouseYRelative;
 	double cosY;
-	ax = ax * angleVarX / 2.;
-	ay = ay * angleVarY / 2.;
+	ax = ax * angleVarX / 3.; /*Angulo de direção que a mira pode ter*/
+	ay = ay * angleVarY / 3.;
 	cosY = cos(ay);
 
 	x = CAMERA_DIST * sin(ax) * cosY;

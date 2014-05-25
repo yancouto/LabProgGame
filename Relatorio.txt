@@ -1,5 +1,12 @@
 Relatório sobre trabalho de Laborátorio de Programação - 2014
 
+###########################
+#-Grupo:                  #
+#-Renato Lui Geh          #
+#-Ricardo Lira da Fonseca #
+#-Yan Soares Couto        #
+###########################
+
 ------------------------FASE 1------------------------------
 Ground control to Major Gubi: commencing countdown, report go-bi!
 
@@ -79,20 +86,77 @@ tivemos que acelerar muito pra terminar a tempo, logo não só prejudicando o pe
 boas para o projeto, como não podendo sofisticar a parte de testes e melhora-lo. Isso será algo
 que mais focaremos em outras fases: Organização.
 
-Pt II
+
+------------------------FASE 2------------------------------
+This is ground control to Major Gubi, you've really made the grade!
+
+       !
+       !
+       ^
+      / \
+     /___\
+    |=   =|
+    |     |
+    |  G  |
+    |  U  |
+    |  B  |
+    |  I  |
+    |     |
+    |  X  |
+    |  X  |
+    |     |
+   /|##!##|\
+  / |##!##| \
+ /  |##!##|  \
+|  / ^ | ^ \  |
+| /  ( | )  \ |
+|/   ( | )   \|
+    ((   ))
+   ((  :  ))
+   ((  :  ))
+    ((   ))
+     (( ))
+      ( )
+       .
+       .
+       .
+
+######################
+1.Decisões Tomadas
+######################
 
     Já tinhamos feito uma considerável parte da parte II na primeira parte, como o laço de execução e
 já lidar com o input do usuário. Primeiramente nessa segunda parte começamos tirando os bugs residuais
 da primeira fase (tiros explodiam sem colidir com nada, algumas coisas não estavam sendo deletadas, ...) 
 e adicionando novas coisas que estavam faltando (nave e tiros colidem com inimigos, gravidade afeta os
 tiros, ...).
-    Também percebemos que estava muito difícil jogar o jogo e perceber se o que estava acontecendo estava
-correto sem nenhum feedback além de texto dizendo 'o tiro colidiu com o inimigo', então, depois de um tempo
-decidimos já começar fazer a visualização 3D do jogo. Depois de quebrar muito a cabeça com o OpenGL, conseguimos
-uma teapot na tela. Com um pouco mais de trabalho, colocamos a nave, os inimigos e os tiros na tela, colidindo
-corretamente e podendo controlar o jogo usando o mouse e o teclado. Poder controlar a camera com o mouse foi um
-desafio, no começo ficou bem ruim, a distância da camera à nave não era constante e parecia ruim, mas com um
-pouco de trabalho conseguimos deixar um pouco melhor (ainda da pra melhorar bastante)(...)
+    Percebemos que estava muito difícil jogar o jogo e perceber se o que estava acontecendo estava
+correto sem nenhum feedback além de texto dizendo 'o tiro colidiu com o inimigo'. Logo decidimos já começar
+fazer parte da visualização 3D do jogo.
+    Inicialmente utilizamos um bule 3D para testar o OpenGL. Posteriormente colocamos a nave, tiros e inimigos
+na tela, com as colisões funcionando, e já com uma implementação de mouse e teclado para o input do usuário.
+    Decidimos deixar o movimento da nave independente da câmera do jogo, ou seja ela pode se mover
+nos eixos X e Y sempre orientada para frente e com velocidade constante. A camerâ, controlada pelo mouse,
+como definido na parte 1, muda a orientação da "arma da nave", ou seja a orientação que os tiros serão disparados.
+Para poder testar colocamos temporariamente uma cruz como cursos para definir onde a nave está mirando.
+
+
+
+######################
+2.Problemas
+######################
+    
+    Poder controlar a camera com o mouse foi um desafio, no começo ficou bem ruim, a distância da camera à nave
+não era constante e parecia ruim, mas com um pouco de trabalho conseguimos melhorar, apesar de ter muito espaço
+para aperfeiçoar. 
+    Para imprimir texto na tela e ter uma interface adequada para o usuário, também tivemos várias complicações.
+
+
+
+######################
+3.Próxima Parte
+######################
+  
     Para a terceira parte do projeto, planejamos polir mais o jogo. Deixar os gráficos melhores (os cubos
-como estão dificultam a percepção de distância e orientação), colocar mais conteúdo (power ups, mais inimigos,
-mais tiros, ...), arrumar bugs e deixar o jogo mais fluído.
+atualmente dificultam a percepção de distância e orientação), colocar mais conteúdo (power ups, mais inimigos,
+mais tiros, e o que mais vier a nossa cabeça), arrumar bugs e deixar o jogo mais fluído.w

@@ -42,6 +42,7 @@ void Main_Step() {
 	Bullet_Update(dt);
 	Ship_Update(dt);
 	Enemy_Update(dt);
+	Controller_Update(dt);
 }
 
 void Main_LoseGame() {

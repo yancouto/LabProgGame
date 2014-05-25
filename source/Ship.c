@@ -31,11 +31,21 @@ void Ship_Init() {
 void Ship_Update(double dt) {
 	Ship *this = Ship_MainShip;
 	Section *first = (Section*) Scene_MainScene->sections->head->next->item;
-	/* Melhorar o movimento (usar aceleracao ou alog assim) */
-	if(Controller_keyPressed['w']) this->pos[1] += this->v / 1.4 * dt;
-	if(Controller_keyPressed['s']) this->pos[1] -= this->v / 1.4 * dt;
-	if(Controller_keyPressed['a']) this->pos[0] -= this->v / 1.4 * dt;
-	if(Controller_keyPressed['d']) this->pos[0] += this->v / 1.4 * dt;
+	/* Melhorar o movimento (usar aceleracao ou algo assim) */
+
+	/* Já limita a posição da nave com o tamanho da cena */
+	if(Controller_keyPressed['w']) 
+		if ((this->pos[1] + this->v / 1.4 * dt) <= Vector_BOUNDS[1] - this->size[1])
+			this->pos[1] += this->v / 1.4 * dt;
+	if(Controller_keyPressed['s'])
+		if ((this->pos[1] - this->v / 1.4 * dt) >= 0)
+			this->pos[1] -= this->v / 1.4 * dt;
+	if(Controller_keyPressed['a'])
+	 	if((this->pos[0] - this->v / 1.4 * dt) >= 0)
+	 		this->pos[0] -= this->v / 1.4 * dt;
+	if(Controller_keyPressed['d'])
+		if ((this->pos[0] + this->v / 1.4 * dt) <= Vector_BOUNDS[0] - this->size[0])
+			this->pos[0] += this->v / 1.4 * dt;
 
 	this->pos[2] += this->v * dt;
 

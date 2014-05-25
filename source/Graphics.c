@@ -63,7 +63,7 @@ bool Graphics_Init(int *argN, char *args[]) {
 	glutInitWindowSize(SCREEN_WIDTH, SCREEN_HEIGHT);
 	glutCreateWindow("LabProgGame");
 	glutDisplayFunc(render);
-	glutSetCursor(GLUT_CURSOR_NONE);
+	glutSetCursor(GLUT_CURSOR_CROSSHAIR);
 
 	if(!initGL()) return false;
 

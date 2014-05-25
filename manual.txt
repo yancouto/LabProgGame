@@ -5,7 +5,15 @@
 Para utilizar o estado atual do projeto (fase teste):
 
 -Use "make" para compilar
--Use "make clean" ou "make cleanWindows" para limpar
+-Use "make clean" para limpar
 -Use "./game" ou "game" para executar
 
--Com o jogo inicializado, digite ajuda para os comandos
+-Com o jogo inicializado:
+
+	-Use o mouse para movimentar a câmera e a posição que a nave atira
+
+	-Use "WASD" para movimentar a nave independentemente da câmera
+
+	-Segure o botão esquerdo do mouse para atirar
+
+	-Aperte 'q' para fechar o programa 

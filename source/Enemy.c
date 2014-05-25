@@ -10,7 +10,6 @@
 #include "Scene.h"
 #include "Graphics.h"
 
-
 Vector Enemy_DEF_SIZE = {20, 20, 20};
 
 Enemy* Enemy_new(int x, int y, int z, double precision, int freq, double range) {
@@ -44,6 +43,13 @@ void Enemy_shoot(Enemy* this) {
 	norm = 1 / sqrt(norm);
 	Vector_setVector(this->gunDir, dir);
 	Vector_mult(this->gunDir, norm, norm, norm);
+
+	/*Vector impact;
+	double dist;
+
+	Vector_setVector(, this->pos);
+
+	dist = Vector_dist(this->pos, dir);*/
 
 	Bullet_EnemyShoot(this);
 	this->_dfreq = 0;

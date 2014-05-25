@@ -20,6 +20,7 @@ Bullet* Bullet_new(double x, double y, double z, double dx, double dy, double dz
 	this->pos[0] = x;
 	this->pos[1] = y;
 	this->pos[2] = z;
+	this->speed = Vector_norm(this->pos);
 	this->v[0] = dx * 700;
 	this->v[1] = dy * 700;
 	this->v[2] = dz * 700;

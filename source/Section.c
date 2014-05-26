@@ -17,8 +17,8 @@ Section* Section_new(double x, double y, double z,
 	inst->entities = List_new();
 
 	for(i = 0, spacing = 0; i < enemies; ++i) {
-		spawn[0] = randomInterval(x, x + width);
-		spawn[1] = randomInterval(y, y + height);
+		spawn[0] = randomInterval(x, x + width - Enemy_DEF_SIZE[0]);
+		spawn[1] = randomInterval(y, y + height - Enemy_DEF_SIZE[1]);
 		spawn[2] = randomInterval(z + spacing, z + length);
 
 		List_pushBack(inst->entities, Enemy_new(

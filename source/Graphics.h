@@ -13,17 +13,23 @@ void Graphics_SetMainLoop(void (*)(void));
 
 void Graphics_Start();
 
+/* Função que desenha um bloco com coordenadas p[x,y,z] e tamanho s[dx,dy,dz] */
 void Graphics_DrawBlock(Vector p, Vector s);
 
+/* Função que desenha a nave */
 void Graphics_DrawShip();
 
+/* Função que define as cores na hora de desenhar com openGL */
 void Graphics_SetColor(double r, double g, double b);
 
+/* Retorna o comprimento da janela */
 int Graphics_GetWindowWidth();
 
+/* Retorna a altura da janela */
 int Graphics_GetWindowHeight();
 
-void Graphics_Print();
+/*Função que imprime algum texto no jogo */ /* em teste ainda */
+void Graphics_Print(int x, int y, char *string);
 
 void Graphics_ChangeMousePosition(int x, int y);
 

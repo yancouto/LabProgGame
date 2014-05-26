@@ -4,13 +4,16 @@
 
 extern bool Controller_keyPressed[256];
 
-/* retorna false se o programa deve fechar */
+/* Retorna false se o programa deve fechar */
 bool Controller_ExecuteInstruction();
 
+/* Inicia as funções e variávies relacionadas à input do usuário */
 void Controller_Init();
 
+/* Retorna se o jogo está pausado ou não */
 bool Controller_isPaused();
 
+/* Função que constantemente verifica estados de input do jogador */
 void Controller_Update(double dt);
 
 #endif

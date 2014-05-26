@@ -34,8 +34,8 @@ void Enemy_shoot(Enemy* this) {
 	double t;
 
 	Vector_setVector(ship_pos, Ship_MainShip->pos);
+	Vector_add(ship_pos, Ship_MainShip->size[0], Ship_MainShip->size[1], Ship_MainShip->size[2]);
 	t = Vector_dist(ship_pos, this->pos)/Bullet_DEF_SPEED;
-	Vector_add(ship_pos, Ship_MainShip->size[0]/2, Ship_MainShip->size[1]/2, Ship_MainShip->size[2]/2);
 
 	Vector_setVector(impact, ship_pos);
 	Vector_setVector(diff, Ship_MainShip->vel);

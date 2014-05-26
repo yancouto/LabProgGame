@@ -23,7 +23,7 @@ Section* Section_new(double x, double y, double z,
 
 		List_pushBack(inst->entities, Enemy_new(
 			spawn[0], spawn[1], spawn[2], random(),
-			0.1, 800));
+			random() * 5 + 1, 800));
 
 		spacing += Enemy_DEF_SIZE[2] + length/enemies;
 	}

@@ -37,7 +37,7 @@ void Bullet_delete(Bullet* bullet) {
 
 void Bullet_update(Bullet *this, double dt) {
 	Ship *s = Ship_MainShip;
-	/*this->v[1] -= Bullet_DEF_GRAVITY * dt;  Gravidade, tweekar o valor */
+	this->v[1] -= Bullet_DEF_GRAVITY * dt;  /* Gravidade, tweekar o valor */
 	this->pos[0] += this->v[0] * dt;
 	this->pos[1] += this->v[1] * dt;
 	this->pos[2] += this->v[2] * dt;

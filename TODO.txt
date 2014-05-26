@@ -4,7 +4,7 @@ Muito Importante:
 
 Menos Importante:
 - Calcular a direção que o inimigo tem que atirar para acertar a nave. (E tb tem que ter erro)
-- Melhor geração das seções (inimigos não colidem)
+- Melhor geração das seções (inimigos não colidem) [DONE]
 - Inimigos de tipos diferentes
 - Melhorar os 'gráficos' (As vezes não da nem pra saber se algo está 
 	na frente ou atrás de outra coisa, se aproximando ou se afastando)
@@ -19,6 +19,6 @@ Power-ups:
 	- Homing missiles
 	- Mais tiros
 	- etc.
-- Segurar para atirar
+- Segurar para atirar [DONE]
 - Linha saindo da nave mostrando a direção do tiro (ou algo similar pra ajudar)
 - Melhorar o movimento para os lados (mais smooth, com aceleracao e tals)

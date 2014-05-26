@@ -59,13 +59,13 @@ void Ship_Update(double dt) {
 	this->vel[0] = this->vel[1] = 0;
 
 	if(this->pos[2] > first->pos[2] + first->size[2]) Scene_Recycle();
-	/*if(this->health <= 0) {
+	if(this->health <= 0) {
 		if(Player_Lives == 0)
 			Main_LoseGame();
 		this->health = Ship_DEF_HEALTH;
 		Player_Lives--;
 		printf("Voce perdeu uma vida! (Agora esta com %d)\n", Player_Lives);
-	}*/
+	}
 }
 
 void Ship_Print() {

@@ -6,7 +6,6 @@
 typedef struct {
 	Vector pos; /* Posicao do tiro. */
 	Vector v; /* Velocidade do tiro */
-	double speed; /* Velocidade escalar do tiro. */
 	int health; /* Vida do tiro */
 	unsigned id;   /* ID do tiro */
 	void *owner;   /* quem atirou */
@@ -14,6 +13,9 @@ typedef struct {
 
 #include "Ship.h"
 #include "Enemy.h"
+
+#define Bullet_DEF_SPEED 700
+#define Bullet_DEF_GRAVITY 50
 
 /* Função que inicializa a lista de tiros */
 void Bullet_Init(void);

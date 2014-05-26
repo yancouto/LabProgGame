@@ -11,18 +11,20 @@
 
 Ship *Ship_MainShip;
 
-static const int Ship_DefaultHealth = 100;
+#define Ship_DEF_HEALTH 100
+#define Ship_DEF_SPEED 200
 
 void Ship_Init() {
 	Ship *s;
 	s = Ship_MainShip = (Ship*) malloc(sizeof(Ship));
-	s->pos[0] = Vector_BOUNDS[0] / 2;
-	s->pos[1] = Vector_BOUNDS[1] / 2;
-	s->pos[2] = 20;
-	s->v = 200;
+
+	Vector_set(s->pos, Vector_BOUNDS[0]/2, Vector_BOUNDS[1]/2, 20);
+	Vector_set(s->vel, 0, 0, Ship_DEF_SPEED);
+
 	s->gunDir[0] = s->gunDir[1] = 0;
 	s->gunDir[2] = 1;
-	s->health = Ship_DefaultHealth;
+	s->health = Ship_DEF_HEALTH;
+	s->v = Ship_DEF_SPEED;
 
 	s->size[0] = s->size[1] = 25;
 	s->size[2] = 50;
@@ -36,27 +38,30 @@ void Ship_Update(double dt) {
 	/* Já limita a posição da nave com o tamanho da cena */
 	if(Controller_keyPressed['w']) 
 		if ((this->pos[1] + this->v / 1.4 * dt) <= Vector_BOUNDS[1] - this->size[1])
-			this->pos[1] += this->v / 1.4 * dt;
+			this->vel[1] = this->v / 1.4 * dt;
 	if(Controller_keyPressed['s'])
 		if ((this->pos[1] - this->v / 1.4 * dt) >= 0)
-			this->pos[1] -= this->v / 1.4 * dt;
+			this->vel[1] = -this->v / 1.4 * dt;
 	if(Controller_keyPressed['a'])
 	 	if((this->pos[0] - this->v / 1.4 * dt) >= 0)
-	 		this->pos[0] -= this->v / 1.4 * dt;
+	 		this->vel[0] = -this->v / 1.4 * dt;
 	if(Controller_keyPressed['d'])
 		if ((this->pos[0] + this->v / 1.4 * dt) <= Vector_BOUNDS[0] - this->size[0])
-			this->pos[0] += this->v / 1.4 * dt;
+			this->vel[0] = this->v / 1.4 * dt;
 
-	this->pos[2] += this->v * dt;
+	this->vel[2] = Ship_DEF_SPEED * dt;
+	Vector_addVector(this->pos, this->vel);
+
+	this->vel[0] = this->vel[1] = 0;
 
 	if(this->pos[2] > first->pos[2] + first->size[2]) Scene_Recycle();
-	if(this->health <= 0) {
+	/*if(this->health <= 0) {
 		if(Player_Lives == 0)
 			Main_LoseGame();
-		this->health = Ship_DefaultHealth;
+		this->health = Ship_DEF_HEALTH;
 		Player_Lives--;
 		printf("Voce perdeu uma vida! (Agora esta com %d)\n", Player_Lives);
-	}
+	}*/
 }
 
 void Ship_Print() {

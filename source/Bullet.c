@@ -7,6 +7,8 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+/* #define Bullet_DEF_SPEED 700 */
+/* #define Bullet_DEF_GRAVITY 50 */
 static List *bullets;
 
 void Bullet_Init() {
@@ -20,10 +22,9 @@ Bullet* Bullet_new(double x, double y, double z, double dx, double dy, double dz
 	this->pos[0] = x;
 	this->pos[1] = y;
 	this->pos[2] = z;
-	this->speed = Vector_norm(this->pos);
-	this->v[0] = dx * 700;
-	this->v[1] = dy * 700;
-	this->v[2] = dz * 700;
+	this->v[0] = dx * Bullet_DEF_SPEED;
+	this->v[1] = dy * Bullet_DEF_SPEED;
+	this->v[2] = dz * Bullet_DEF_SPEED;
 	this->health = h;
 	this->id = i++;
 	this->owner = owner;
@@ -38,7 +39,7 @@ void Bullet_delete(Bullet* bullet) {
 
 void Bullet_update(Bullet *this, double dt) {
 	Ship *s = Ship_MainShip;
-	this->v[1] -= 50 * dt; /* Gravidade, tweekar o valor */
+	/*this->v[1] -= Bullet_DEF_GRAVITY * dt;  Gravidade, tweekar o valor */
 	this->pos[0] += this->v[0] * dt;
 	this->pos[1] += this->v[1] * dt;
 	this->pos[2] += this->v[2] * dt;

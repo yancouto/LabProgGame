@@ -1,17 +1,23 @@
 CC = gcc
+DEBUG = true
 
 # If SystemRoot, then Windows. Else, *NIX.
 ifdef SystemRoot
-	# OpenGL for Windows
+	# OpenGL pra Windows
 	GLFLAGS = -w -Wl,-subsystem,windows -lOpenGL32 -lglu32 -lfreeGLUT
 	CLEAN = del *.o game.exe
 else
-	# OpenGL for *NIX
+	# OpenGL pra *NIX
 	GLFLAGS = -lGL -lGLU -lglut
 	CLEAN = rm *.o game
 endif
 
-CFLAGS = -ansi -Wall -pedantic -lm -O2 -Wno-unused-result $(GLFLAGS)
+# Para GDB debugging.
+ifeq ($(DEBUG), true)
+	CFLAGS = -ansi -Wall -pedantic -lm -g -Wno-unused-result $(GLFLAGS)
+else
+	CFLAGS = -ansi -Wall -pedantic -lm -O2 -Wno-unused-result $(GLFLAGS)
+endif
 
 all: List.o Main.o Controller.o Util.o Bullet.o Ship.o Enemy.o Scene.o Section.o Player.o Vector.o  Graphics.o Camera.o
 	$(CC) $? $(CFLAGS) -o game

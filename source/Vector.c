@@ -99,8 +99,29 @@ double* Vector_normalize(Vector this) {
 	return this;
 }
 
+double* Vector_negate(Vector this) {
+	this[0] = -this[0];
+	this[1] = -this[1];
+	this[2] = -this[2];
+	return this;
+}
+
 double Vector_norm(Vector this) {
 	return sqrt(this[0]*this[0] + this[1]*this[1] + this[2]*this[2]);
+}
+
+double Vector_dist(Vector p, Vector q) {
+	double dx = p[0] - q[0];
+	double dy = p[1] - q[1];
+	double dz = p[2] - q[2];
+	return sqrt(dx*dx + dy*dy + dz*dz);
+}
+
+double Vector_distSqr(Vector p, Vector q) {
+	double dx = p[0] - q[0];
+	double dy = p[1] - q[1];
+	double dz = p[2] - q[2];
+	return dx*dx + dy*dy + dz*dz;
 }
 
 char* Vector_toString(Vector this) {

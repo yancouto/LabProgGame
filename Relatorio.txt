@@ -139,8 +139,7 @@ na tela, com as colisões funcionando, e já com uma implementação de mouse e 
 nos eixos X e Y sempre orientada para frente e com velocidade constante. A âamera, controlada pelo mouse,
 como definido na parte 1, muda a orientação da "arma da nave", ou seja a orientação que os tiros serão disparados.
 Para poder testar colocamos temporariamente uma cruz como cursos para definir onde a nave está mirando.
-
-
+    Previsao do tiro dos inimigos = dor de cabeça.
 
 ######################
 2.Problemas

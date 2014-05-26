@@ -24,13 +24,13 @@ double Vector_normSqr(Vector);
 
 double* Vector_normalize(Vector);
 
+double* Vector_negate(Vector);
+
 double Vector_norm(Vector);
 
-#define Vector_dist(p, q) Vector_norm(Vector_subVector((p), (q)))
+double Vector_dist(Vector, Vector);
 
-#define Vector_distSqr(p, q) Vector_normSqr(Vector_subVector((p), (q)))
-
-#define Vector_distVector(p, q) Vector_subVector((q), (p))
+double Vector_distSqr(Vector, Vector);
 
 char* Vector_toString(Vector);
 

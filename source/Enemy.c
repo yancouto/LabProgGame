@@ -28,28 +28,24 @@ Enemy* Enemy_new(int x, int y, int z, double precision, int freq, double range) 
 }
 
 void Enemy_shoot(Enemy* this) {
-	/*double dx = this->precision * random()*4;	
-	double dy = this->precision * random()*4;
-	double dz = this->precision * random()*4; */
+	Vector ship_pos;
+	Vector impact;
+	Vector diff;
+	double t;
 
-	Vector dir;
-	double norm;
-	Vector_setVector(dir, Ship_MainShip->pos);
-	Vector_subVector(dir, this->pos);
+	Vector_setVector(ship_pos, Ship_MainShip->pos);
+	t = Vector_dist(ship_pos, this->pos)/Bullet_DEF_SPEED;
+	Vector_add(ship_pos, Ship_MainShip->size[0]/2, Ship_MainShip->size[1]/2, Ship_MainShip->size[2]/2);
 
-	norm = Vector_normSqr(dir);
-	if(norm > this->range * this->range) return;
-
-	norm = 1 / sqrt(norm);
-	Vector_setVector(this->gunDir, dir);
-	Vector_mult(this->gunDir, norm, norm, norm);
-
-	/*Vector impact;
-	double dist;
-
-	Vector_setVector(, this->pos);
-
-	dist = Vector_dist(this->pos, dir);*/
+	Vector_setVector(impact, ship_pos);
+	Vector_setVector(diff, Ship_MainShip->vel);
+	/*diff[1] += Bullet_DEF_GRAVITY;*/
+	Vector_mult(diff, t, t, t);
+	Vector_addVector(impact, diff);
+	Vector_setVector(this->gunDir, this->pos);
+	Vector_subVector(impact, this->gunDir);
+	Vector_setVector(this->gunDir, impact);
+	Vector_normalize(this->gunDir);
 
 	Bullet_EnemyShoot(this);
 	this->_dfreq = 0;

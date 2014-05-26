@@ -61,7 +61,7 @@ Ground control to Major Gubi: commencing countdown, report go-bi!
 	  	\begin{itemize}
 	  		\item Uma nave que andaria em 3 dimensões
 	  		\item Inimigos que atiram na nave
-	  		\item Cenário que vai se deslocando com uma lista de inimigos que se aproximam relativamente da nave
+	  		\item Cenário que vai se deslocando com uma lista de inimigos que se aproximam relativamente à nave
 	  	\end{itemize}
 	  	Logo no começo foi visto decisões sobre movimentos dos objetos dos jogo. Naves se moveriam
 		sempre para frente com uma velocidade que pode variar, e além disso se moveriam lateralmente
@@ -73,7 +73,7 @@ Ground control to Major Gubi: commencing countdown, report go-bi!
 	  	Com essa decisão não teriamos de nos preocupar muito no inicio com colisões ou a nave "fugir"
 		da tela já que nos testes iniciais utilizamos apenas o terminal, sem nenhuma parte gráfica. Por
 		essa mesma razão de praticidade por enquanto só mudamos diretamente a posição x e y da nave,
-		sem nenhuma aceleração individual nessas cordenadas para o movimento, e não rotacionamos a nave
+		sem nenhuma aceleração individual nessas coordenadas para o movimento, e não rotacionamos a nave
 		para facilitar a colisão.\\
 		
 	  	Logo a direção "vetorial" será mais utilizada no tiros, que ao serem criados, terão sua
@@ -106,7 +106,7 @@ Ground control to Major Gubi: commencing countdown, report go-bi!
     		\subsection{Problemas}
     		O maior problema que tivemos foi ter atrasado muito para começar o projeto, e por culpa disso
 		tivemos que acelerar muito pra terminar a tempo, logo não só prejudicando o pensamento de ideias
-		boas para o projeto, como não podendo sofisticar a parte de testes e melhora-lo. Isso será algo
+		boas para o projeto, como não podendo sofisticar a parte de testes e melhorá-lo. Isso será algo
 		que mais focaremos em outras fases: Organização.
 	
 	\newpage
@@ -147,7 +147,7 @@ This is ground control to Major Gubi, you've really made the grade!
 	\end{verbatim}
 		\subsection{Decisões Tomadas}
 		Já tinhamos feito uma considerável parte da segunda fase na anterior, como o laço de execução e
-		já lidar com o input do usuário. Primeiramente nessa segunda parte começamos tirando os bugs residuais
+		lidar com o input do usuário. Primeiramente nessa segunda parte começamos tirando os bugs residuais
 		da primeira fase (tiros explodiam sem colidir com nada, algumas coisas não estavam sendo deletadas, ...) 
 		e adicionando novas coisas que estavam faltando (nave e tiros colidem com inimigos, gravidade afeta os
 		tiros, ...).\\
@@ -160,15 +160,15 @@ This is ground control to Major Gubi, you've really made the grade!
 		na tela, com as colisões funcionando, e já com uma implementação de mouse e teclado para o input do usuário.\\
     		
     		Decidimos deixar o movimento da nave independente da câmera do jogo, ou seja ela pode se mover
-		nos eixos X e Y sempre orientada para frente e com velocidade constante. A âamera, controlada pelo mouse,
+		nos eixos X e Y sempre orientada para frente e com velocidade constante. A câmera, controlada pelo mouse,
 		como definido na parte 1, muda a orientação da "arma da nave", ou seja a orientação que os tiros serão 				disparados.\\
 		
 		\subsection{Problemas}
-		Poder controlar a camera com o mouse foi um desafio, no começo ficou bem ruim, a distância da camera à nave
+		Poder controlar a camera com o mouse foi um desafio, no começo ficou bem ruim, a distância da câmera à nave
 		não era constante e parecia ruim, mas com um pouco de trabalho conseguimos melhorar, apesar de ter muito 				espaço para aperfeiçoar. \\
     		
     		Para imprimir texto na tela e ter uma interface adequada para o usuário, também tivemos várias complicações.
-    		Ainda não conseguimos colocar um HUD mostando a vida atual, pontuação, etc. Mas é uma de nossas prioridades.\\
+    		Ainda não conseguimos colocar um HUD mostrando a vida atual, pontuação, etc. Mas é uma de nossas prioridades.\\
     		
     		Prever para onde os inimigos deveriam atirar também não foi fácil. Não nos demos bem com o sistema de 				coordernadas do OpenGL, pois estavamos mais acostumados em mexer com 2D, a velocidade da nave deixa mais 				dificil, e a gravidade complica tudo ainda mais.
 		

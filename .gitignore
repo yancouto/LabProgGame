@@ -1,6 +1,7 @@
 *.o
 *Thumbs.db
 *.exe
+*.pdf
 build/*
 *.sublime-workspace
 source/game

@@ -11,4 +11,6 @@ void Controller_Init();
 
 bool Controller_isPaused();
 
+void Controller_Update(double dt);
+
 #endif

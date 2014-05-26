@@ -4,7 +4,7 @@
 #include "Util.h"
 #include <stdio.h>
 #include <math.h>
-#define CAMERA_DIST 80.
+#define CAMERA_DIST 100.
 #define PI 3.14159265358979323846
 
 static double mouseXRelative, mouseYRelative;

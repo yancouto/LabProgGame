@@ -6,6 +6,8 @@
 typedef struct {
 	Vector pos; /* Posicao do tiro. */
 	Vector v; /* Velocidade do tiro */
+	Vector color;
+	double speed; /* Velocidade escalar do tiro. */
 	int health; /* Vida do tiro */
 	unsigned id;   /* ID do tiro */
 	void *owner;   /* quem atirou */
@@ -25,7 +27,7 @@ void Bullet_Init(void);
 void Bullet_Update(double dt);
 
 /* Função que cria um novo tiro */
-Bullet *Bullet_new(double x, double y, double z, double dx, double dy, double dz, double h, void *owner);
+Bullet *Bullet_new(double x, double y, double z, double dx, double dy, double dz, double h, void *owner, double r, double g, double b);
 
 /* Função que remove um novo tiro */
 void Bullet_delete(Bullet* bullet);

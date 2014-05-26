@@ -15,16 +15,14 @@ void Bullet_Init() {
 	bullets = List_new();
 }
 
-Bullet* Bullet_new(double x, double y, double z, double dx, double dy, double dz, double h, void *owner) {
+Bullet* Bullet_new(double x, double y, double z, double dx, double dy, double dz, double h, void *owner, double r, double g, double b) {
 	static unsigned i = 0;
 	Bullet* this = (Bullet*) malloc(sizeof(Bullet));
 
-	this->pos[0] = x;
-	this->pos[1] = y;
-	this->pos[2] = z;
-	this->v[0] = dx * Bullet_DEF_SPEED;
-	this->v[1] = dy * Bullet_DEF_SPEED;
-	this->v[2] = dz * Bullet_DEF_SPEED;
+	Vector_set(this->pos, x, y, z);
+	Vector_set(this->v, dx, dy, dz);
+	Vector_mult(this->v, Bullet_DEF_SPEED, Bullet_DEF_SPEED, Bullet_DEF_SPEED);
+	Vector_set(this->color, r, g, b);
 	this->health = h;
 	this->id = i++;
 	this->owner = owner;
@@ -83,7 +81,8 @@ void Bullet_ShipShoot(Ship* ship) {
 	Bullet* bullet;
 
 	bullet = Bullet_new(ship->pos[0] + ship->size[0]/2, ship->pos[1] + ship->size[1]/2,
-		ship->pos[2] + ship->size[2], ship->gunDir[0], ship->gunDir[1], ship->gunDir[2], 1, ship);
+		ship->pos[2] + ship->size[2], ship->gunDir[0], ship->gunDir[1], ship->gunDir[2], 1,
+		ship, 1, .5, 0);
 
 	List_pushBack(bullets, bullet);
 }
@@ -92,7 +91,8 @@ void Bullet_EnemyShoot(Enemy* enemy) {
 	Bullet* bullet;
 
 	bullet = Bullet_new(enemy->pos[0], enemy->pos[1], enemy->pos[2],
-        enemy->gunDir[0], enemy->gunDir[1], enemy->gunDir[2], 1, enemy);
+        enemy->gunDir[0], enemy->gunDir[1], enemy->gunDir[2], 1, enemy,
+        0, .5, 1);
 
 	List_pushBack(bullets, bullet);
 }
@@ -109,9 +109,9 @@ void Bullet_Print() {
 void Bullet_Draw() {
 	static Vector size = {1, 1, 1};
 	Node *n;
-	Graphics_SetColor(0, 1, 1);
 	for(n = bullets->head->next; n != bullets->head; n = n->next) {
 		Bullet *b = (Bullet*) n->item;
+		Graphics_SetColor(b->color[0], b->color[1], b->color[2]);
 		Graphics_DrawBlock(b->pos, size);
 	}
 }

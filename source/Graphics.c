@@ -64,7 +64,7 @@ bool Graphics_Init(int *argN, char *args[]) {
 	glutInitWindowSize(SCREEN_WIDTH, SCREEN_HEIGHT);
 	glutCreateWindow("LabProgGame");
 	glutDisplayFunc(render);
-	glutSetCursor(GLUT_CURSOR_CROSSHAIR);
+	glutSetCursor(GLUT_CURSOR_NONE);
 
 	if(!initGL()) return false;
 
@@ -142,10 +142,18 @@ void Graphics_DrawBlock(Vector p, Vector s) {
 		glVertex3f(x, y, z + dz);
 	glEnd();
 }
+/* Desenha a mira, que atualmente é sempre um ponto no centro da nave */
+static void Graphics_DrawAim(Vector p, Vector s) {
+	Graphics_SetColor(1, 23, 20);
+	glBegin(GL_POINTS);
+		glVertex3f(p[0] + s[0]/2, p[1] + s[1]/2, p[2] + s[2]/2);
+	glEnd();
+}
 
 void Graphics_DrawShip() {
 	Ship *s = Ship_MainShip;
 	Graphics_DrawBlock(s->pos, s->size);
+	Graphics_DrawAim(s->pos, s->size);
 }
 
 /* Função em teste pra dar print em textos no jogo */

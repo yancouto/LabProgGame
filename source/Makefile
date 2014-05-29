@@ -19,7 +19,7 @@ else
 	CFLAGS = -ansi -Wall -pedantic -lm -O2 -Wno-unused-result $(GLFLAGS)
 endif
 
-all: List.o Main.o Controller.o Util.o Bullet.o Ship.o Enemy.o Scene.o Section.o Player.o Vector.o  Graphics.o Camera.o
+all: List.o Main.o Controller.o Util.o Bullet.o Ship.o Enemy.o Scene.o Section.o Player.o Vector.o  Graphics.o Camera.o TextBox.o String.o
 	$(CC) $? $(CFLAGS) -o game
 
 Main.o: Main.c Main.h Util.h Controller.h Bullet.h Ship.h Enemy.h Player.h Vector.h Graphics.h Camera.h Vector.h
@@ -60,6 +60,12 @@ Vector.o: Vector.c Vector.h
 
 Camera.o: Camera.c Camera.h Ship.h Graphics.h Util.h
 	$(CC) $(CFLAGS) Camera.c -c -o Camera.o
+
+TextBox.o: String.h String.c Graphics.h Graphics.c List.h List.c
+	$(CC) $(CFLAGS) TextBox.c -c -o TextBox.o
+
+String.o: String.h String.c
+	$(CC) $(CFLAGS) String.c -c -o String.o
 
 clean:
 	$(CLEAN)

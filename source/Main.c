@@ -12,6 +12,10 @@
 #include <time.h>
 #include <stdlib.h>
 
+#ifdef _WIN32
+#include <windows.h>
+#endif
+
 static void init() {
 	srand(time(NULL));
 	rand(); rand();
@@ -26,9 +30,19 @@ static void init() {
 	Scene_Init(Vector_BOUNDS[0], Vector_BOUNDS[1], 100, 12);
 }
 
-int main(int argsN, char *args[]) {
-
-	Graphics_Init(&argsN, args);
+#ifdef _WIN32
+int CALLBACK WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow) {
+  	int argsn = 0;
+  	char** args;
+  	if(AllocConsole()) {
+		SetConsoleTitleA("Debug Console");
+		freopen("CONOUT$", "wb", stdout);
+		freopen("CONOUT$", "wb", stderr);
+	}
+#else
+int main(int argsn, char *args[]) {
+#endif
+	Graphics_Init(&argsn, args);
 
 	Graphics_SetMainLoop(Main_Step);
 	init();

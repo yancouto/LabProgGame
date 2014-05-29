@@ -8,10 +8,12 @@ Node *Node_new(void *item) {
 	return n;
 }
 
-void Node_remove(Node *n) {
-	n->next->prev = n->prev;
-	n->prev->next = n->next;
+Node* Node_remove(Node *n) {
+	Node* next = n->next;
+	next->prev = n->prev;
+	n->prev->next = next;
 	free(n);
+	return next;
 }
 
 List *List_new() {
@@ -42,4 +44,11 @@ void List_delete(List *this) {
 		Node_remove(this->head->next);
 	free(this->head);
 	free(this);
+}
+
+void List_clear(List* this) {
+	Node* it = this->head->next;
+
+	while(it != this->head)
+		it = Node_remove(it);
 }

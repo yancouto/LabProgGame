@@ -18,8 +18,8 @@ typedef Node Iterator;
 /* next e prev começam com NULL */
 Node *Node_new(void *item);
 
-/* Remove o no da lista e limpa a memoria */
-void Node_remove(Node *n);
+/* Remove o no da lista e limpa a memoria. Retorna o proximo no. */
+Node* Node_remove(Node *n);
 
 /* "Cria" um novo iterador. */
 #define Iterator_new(list) (list)->head->next;
@@ -41,6 +41,9 @@ void List_pushBack(List *this, void *item);
 void List_pushFront(List *this, void *item);
 
 /* Destroi a lista e limpa a memoria */
-void List_delete(List *this);
+void List_delete(List*);
+
+/* Limpa a lista, tornando-a vazia. */
+void List_clear(List*);
 
 #endif

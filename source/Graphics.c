@@ -3,6 +3,7 @@
 #include "Ship.h"
 #include "Bullet.h"
 #include "Camera.h"
+#include "TextBox.h"
 #include <GL/gl.h>
 #include <GL/glu.h>
 #include <GL/freeglut.h>
@@ -51,6 +52,7 @@ static void render() {
 	Enemy_Draw();
 	Bullet_Draw();
 	Ship_Draw();
+	TextBox_Draw();
 
 	glutSwapBuffers();
 }

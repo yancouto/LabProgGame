@@ -27,6 +27,7 @@ static void init() {
 	Ship_Init();
 	Camera_Init();
 	Controller_Init();
+	TextBox_Init();
 	Scene_Init(Vector_BOUNDS[0], Vector_BOUNDS[1], 100, 12);
 }
 

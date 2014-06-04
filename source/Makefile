@@ -61,7 +61,7 @@ Vector.o: Vector.c Vector.h
 Camera.o: Camera.c Camera.h Ship.h Graphics.h Util.h
 	$(CC) $(CFLAGS) Camera.c -c -o Camera.o
 
-TextBox.o: String.h String.c Graphics.h Graphics.c List.h List.c
+TextBox.o: TextBox.c TextBox.h String.h List.h
 	$(CC) $(CFLAGS) TextBox.c -c -o TextBox.o
 
 String.o: String.h String.c

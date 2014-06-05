@@ -15,7 +15,7 @@ typedef struct {
 
 void TextBox_Init(void);
 
-TextBox* TextBox_new(double x, double y, double z, char* text);
+TextBox* TextBox_new(double x, double y, char* text);
 
 void TextBox_update(TextBox*, double dt);
 

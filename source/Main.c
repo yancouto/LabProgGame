@@ -8,6 +8,7 @@
 #include "Graphics.h"
 #include "Camera.h"
 #include "Vector.h"
+#include "TextBox.h"
 #include <stdio.h>
 #include <time.h>
 #include <stdlib.h>
@@ -54,12 +55,11 @@ int main(int argsn, char *args[]) {
 
 void Main_Step() {
 	if (Controller_isPaused() == false) {
-		double dt = 1./60;
-		Camera_Update(dt);
-		Bullet_Update(dt);
-		Ship_Update(dt);
-		Enemy_Update(dt);
-		Controller_Update(dt);
+		Camera_Update(STEP);
+		Bullet_Update(STEP);
+		Ship_Update(STEP);
+		Enemy_Update(STEP);
+		Controller_Update(STEP);
 	}
 }
 

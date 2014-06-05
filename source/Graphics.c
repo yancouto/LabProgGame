@@ -4,8 +4,6 @@
 #include "Bullet.h"
 #include "Camera.h"
 #include "TextBox.h"
-#include <GL/gl.h>
-#include <GL/glu.h>
 #include <GL/freeglut.h>
 #include <stdio.h>
 #include <string.h>
@@ -52,15 +50,21 @@ static void render() {
 	Enemy_Draw();
 	Bullet_Draw();
 	Ship_Draw();
-	TextBox_Draw();
 
+	/* Arrumando a camera e a posicao para imprimir texto em 2D */
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+	gluLookAt(0, 0, -1, 0, 0, 0, 0, 1, 0);
+	glOrtho(0, SCREEN_WIDTH, 0, SCREEN_HEIGHT, -1, 1);
+	glMatrixMode(GL_MODELVIEW);
+	glLoadIdentity();
+
+	TextBox_Draw();
 	glutSwapBuffers();
 }
 
 bool Graphics_Init(int *argN, char *args[]) {
 	glutInit(argN, args);
-
-	glutInitContextVersion(2, 1);
 
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_DEPTH | GLUT_RGBA);
 	glutInitWindowSize(SCREEN_WIDTH, SCREEN_HEIGHT);
@@ -69,7 +73,6 @@ bool Graphics_Init(int *argN, char *args[]) {
 	glutSetCursor(GLUT_CURSOR_NONE);
 
 	if(!initGL()) return false;
-
 
 	return true;
 }
@@ -144,11 +147,12 @@ void Graphics_DrawBlock(Vector p, Vector s) {
 		glVertex3f(x, y, z + dz);
 	glEnd();
 }
+
 /* Desenha a mira, que atualmente é sempre um ponto no centro da nave */
 static void Graphics_DrawAim(Vector p, Vector s) {
 	Graphics_SetColor(1, 23, 20);
 	glBegin(GL_POINTS);
-		glVertex3f(p[0] + s[0]/2, p[1] + s[1]/2, p[2] + s[2]/2);
+		glVertex3f(p[0] + s[0]/2, p[1] + s[1]/2, -p[2] - s[2]/2);
 	glEnd();
 }
 
@@ -159,16 +163,14 @@ void Graphics_DrawShip() {
 }
 
 /* Função em teste pra dar print em textos no jogo */
-void Graphics_Print(int x, int y, char *string) {
-	int i, len;
-	glColor3f( 1, 0, 0);
-	glRasterPos2f(x,y);
+void Graphics_Print(double x, double y, char *string) {
+	glPushMatrix();
+	glColor3f(1.f, 1.f, 1.f);
+	glRasterPos2f(SCREEN_WIDTH - x, 
+		SCREEN_HEIGHT - glutBitmapHeight(GLUT_BITMAP_TIMES_ROMAN_24) - y + 9);
 
-	len = (int) strlen(string);
-
-	for (i = 0; i < len; i++) {
-		glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, string[i]);
-	}
+	glutBitmapString(GLUT_BITMAP_TIMES_ROMAN_24, (const unsigned char*) string);
+	glPopMatrix();
 }
 
 void Graphics_ChangeMousePosition(int x, int y) {

@@ -29,7 +29,7 @@ int Graphics_GetWindowWidth();
 int Graphics_GetWindowHeight();
 
 /*Função que imprime algum texto no jogo */ /* em teste ainda */
-void Graphics_Print(int x, int y, char *string);
+void Graphics_Print(double x, double y, char *string);
 
 void Graphics_ChangeMousePosition(int x, int y);
 

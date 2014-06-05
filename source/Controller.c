@@ -142,5 +142,4 @@ void Controller_Update(double dt) {
 			Ship_Shoot();
 		}
 	}
-	Graphics_Print(0,0, "penis"); /* Teste para dar print em texto */
 }

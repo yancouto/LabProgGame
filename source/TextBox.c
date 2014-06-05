@@ -2,6 +2,7 @@
 #include "String.h"
 #include "Graphics.h"
 #include "TextBox.h"
+#include "Ship.h"
 #include <stdlib.h>
 
 static List* boxes;
@@ -10,10 +11,10 @@ void TextBox_Init() {
 	boxes = List_new(boxes);
 }
 
-TextBox* TextBox_new(double x, double y, double z, char* text) {
+TextBox* TextBox_new(double x, double y, char* text) {
 	TextBox* this = (TextBox*) malloc(sizeof(TextBox));
 
-	Vector_set(this->pos, x, y, z);
+	Vector_set(this->pos, x, y, 0);
 	this->text = String_new(text);
 	this->active = true;
 	this->visible = true;
@@ -27,7 +28,7 @@ void TextBox_update(TextBox* this, double dt) {
 }
 
 void TextBox_draw(TextBox* this) {
-
+	Graphics_Print(this->pos[0], this->pos[1], this->text->rep);
 }
 
 void TextBox_delete(TextBox* this) {

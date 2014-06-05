@@ -22,7 +22,7 @@ endif
 all: List.o Main.o Controller.o Util.o Bullet.o Ship.o Enemy.o Scene.o Section.o Player.o Vector.o  Graphics.o Camera.o TextBox.o String.o
 	$(CC) $? $(CFLAGS) -o game
 
-Main.o: Main.c Main.h Util.h Controller.h Bullet.h Ship.h Enemy.h Player.h Vector.h Graphics.h Camera.h Vector.h
+Main.o: Main.c Main.h Util.h Controller.h Bullet.h Ship.h Enemy.h Player.h Vector.h Graphics.h Camera.h Vector.h TextBox.h
 	$(CC) $(CFLAGS) Main.c -c -o Main.o
 
 Controller.o: Controller.c Controller.h Main.h Util.h Bullet.h Ship.h Enemy.h Player.h Vector.h Graphics.h Camera.h
@@ -61,7 +61,7 @@ Vector.o: Vector.c Vector.h
 Camera.o: Camera.c Camera.h Ship.h Graphics.h Util.h
 	$(CC) $(CFLAGS) Camera.c -c -o Camera.o
 
-TextBox.o: TextBox.c TextBox.h String.h List.h
+TextBox.o: TextBox.c TextBox.h String.h List.h Ship.h Vector.h	
 	$(CC) $(CFLAGS) TextBox.c -c -o TextBox.o
 
 String.o: String.h String.c

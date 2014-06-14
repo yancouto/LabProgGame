@@ -29,6 +29,7 @@ static void init() {
 	Camera_Init();
 	Controller_Init();
 	TextBox_Init();
+	Item_Init();
 	Scene_Init(Vector_BOUNDS[0], Vector_BOUNDS[1], 100, 12);
 }
 
@@ -40,6 +41,8 @@ int CALLBACK WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
 		SetConsoleTitleA("Debug Console");
 		freopen("CONOUT$", "wb", stdout);
 		freopen("CONOUT$", "wb", stderr);
+
+		SetWindowPos(GetConsoleWindow(), NULL, SCREEN_WIDTH + 100, 100, 600, 600, 0);
 	}
 #else
 int main(int argsn, char *args[]) {
@@ -59,6 +62,7 @@ void Main_Step() {
 		Bullet_Update(STEP);
 		Ship_Update(STEP);
 		Enemy_Update(STEP);
+		Item_Update(STEP);
 		Controller_Update(STEP);
 	}
 }

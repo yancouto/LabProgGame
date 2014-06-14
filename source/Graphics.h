@@ -31,6 +31,8 @@ int Graphics_GetWindowHeight();
 /*Função que imprime algum texto no jogo */ /* em teste ainda */
 void Graphics_Print(double x, double y, char *string);
 
+void Graphics_Print3D(double x, double y, double z, char* str);
+
 void Graphics_ChangeMousePosition(int x, int y);
 
 void Graphics_SetMousePassiveMotionCallback(void (*func)(int x, int y));

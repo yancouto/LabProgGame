@@ -8,12 +8,15 @@ typedef struct {
 	Vector pos;
 	Vector vel;
 	String* text;
+	bool is3D;
 	bool active;
 	bool alive;
 	bool visible;
 } TextBox;
 
 void TextBox_Init(void);
+
+TextBox* TextBox3D_new(double x, double y, double z, char* text);
 
 TextBox* TextBox_new(double x, double y, char* text);
 

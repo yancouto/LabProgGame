@@ -60,6 +60,7 @@ static void render() {
 	glLoadIdentity();
 
 	TextBox_Draw();
+	Item_Draw();
 	glutSwapBuffers();
 }
 
@@ -170,6 +171,17 @@ void Graphics_Print(double x, double y, char *string) {
 		SCREEN_HEIGHT - glutBitmapHeight(GLUT_BITMAP_TIMES_ROMAN_24) - y + 9);
 
 	glutBitmapString(GLUT_BITMAP_TIMES_ROMAN_24, (const unsigned char*) string);
+	glPopMatrix();
+}
+
+void Graphics_Print3D(double x, double y, double z, char* str) {
+	glPushMatrix();
+	glColor3f(1.f, 1.f, 1.f);
+
+	glTranslatef(x, y, 0);
+	glScalef(1.f, 1.f, 1.f/z);
+	glutStrokeString(GLUT_STROKE_ROMAN, (const unsigned char*) str);
+
 	glPopMatrix();
 }
 

@@ -17,7 +17,7 @@ extern Vector Item_DEF_SIZE;
 
 void Item_Init(void);
 
-Item* Item_new(double, double, double, void (*)(void));
+Item* Item_new(double, double, double, void (*)(Item*));
 
 void Item_update(Item*, double);
 

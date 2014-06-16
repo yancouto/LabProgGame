@@ -4,6 +4,7 @@
 #include "Bullet.h"
 #include "Camera.h"
 #include "TextBox.h"
+#include "Item.h"
 #include <GL/freeglut.h>
 #include <stdio.h>
 #include <string.h>

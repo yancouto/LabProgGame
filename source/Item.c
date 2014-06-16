@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include <stdio.h>
 #include "Item.h"
 #include "List.h"
 #include "Util.h"
@@ -12,7 +13,7 @@ void Item_Init(void) {
 	items = List_new(items);
 }
 
-Item* Item_new(double x, double y, double z, void (*action)(void)) {
+Item* Item_new(double x, double y, double z, void (*action)(Item*)) {
 	Item* this = (Item*) malloc(sizeof(Item));
 
 	Vector_set(this->pos, x, y, z);
@@ -22,9 +23,11 @@ Item* Item_new(double x, double y, double z, void (*action)(void)) {
 	this->action = action;
 	this->label = TextBox3D_new(this->pos[0], this->pos[1], this->pos[2], "!");
 
-	printf("%p\n", this->label);
+	printf("%p\n", (void*) this->label);
 
 	TextBox_Register(this->label);
+
+	return this;
 }
 
 void Item_update(Item* this, double dt) {

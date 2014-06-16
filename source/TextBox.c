@@ -4,6 +4,7 @@
 #include "TextBox.h"
 #include "Ship.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 static List* boxes;
 
@@ -34,7 +35,7 @@ TextBox* TextBox_new(double x, double y, char* text) {
 
 void TextBox_update(TextBox* this, double dt) {
 	double *v = this->vel;
-	printf("%d, %d, %d\n", this->pos[0], this->pos[1], this->pos[2]);
+	printf("%f, %f, %f\n", this->pos[0], this->pos[1], this->pos[2]);
 	Vector_add(this->pos, v[0] * dt, v[1] * dt, v[2] * dt);
 }
 

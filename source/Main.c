@@ -9,6 +9,7 @@
 #include "Camera.h"
 #include "Vector.h"
 #include "TextBox.h"
+#include "Item.h"
 #include <stdio.h>
 #include <time.h>
 #include <stdlib.h>

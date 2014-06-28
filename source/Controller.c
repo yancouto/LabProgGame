@@ -84,6 +84,7 @@ bool Controller_ExecuteInstruction() {
 
 	return true;
 }
+
 /* Função para click de mouse */
 static void mouseClick(int but, int state, int x, int y) {
 

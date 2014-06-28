@@ -5,6 +5,7 @@
 #include "Camera.h"
 #include "TextBox.h"
 #include "Item.h"
+#include "Player.h"
 #include <GL/freeglut.h>
 #include <stdio.h>
 #include <string.h>
@@ -54,6 +55,7 @@ static void render() {
 	Ship_Draw();
 	TextBox_Draw();
 	Item_Draw();
+	Player_DisplayInfo();
 
 	/* Arrumando a camera e a posicao para imprimir texto em 2D */
 	glMatrixMode(GL_PROJECTION);
@@ -82,7 +84,7 @@ bool Graphics_Init(int *argN, char *args[]) {
 
 static void (*func)(void);
 static void mainLoop(int);
-static void mainLoop(int a) {
+static void mainLoop(int unused) {
 	func();
 	glutPostRedisplay();
 	glutTimerFunc(1000 / SCREEN_FPS, mainLoop, 0);

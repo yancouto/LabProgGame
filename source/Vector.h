@@ -34,4 +34,6 @@ double Vector_distSqr(Vector, Vector);
 
 char* Vector_toString(Vector);
 
+void Vector_print(Vector);
+
 #endif

@@ -46,11 +46,14 @@ static void render() {
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 
+	Graphics_SetColor(1, 1, 1);
 	Graphics_DrawBlock(worldBounds, Vector_BOUNDS);
 
 	Enemy_Draw();
 	Bullet_Draw();
 	Ship_Draw();
+	TextBox_Draw();
+	Item_Draw();
 
 	/* Arrumando a camera e a posicao para imprimir texto em 2D */
 	glMatrixMode(GL_PROJECTION);
@@ -60,8 +63,6 @@ static void render() {
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 
-	TextBox_Draw();
-	Item_Draw();
 	glutSwapBuffers();
 }
 
@@ -179,8 +180,8 @@ void Graphics_Print3D(double x, double y, double z, char* str) {
 	glPushMatrix();
 	glColor3f(1.f, 1.f, 1.f);
 
-	glTranslatef(x, y, 0);
-	glScalef(1.f, 1.f, 1.f/z);
+	glTranslatef(x, y, -z);
+	glScalef(.1f, .1f, .1f);
 	glutStrokeString(GLUT_STROKE_ROMAN, (const unsigned char*) str);
 
 	glPopMatrix();

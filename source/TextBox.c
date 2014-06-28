@@ -18,6 +18,7 @@ TextBox* TextBox3D_new(double x, double y, double z, char* text) {
 	TextBox* this = (TextBox*) malloc(sizeof(TextBox));
 
 	Vector_set(this->pos, x, y, z);
+	Vector_set(this->vel, 0, 0, 0);
 	this->text = String_new(text);
 	this->active = true;
 	this->visible = true;
@@ -35,7 +36,6 @@ TextBox* TextBox_new(double x, double y, char* text) {
 
 void TextBox_update(TextBox* this, double dt) {
 	double *v = this->vel;
-	printf("%f, %f, %f\n", this->pos[0], this->pos[1], this->pos[2]);
 	Vector_add(this->pos, v[0] * dt, v[1] * dt, v[2] * dt);
 }
 
@@ -84,6 +84,7 @@ void TextBox_Remove(TextBox* e) {
 		if(e == val) {
 			TextBox_delete(val);
 			it = Node_remove(it)->prev;
+			return;
 		}
 	}
 }

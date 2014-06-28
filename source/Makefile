@@ -14,9 +14,9 @@ endif
 
 # Para GDB debugging.
 ifeq ($(DEBUG), true)
-	CFLAGS = -ansi -Wall -pedantic -lm -g -Wno-unused-result $(GLFLAGS)
+	CFLAGS = -ansi -Wall -pedantic -lm -g -Wpedantic -Wextra -Wno-unused-result $(GLFLAGS)
 else
-	CFLAGS = -ansi -Wall -pedantic -lm -O2 -Wno-unused-result $(GLFLAGS)
+	CFLAGS = -ansi -Wall -pedantic -lm -O2 -Wpedantic -Wextra -Wno-unused-result $(GLFLAGS)
 endif
 
 all: List.o Main.o Controller.o Util.o Bullet.o Ship.o Enemy.o Item.o Scene.o Section.o Player.o Vector.o  Graphics.o Camera.o TextBox.o String.o

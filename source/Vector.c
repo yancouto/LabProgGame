@@ -137,3 +137,7 @@ char* Vector_toString(Vector this) {
 
 	return str;
 }
+
+void Vector_print(Vector this) {
+	printf("[%.2f, %.2f, %.2f]", this[0], this[1], this[2]);
+}

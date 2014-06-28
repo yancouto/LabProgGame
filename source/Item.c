@@ -23,8 +23,6 @@ Item* Item_new(double x, double y, double z, void (*action)(Item*)) {
 	this->action = action;
 	this->label = TextBox3D_new(this->pos[0], this->pos[1], this->pos[2], "!");
 
-	printf("%p\n", (void*) this->label);
-
 	TextBox_Register(this->label);
 
 	return this;
@@ -35,14 +33,17 @@ void Item_update(Item* this, double dt) {
 
 	if(collides(this->pos, this->size, Ship_MainShip->pos, Ship_MainShip->size)) {
 		this->action(this);
-		Item_delete(this);
+		Item_Remove(this);
 	}
 }
 
-void Item_draw(Item* this) {}
+void Item_draw(Item* this) {
+	Graphics_SetColor(0, 0, 1);
+	Graphics_DrawBlock(this->pos, Item_DEF_SIZE);
+}
 
 void Item_delete(Item* this) {
-	TextBox_delete(this->label);
+	TextBox_Remove(this->label);
 	free(this);
 }
 
@@ -75,7 +76,9 @@ void Item_Remove(Item* e) {
 		Item* val = (Item*) it->item;
 		if(e == val) {
 			Item_delete(val);
+			it->item = NULL;
 			it = Node_remove(it)->prev;
+			return;
 		}
 	}
 }

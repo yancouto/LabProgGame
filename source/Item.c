@@ -4,6 +4,7 @@
 #include "List.h"
 #include "Util.h"
 #include "Ship.h"
+#include "Graphics.h"
 
 static List* items;
 
@@ -23,7 +24,7 @@ Item* Item_new(double x, double y, double z, void (*action)(Item*)) {
 	this->action = action;
 	this->label = TextBox3D_new(this->pos[0], this->pos[1], this->pos[2], "!");
 
-	TextBox_Register(this->label);
+	TextBox3D_Register(this->label);
 
 	return this;
 }
@@ -43,7 +44,7 @@ void Item_draw(Item* this) {
 }
 
 void Item_delete(Item* this) {
-	TextBox_Remove(this->label);
+	TextBox3D_Remove(this->label);
 	free(this);
 }
 

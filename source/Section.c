@@ -1,10 +1,11 @@
+#include <stdlib.h>
+
 #include "Section.h"
 #include "Enemy.h"
 #include "Item.h"
 #include "Util.h"
 #include "Scene.h"
 #include "List.h"
-#include <stdlib.h>
 
 Section* Section_new(double x, double y, double z,
 	double width, double height, double length, int enemies) {
@@ -62,7 +63,7 @@ Section* Section_new(double x, double y, double z,
 	return inst;
 }
 
-void Section_update(double dt) {
+void Section_Update(double dt) {
 	
 }
 
@@ -73,3 +74,5 @@ void Section_delete(Section *s) {
 	List_delete(s->entities);
 	free(s);
 }
+
+void Section_update(Section* this, double dt) {}

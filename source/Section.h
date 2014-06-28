@@ -16,7 +16,9 @@ Section* Section_new(double x, double y, double z,
 	double width, double height, double length, int enemies);
 
 /* Atualiza a Section. */
-void Section_update(double dt);
+void Section_Update(double dt);
+
+void Section_delete();
 
 void Section_delete(Section*);
 

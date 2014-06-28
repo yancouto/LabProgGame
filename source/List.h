@@ -46,4 +46,6 @@ void List_delete(List*);
 /* Limpa a lista, tornando-a vazia. */
 void List_clear(List*);
 
+void List_delete(List *this);
+
 #endif

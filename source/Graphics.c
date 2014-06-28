@@ -53,7 +53,7 @@ static void render() {
 	Enemy_Draw();
 	Bullet_Draw();
 	Ship_Draw();
-	TextBox_Draw();
+	TextBox3D_Draw();
 	Item_Draw();
 	Player_DisplayInfo();
 
@@ -64,6 +64,8 @@ static void render() {
 	glOrtho(0, SCREEN_WIDTH, 0, SCREEN_HEIGHT, -1, 1);
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
+
+	TextBox2D_Draw();
 
 	glutSwapBuffers();
 }

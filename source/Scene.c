@@ -1,6 +1,7 @@
 #include "Scene.h"
 #include "Section.h"
 #include "Util.h"
+#include "Ship.h"
 
 #include <stdlib.h>
 #include <stdio.h>
@@ -24,9 +25,7 @@ Scene* Scene_Init(double width, double height, double length, int scenes) {
 	return Scene_MainScene;
 }
 
-void Scene_Update(double dt) {
-	
-}
+void Scene_Update(double dt) {}
 
 void Scene_Recycle() {
 	Scene *s = Scene_MainScene;

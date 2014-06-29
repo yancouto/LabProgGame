@@ -5,6 +5,7 @@
 #include "Util.h"
 #include "Ship.h"
 #include "Graphics.h"
+#include "Player.h"
 
 static List* items;
 
@@ -91,15 +92,29 @@ void Item_Clear() {
 
 /************************* Item "action" functions ********************/
 
+static __action_ptr ACTIONS[] = {
+	Item_HEALTH, Item_AMMO, Item_BOOSTER, Item_LIVES
+};
+
 void Item_HEALTH(Item* this) {
-	Ship_MainShip->health = 100;
 	puts("Ship shields restored to maximum, Major Gubi!");
+	Ship_MainShip->health = 100;
 }
 
 void Item_AMMO(Item* this) {
-	puts("Ground control to Major Gubi: how's the weather up there?");
+	puts("Major Gubi's love arrows struck me. Twice.");
+
 }
 
 void Item_BOOSTER(Item* this) {
 	puts("FTL drives available, Major Gubi! Take me now at the speed of light!");
+}
+
+void Item_LIVES(Item* this) {
+	puts("Major Gubi, stealer of hearts.");
+	++Player_Lives;
+}
+
+__action_ptr Item_GetAction(void) {
+	return ACTIONS[randomInterval(0, sizeof(ACTIONS)/sizeof(*ACTIONS))];
 }

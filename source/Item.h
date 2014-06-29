@@ -43,4 +43,10 @@ void Item_AMMO(Item*);
 
 void Item_BOOSTER(Item*);
 
+void Item_LIVES(Item*);
+
+typedef void (*__action_ptr)(Item*);
+
+__action_ptr Item_GetAction(void);
+
 #endif

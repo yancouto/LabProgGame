@@ -1,6 +1,6 @@
 #ifndef MAIN_H
 #define MAIN_H
-#define STEP 1.0/60
+#define STEP 1.0/120
 
 /* Loop de execucao */
 void Main_Step();

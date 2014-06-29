@@ -111,7 +111,7 @@ void Item_BOOSTER(Item* this) {
 }
 
 void Item_LIVES(Item* this) {
-	puts("Major Gubi, stealer of hearts.");
+	puts("More ships at your disposal, Major Gubi!");
 	++Player_Lives;
 }
 

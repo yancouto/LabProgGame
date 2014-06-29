@@ -52,7 +52,7 @@ Section.o: Section.c Section.h Enemy.h Util.h List.h Vector.h Item.h
 Player.o: Player.c Player.h Vector.h
 	$(CC) $(CFLAGS) Player.c -c -o Player.o
 
-Graphics.o: Graphics.c Graphics.h Util.h Bullet.h Ship.h Enemy.h Camera.h Item.h ../resources/spaceship.inc ../resources/bullet.inc
+Graphics.o: Graphics.c Graphics.h Util.h Bullet.h Ship.h Enemy.h Camera.h Item.h ../resources/spaceship.inc ../resources/bullet.inc ../resources/item_booster.inc
 	$(CC) $(CFLAGS) Graphics.c -c -o Graphics.o
 
 Vector.o: Vector.c Vector.h

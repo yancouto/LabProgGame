@@ -70,5 +70,5 @@ double Camera_GetToY() {
 }
 
 double Camera_GetToZ() {
-	return Camera_GetZ() + 200;
+	return Camera_GetZ() + 400;
 }

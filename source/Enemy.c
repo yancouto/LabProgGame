@@ -63,6 +63,7 @@ void Enemy_update(Enemy* this, double dt) {
 		printf("Inimigo %u colidiu com a nave!\n", this->id);
 		this->health = 0;
 		s->health -= 25;
+		Player_Score += 25;
 	}
 }
 
@@ -71,7 +72,9 @@ Enemy *Enemy_BulletCollide(Bullet *b) {
 	Node* j;
 
 	for(i = Scene_MainScene->sections->head->next; i != Scene_MainScene->sections->head; i = i->next) {
-		List* list = ((Section*) i->item)->entities;
+		Section *s = ((Section*) i->item);
+		List* list = s->entities;
+		if(b->pos[2] < s->pos[2] || b->pos[2] > s->pos[2] + s->size[2]) continue;
 		for(j = list->head->next; j != list->head; j = j->next) {
 			Enemy* e = (Enemy*) j->item;
 			if(collidesPoint(e->pos, Enemy_DEF_SIZE, b->pos)) return e;

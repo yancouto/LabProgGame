@@ -11,8 +11,6 @@
 
 Ship *Ship_MainShip;
 
-int Player_Lost;
-
 #define Ship_DEF_HEALTH 100
 #define Ship_DEF_SPEED 200
 
@@ -35,6 +33,12 @@ void Ship_Init() {
 
 void Ship_Update(double dt) {
 	Ship *this = Ship_MainShip;
+	Player_Health = this->health;
+	if(Player_Immune > 0) {
+		Player_Immune -= 10*dt;
+	}
+	else 
+		Player_Immune = 0;
 	Section *first = (Section*) Scene_MainScene->sections->head->next->item;
 	/* Melhorar o movimento (usar aceleracao ou algo assim) */
 
@@ -73,6 +77,7 @@ void Ship_Update(double dt) {
 				Main_LoseGame();
 			this->health = Ship_DEF_HEALTH;
 			Player_Lives--;
+			Player_Immune = 30;
 			printf("Voce Lost uma vida! (Agora esta com %d)\n", Player_Lives);
 		}
 	}

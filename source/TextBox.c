@@ -13,7 +13,7 @@ void TextBox_Init() {
 	labels = List_new(labels);
 	boxes = List_new(boxes);
 
-	List_pushBack(labels, TextBox2D_new(50, 50, "I'm sexy and I know it."));
+	/*List_pushBack(labels, TextBox2D_new(50, 50, "I'm sexy and I know it."));*/
 }
 
 TextBox* TextBox3D_new(double x, double y, double z, char* text) {

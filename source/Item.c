@@ -107,7 +107,7 @@ void Item_AMMO(Item* this) {
 }
 
 void Item_BOOSTER(Item* this) {
-	puts("FTL drives available, Major Gubi! Take me now at the speed of light!");
+	puts("FTL drives available, Major Gub	i! Take me now at the speed of light!");
 }
 
 void Item_LIVES(Item* this) {

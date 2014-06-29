@@ -9,6 +9,7 @@
 #include "Util.h"
 #include "Scene.h"
 #include "Graphics.h"
+#include "Player.h"
 
 Vector Enemy_DEF_SIZE = {20, 20, 20};
 
@@ -58,7 +59,7 @@ void Enemy_update(Enemy* this, double dt) {
 	}
 	else this->_dfreq += dt;
 
-	if(collides(s->pos, Enemy_DEF_SIZE, this->pos, Enemy_DEF_SIZE)) {
+	if(collides(s->pos, Enemy_DEF_SIZE, this->pos, Enemy_DEF_SIZE) && Player_Immune == 0) {
 		printf("Inimigo %u colidiu com a nave!\n", this->id);
 		this->health = 0;
 		s->health -= 25;

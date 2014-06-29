@@ -222,7 +222,7 @@ static void Graphics_DrawAim() {
 }
 
 void Graphics_DrawShip() {
-	if(!Player_Lost) {
+	if(!Player_Lost && ((int)Player_Immune%2 == 0)) {
 		Ship *s = Ship_MainShip;
 		glPushMatrix();
 		glEnable(GL_LIGHTING);

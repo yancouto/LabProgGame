@@ -40,7 +40,7 @@ Ship.o: Ship.c List.h Ship.h Scene.h Section.h Player.h Main.h Vector.h Graphics
 Bullet.o: Bullet.c Bullet.h List.h Ship.h Enemy.h Util.h Vector.h Graphics.h
 	$(CC) $(CFLAGS) Bullet.c -c -o Bullet.o
 
-Enemy.o: Enemy.c Enemy.h Bullet.h Ship.h Vector.h Graphics.h Util.h
+Enemy.o: Enemy.c Enemy.h Bullet.h Ship.h Vector.h Graphics.h Util.h Player.h
 	$(CC) $(CFLAGS) Enemy.c -c -o Enemy.o
 
 Scene.o: Scene.c Scene.h Section.h List.h Vector.h

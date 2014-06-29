@@ -12,8 +12,6 @@
 /* #define Bullet_DEF_GRAVITY 50 */
 static List *bullets;
 
-int Player_Lost;
-
 void Bullet_Init() {
 	bullets = List_new();
 }
@@ -46,16 +44,18 @@ void Bullet_update(Bullet *this, double dt) {
 		this->pos[1] += this->v[1] * dt;
 		this->pos[2] += this->v[2] * dt;
 
-		if(this->owner != s && collidesPoint(s->pos, s->size, this->pos)) {
+		if(this->owner != s && collidesPoint(s->pos, s->size, this->pos) && Player_Immune == 0) {
 			printf("Tiro %u atingiu a nave.\n", this->id);
 			s->health -= 15;
 			this->health = 0;
 		} else {
-			Enemy *e = Enemy_BulletCollide(this);
-			if(e && e != this->owner) {
-				printf("Tiro %u atingiu o inimigo %d.\n", this->id, e->id);
-				e->health -= 10;
-				this->health = 0;
+			if (Player_Immune == 0) {
+				Enemy *e = Enemy_BulletCollide(this);
+				if(e && e != this->owner) {
+					printf("Tiro %u atingiu o inimigo %d.\n", this->id, e->id);
+					e->health -= 10;
+					this->health = 0;
+				}
 			}
 		}
 

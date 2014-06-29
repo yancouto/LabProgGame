@@ -8,9 +8,13 @@
 #include "Graphics.h"
 #include "Camera.h"
 #include "Vector.h"
+#include "Sound.h"
 #include <stdio.h>
 #include <time.h>
 #include <stdlib.h>
+#include <AL/al.h>
+#include <AL/alc.h>
+#include <AL/alext.h>
 
 static void init() {
 	srand(time(NULL));
@@ -27,6 +31,22 @@ static void init() {
 }
 
 int main(int argsN, char *args[]) {
+
+	alutInit(NULL, 0);
+	alGetError();
+	if(Sound_LoadALData() == AL_FALSE) {
+	    printf("Error loading data.");
+		return 0;
+	}
+
+	Sound_SetListenerValues();
+
+	/* Exit procedure */
+
+	atexit(Sound_KillALData);
+
+	/* Play */
+	alSourcePlay(Sound_Source());
 
 	Graphics_Init(&argsN, args);
 

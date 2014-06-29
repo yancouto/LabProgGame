@@ -257,14 +257,14 @@ void Graphics_DrawShip() {
 		glPopMatrix();
 		Graphics_DrawBlock(s->pos, s->size);
 		Graphics_DrawAim(s->pos, s->size);
-	}
 
-	glDisable(GL_LIGHT0);
-	glDisable(GL_COLOR_MATERIAL);
-	glDisable(GL_LIGHTING);
-	glPopMatrix();
-	Graphics_DrawBlock(s->pos, s->size);
-	Graphics_DrawAim();
+		glDisable(GL_LIGHT0);
+		glDisable(GL_COLOR_MATERIAL);
+		glDisable(GL_LIGHTING);
+		glPopMatrix();
+		Graphics_DrawBlock(s->pos, s->size);
+		Graphics_DrawAim();
+	}
 }
 
 void Graphics_DrawBullet(Vector pos) {

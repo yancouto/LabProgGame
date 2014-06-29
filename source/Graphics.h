@@ -35,6 +35,12 @@ void Graphics_Print(double x, double y, char *string);
 
 void Graphics_Print3D(double x, double y, double z, char* str);
 
+/* Funcao que imprime texto 2D no jogo. Sem fazer transformacoes. */
+void Graphics_RawPrint(double x, double y, char* string);
+
+/* Funcao que imprime texto 3D no jogo. Sem fazer transformacoes. */
+void Graphics_RawPrint3D(double x, double y, double z, char* str);
+
 void Graphics_ChangeMousePosition(int x, int y);
 
 void Graphics_SetMousePassiveMotionCallback(void (*func)(int x, int y));
@@ -46,5 +52,15 @@ void Graphics_SetMouseClickCallback(void (*func)(int button, int state, int x, i
 void Graphics_SetKeyDownCallback(void (*func)(uchar key, int x, int y));
 
 void Graphics_SetKeyUpCallback(void (*func)(uchar key, int x, int y));
+
+void Graphics_Scale(double x, double y, double z);
+
+void Graphics_Translate(double x, double y, double z);
+
+void Graphics_Rotate(double angle, double x, double y, double z);
+
+void Graphics_Push(void);
+
+void Graphics_Pop(void);
 
 #endif

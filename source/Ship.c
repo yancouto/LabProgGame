@@ -33,13 +33,13 @@ void Ship_Init() {
 
 void Ship_Update(double dt) {
 	Ship *this = Ship_MainShip;
+	Section *first = (Section*) Scene_MainScene->sections->head->next->item;
+	
 	Player_Health = this->health;
-	if(Player_Immune > 0) {
+	if(Player_Immune > 0)
 		Player_Immune -= 10*dt;
-	}
 	else 
 		Player_Immune = 0;
-	Section *first = (Section*) Scene_MainScene->sections->head->next->item;
 	/* Melhorar o movimento (usar aceleracao ou algo assim) */
 
 	/* Já limita a posição da nave com o tamanho da cena */
@@ -64,7 +64,6 @@ void Ship_Update(double dt) {
 				this->vel[0] = this->v / 1.4 * dt;
 			else this->pos[0] = Vector_BOUNDS[0] - this->size[0];
 		}
-
 
 		this->vel[2] = Ship_DEF_SPEED * dt;
 		Vector_addVector(this->pos, this->vel);

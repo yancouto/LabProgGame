@@ -8,6 +8,8 @@ typedef enum {
 	true
 } bool;
 
+#define PI 3.1415926535
+
 /* Checa se os paralelepipedos colidem nas componentes vetoriais. */
 bool collides_comp(double x1, double y1, double z1, double dx1, double dy1, double dz1,
 		double x2, double y2, double z2, double dx2, double dy2, double dz2);

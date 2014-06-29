@@ -1,11 +1,13 @@
+#include <stdio.h>
 #include "Player.h"
 #include "Graphics.h"
 #include "Controller.h"
 #include <stdio.h>
 
+
 int Player_Score;
 int Player_Lives;
-int Player_Lost;
+bool Player_Lost;
 int Player_Health;
 double Player_Immune;
 
@@ -31,6 +33,6 @@ void Player_DisplayInfo() {
 }
 
 void Player_Init() {
-	Player_Lost = 0;
+	Player_Lost = false;
 	Player_Immune = 0;
 }

@@ -15,7 +15,6 @@
 bool Controller_keyPressed[256];
 static bool lmbDown; /* variavel booleana que diz de o botao esquerdo do mouse esta pressionado */
 static bool paused;
-int Player_Lost;
 double Controller_shootDelay;
 
 static void processStep() {

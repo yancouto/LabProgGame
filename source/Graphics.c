@@ -41,36 +41,41 @@ static void handleCamera() {
 }
 
 static void drawBackground() {
-	glMatrixMode(GL_MODELVIEW);
-	glLoadIdentity();
+	Ship *sh = Ship_MainShip;
+	Vector p;
+	double s[] = {SCREEN_WIDTH, SCREEN_HEIGHT};
+	p[0] = sh->pos[0] - SCREEN_WIDTH/2;
+	p[1] = sh->pos[1] - SCREEN_HEIGHT/2;
+	p[2] = sh->pos[2] + 175;
 	glEnable(GL_TEXTURE_2D);
 	glBegin(GL_QUADS);
 		glTexCoord2f(0.f, 1.f);
-		glVertex2f(0.f, 0.f);
+		glVertex3f(p[0], p[1], -p[2]);
 
 		glTexCoord2f(1.f, 1.f);
-		glVertex2f(SCREEN_WIDTH, 0.f);
+		glVertex3f(p[0] + s[0], p[1], -p[2]);
 
 		glTexCoord2f(1.f, 0.f);
-		glVertex2f(SCREEN_WIDTH, SCREEN_HEIGHT);
+		glVertex3f(p[0] + s[0], p[1] + s[1], -p[2]);
 
 		glTexCoord2f(0.f, 0.f);
-		glVertex2f(0.f, SCREEN_HEIGHT);
+		glVertex3f(p[0], p[1] + s[1], -p[2]);
 	glEnd();
 	glDisable(GL_TEXTURE_2D);
 }
 
 static void render() {
 	Vector worldBounds = {0, 0, 0};
-	worldBounds[2] += Ship_MainShip->pos[2];
+	worldBounds[2] = Ship_MainShip->pos[2];
 	glClear(GL_COLOR_BUFFER_BIT);
-	drawBackground();
-	glClear(GL_DEPTH_BUFFER_BIT);
 
 	handleCamera();
 	
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
+
+	drawBackground();
+	glClear(GL_DEPTH_BUFFER_BIT);
 
 	Graphics_SetColor(1, 1, 1);
 	Graphics_DrawBlock(worldBounds, Vector_BOUNDS);

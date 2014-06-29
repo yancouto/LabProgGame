@@ -21,7 +21,7 @@ static void mouseMove(int x, int y) {
 	if(mouseYRelative > 1.) mouseYRelative = 1.;
 	else if(mouseYRelative < -1.) mouseYRelative = -1.;
 
-	/* Se mudar a posicao toda vez o jogo trava */
+	/* Se mudar a posicao toda vez o jogo trava */ /* Deselegante */
 	if(changeMousePos) Graphics_ChangeMousePosition(width / 2, height / 2);
 	changeMousePos = !changeMousePos;
 }
@@ -41,8 +41,8 @@ void Camera_Init() {
 }
 
 void Camera_Update(double dt) {
-	static const double angleVarX = 80. * PI / 180.;
-	static const double angleVarY = 60. * PI / 180.;
+	static const double angleVarX = 60. * PI / 180.;
+	static const double angleVarY = 40. * PI / 180.;
 	double ax = mouseXRelative;
 	double ay = mouseYRelative;
 	double cosY;

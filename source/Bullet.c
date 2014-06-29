@@ -54,6 +54,7 @@ void Bullet_update(Bullet *this, double dt) {
 				printf("Tiro %u atingiu o inimigo %d.\n", this->id, e->id);
 				e->health -= 10;
 				this->health = 0;
+				if(e->health <= 0 && this->owner == s) Player_Score += 25;
 			}
 		}
 

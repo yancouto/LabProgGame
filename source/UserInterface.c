@@ -13,7 +13,7 @@ void UserInterface_Init(void) {
 }
 
 void UserInterface_Update(double dt) {
-	sprintf(score, "Score: %d", Player_Score);
+	sprintf(score, "Score: %.1f", Player_Score);
 	sprintf(lives, "Lives: %d", Player_Lives);
 	
 	if(Player_Lost)

@@ -5,7 +5,7 @@
 #include <stdio.h>
 
 
-int Player_Score;
+double Player_Score;
 int Player_Lives;
 bool Player_Lost;
 int Player_Health;
@@ -14,7 +14,7 @@ double Player_Immune;
 
 void Player_DisplayInfo() {
 	static char temp[80];
-	sprintf(temp, "Score: %d", Player_Score);
+	sprintf(temp, "Score: %.1f", Player_Score);
 	Graphics_Print(10, 10, temp);
 	sprintf(temp, "Lives: %d", Player_Lives);
 	Graphics_Print(670, 10, temp);

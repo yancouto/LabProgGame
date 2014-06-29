@@ -3,7 +3,7 @@
 
 #include "Util.h"
 
-extern int Player_Score;
+extern double Player_Score;
 extern int Player_Lives;
 extern bool Player_Lost;
 extern int Player_Health;

@@ -40,6 +40,7 @@ void Ship_Update(double dt) {
 		Player_Immune -= 10*dt;
 	else 
 		Player_Immune = 0;
+	Player_Score += 2 * dt;
 	/* Melhorar o movimento (usar aceleracao ou algo assim) */
 
 	/* Já limita a posição da nave com o tamanho da cena */

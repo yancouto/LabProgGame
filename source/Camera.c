@@ -14,6 +14,7 @@ static void mouseMove(int x, int y) {
 	static bool changeMousePos = true;
 	int width = Graphics_GetWindowWidth();
 	int height = Graphics_GetWindowHeight();
+	if(Controller_isPaused()) return;
 	mouseXRelative += (double) x / width - .5;
 	mouseYRelative += (double) y / height - .5;
 	if(mouseXRelative > 1.) mouseXRelative = 1.;

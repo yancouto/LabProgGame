@@ -99,6 +99,16 @@ static void mouseHold(int but, int state, int x, int y) {
 	}
 }
 
+static void switchPause() {
+	if(paused) {
+		Graphics_ChangeMousePosition(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2);
+		glutSetCursor(GLUT_CURSOR_NONE);
+	} else {
+		glutSetCursor(GLUT_CURSOR_INHERIT);
+	}
+
+	paused = !paused;
+}
 
 static void keyCliked(uchar key, int x, int y) {
 	Controller_keyPressed[key] = true;
@@ -113,7 +123,7 @@ static void keyReleased(uchar key, int x, int y) {
 			break;
 		case 'p':
 		case 27: /* ESC */
-			paused = !paused;
+			switchPause();
 			break;
 	}
 }
@@ -126,6 +136,8 @@ void Controller_Init() {
 	lmbDown = false;
 	paused = false;
 	memset(Controller_keyPressed, 0, sizeof(Controller_keyPressed));
+
+	Graphics_ChangeMousePosition(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2);
 	Graphics_SetMouseClickCallback(mouseClick);
 	Graphics_SetMouseClickCallback(mouseHold);
 	Graphics_SetKeyDownCallback(keyCliked);

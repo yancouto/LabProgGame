@@ -58,14 +58,13 @@ int main(int argsn, char *args[]) {
 }
 
 void Main_Step() {
-	if (Controller_isPaused() == false) {
-		Camera_Update(STEP);
-		Bullet_Update(STEP);
-		Ship_Update(STEP);
-		Enemy_Update(STEP);
-		Item_Update(STEP);
-		Controller_Update(STEP);
-	}
+	if(Controller_isPaused()) return;
+	Camera_Update(STEP);
+	Bullet_Update(STEP);
+	Ship_Update(STEP);
+	Enemy_Update(STEP);
+	Item_Update(STEP);
+	Controller_Update(STEP);
 }
 
 void Main_LoseGame() {

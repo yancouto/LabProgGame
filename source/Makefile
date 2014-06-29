@@ -49,7 +49,7 @@ Scene.o: Scene.c Scene.h Section.h List.h Vector.h
 Section.o: Section.c Section.h Enemy.h Util.h List.h Vector.h Item.h
 	$(CC) $(CFLAGS) Section.c -c -o Section.o
 
-Player.o: Player.c Player.h Vector.h
+Player.o: Player.c Player.h Vector.h Controller.h
 	$(CC) $(CFLAGS) Player.c -c -o Player.o
 
 Graphics.o: Graphics.c Graphics.h Util.h Bullet.h Ship.h Enemy.h Camera.h Item.h ../resources/spaceship.inc ../resources/bullet.inc ../resources/item_booster.inc
@@ -67,7 +67,7 @@ TextBox.o: TextBox.c TextBox.h String.h List.h Ship.h Vector.h
 String.o: String.h String.c
 	$(CC) $(CFLAGS) String.c -c -o String.o
 
-Item.o: Item.h Item.c
+Item.o: Item.h Item.c Controller.h
 	$(CC) $(CFLAGS) Item.c -c -o Item.o
 
 clean:

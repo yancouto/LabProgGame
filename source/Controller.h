@@ -3,6 +3,7 @@
 #include "Util.h"
 
 extern bool Controller_keyPressed[256];
+extern double Controller_shootDelay;
 
 /* Retorna false se o programa deve fechar */
 bool Controller_ExecuteInstruction();

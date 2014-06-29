@@ -49,13 +49,11 @@ void Bullet_update(Bullet *this, double dt) {
 			s->health -= 15;
 			this->health = 0;
 		} else {
-			if (Player_Immune == 0) {
-				Enemy *e = Enemy_BulletCollide(this);
-				if(e && e != this->owner) {
-					printf("Tiro %u atingiu o inimigo %d.\n", this->id, e->id);
-					e->health -= 10;
-					this->health = 0;
-				}
+			Enemy *e = Enemy_BulletCollide(this);
+			if(e && e != this->owner) {
+				printf("Tiro %u atingiu o inimigo %d.\n", this->id, e->id);
+				e->health -= 10;
+				this->health = 0;
 			}
 		}
 

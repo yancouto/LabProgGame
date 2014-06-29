@@ -16,6 +16,7 @@ bool Controller_keyPressed[256];
 static bool lmbDown; /* variavel booleana que diz de o botao esquerdo do mouse esta pressionado */
 static bool paused;
 int Player_Lost;
+double Controller_shootDelay;
 
 static void processStep() {
 	unsigned n;
@@ -137,6 +138,7 @@ bool Controller_isPaused() {
 void Controller_Init() {
 	lmbDown = false;
 	paused = false;
+	Controller_shootDelay = .3;
 	memset(Controller_keyPressed, 0, sizeof(Controller_keyPressed));
 
 	Graphics_ChangeMousePosition(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2);
@@ -147,12 +149,12 @@ void Controller_Init() {
 }
 
 void Controller_Update(double dt) {
-	static double shootDelay = .3;
+	static double Controller_shootDelay = .3;
 	Ship *s = Ship_MainShip;
-	shootDelay += dt;
-	if(shootDelay >= .3) {
+	Controller_shootDelay += dt;
+	if(Controller_shootDelay >= .3) {
 		if (lmbDown == true) {
-			shootDelay = 0;
+			Controller_shootDelay = 0;
 			
 			Vector_setVector(s->gunDir, s->pos);
 			Vector_add(s->gunDir, s->size[0] / 2 - Camera_GetX(), s->size[1] / 2 - Camera_GetY(),

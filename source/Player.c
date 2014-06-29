@@ -1,5 +1,6 @@
 #include "Player.h"
 #include "Graphics.h"
+#include "Controller.h"
 #include <stdio.h>
 
 int Player_Score;
@@ -14,10 +15,10 @@ void Player_DisplayInfo() {
 	sprintf(temp, "Score: %d", Player_Score);
 	Graphics_Print(10, 10, temp);
 	sprintf(temp, "Lives: %d", Player_Lives);
-	Graphics_Print(10, 30, temp);
+	Graphics_Print(670, 10, temp);
 	sprintf(temp, "Health: %d", Player_Health);
-	Graphics_Print(10, 50, temp);
-	sprintf(temp, "Imune?: %f", Player_Immune);
+	Graphics_Print(670, 40, temp);
+	sprintf(temp, "delay: %f", Controller_shootDelay);
 	Graphics_Print(10, 70, temp);
 	if(Player_Lost){
 		sprintf(temp, "~~YOU WERE DEFEATED!~~\n\n            press 'q' to exit");

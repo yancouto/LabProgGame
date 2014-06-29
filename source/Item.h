@@ -39,7 +39,7 @@ void Item_Clear(void);
 
 void Item_HEALTH(Item*);
 
-void Item_AMMO(Item*);
+void Item_MEGA(Item*);
 
 void Item_BOOSTER(Item*);
 

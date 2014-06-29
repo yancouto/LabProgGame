@@ -6,13 +6,17 @@
 #include "Ship.h"
 #include "Graphics.h"
 #include "Player.h"
+#include "Controller.h"
+
 
 static List* items;
+static double mega;
 
 Vector Item_DEF_SIZE = {10, 10, 10};
 
 void Item_Init(void) {
 	items = List_new(items);
+	mega = 0;
 }
 
 Item* Item_new(double x, double y, double z, void (*action)(Item*)) {
@@ -45,7 +49,13 @@ void Item_delete(Item* this) {
 
 void Item_Update(double dt) {
 	Node* it;
-
+	
+	if(mega > 0) 
+		mega -= dt;
+	else {
+		mega = 0;
+		Controller_shootDelay = .3;
+	}
 	for(it = items->head->next; it!=items->head; it = it->next) {
 		Item* val = (Item*) it->item;
 		Item_update(val, dt);
@@ -93,7 +103,7 @@ void Item_Clear() {
 /************************* Item "action" functions ********************/
 
 static __action_ptr ACTIONS[] = {
-	Item_HEALTH, Item_AMMO, Item_BOOSTER, Item_LIVES
+	Item_HEALTH, Item_MEGA, Item_BOOSTER, Item_LIVES
 };
 
 void Item_HEALTH(Item* this) {
@@ -101,13 +111,15 @@ void Item_HEALTH(Item* this) {
 	Ship_MainShip->health = 100;
 }
 
-void Item_AMMO(Item* this) {
-	puts("Major Gubi's love arrows struck me. Twice.");
+void Item_MEGA(Item* this) {
+	puts("Mega Blasters at your disposal Major Gubi, fire at will!");
+	mega = 3.0;
+	Controller_shootDelay = .2;
 
 }
 
 void Item_BOOSTER(Item* this) {
-	puts("FTL drives available, Major Gub	i! Take me now at the speed of light!");
+	puts("FTL drives available, Major Gubi! Take me now at the speed of light!");
 }
 
 void Item_LIVES(Item* this) {

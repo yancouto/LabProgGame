@@ -11,7 +11,6 @@ Section* Section_new(double x, double y, double z,
 	double width, double height, double length, int enemies) {
 	Section* inst = (Section*) malloc(sizeof(Section));
 	int i, items;
-	void (*item_func)(Item*);
 	double spacing;
 	Vector spawn;
 	
@@ -43,19 +42,7 @@ Section* Section_new(double x, double y, double z,
 		spawn[1] = randomInterval(y, y + height - Item_DEF_SIZE[1]);
 		spawn[2] = randomInterval(z + spacing, z + length);
 		
-		switch(randomInterval(0, 3)) {
-			case 0:
-				item_func = Item_HEALTH;
-				break;
-			case 1:
-				item_func = Item_AMMO;
-				break;
-			case 2:
-				item_func = Item_BOOSTER;
-				break;
-		}
-
-		Item_Register(Item_new(spawn[0], spawn[1], spawn[2], item_func));
+		Item_Register(Item_new(spawn[0], spawn[1], spawn[2], Item_GetAction()));
 
 		spacing += Item_DEF_SIZE[2] + length/items;
 	}

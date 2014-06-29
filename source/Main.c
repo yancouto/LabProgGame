@@ -15,8 +15,11 @@
 #include <stdlib.h>
 
 #ifdef _WIN32
+#define _WIN32_WINNT 0x0500
 #include <windows.h>
 #endif
+
+int Player_Lost;
 
 static void init() {
 	srand(time(NULL));
@@ -32,6 +35,7 @@ static void init() {
 	TextBox_Init();
 	Item_Init();
 	Scene_Init(Vector_BOUNDS[0], Vector_BOUNDS[1], 100, 12);
+	Player_Init();
 }
 
 #ifdef _WIN32
@@ -68,6 +72,6 @@ void Main_Step() {
 }
 
 void Main_LoseGame() {
-	printf("\n\nVoce perdeu o jogo!\nAdeus!\n");
-	exit(0);
+	printf("\n\nVoce perdeu o jogo!\n");
+	Player_Lost = 1;
 }

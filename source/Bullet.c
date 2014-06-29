@@ -3,6 +3,7 @@
 #include "Enemy.h"
 #include "Util.h"
 #include "Graphics.h"
+#include "Player.h"
 
 #include <stdlib.h>
 #include <stdio.h>
@@ -10,6 +11,8 @@
 /* #define Bullet_DEF_SPEED 700 */
 /* #define Bullet_DEF_GRAVITY 50 */
 static List *bullets;
+
+int Player_Lost;
 
 void Bullet_Init() {
 	bullets = List_new();
@@ -37,26 +40,28 @@ void Bullet_delete(Bullet* bullet) {
 
 void Bullet_update(Bullet *this, double dt) {
 	Ship *s = Ship_MainShip;
-	this->v[1] -= Bullet_DEF_GRAVITY * dt;  /* Gravidade, tweekar o valor */
-	this->pos[0] += this->v[0] * dt;
-	this->pos[1] += this->v[1] * dt;
-	this->pos[2] += this->v[2] * dt;
+	if(!Player_Lost) {
+		this->v[1] -= Bullet_DEF_GRAVITY * dt;  /* Gravidade, tweekar o valor */
+		this->pos[0] += this->v[0] * dt;
+		this->pos[1] += this->v[1] * dt;
+		this->pos[2] += this->v[2] * dt;
 
-	if(this->owner != s && collidesPoint(s->pos, s->size, this->pos)) {
-		printf("Tiro %u atingiu a nave.\n", this->id);
-		s->health -= 15;
-		this->health = 0;
-	} else {
-		Enemy *e = Enemy_BulletCollide(this);
-		if(e && e != this->owner) {
-			printf("Tiro %u atingiu o inimigo %d.\n", this->id, e->id);
-			e->health -= 10;
+		if(this->owner != s && collidesPoint(s->pos, s->size, this->pos)) {
+			printf("Tiro %u atingiu a nave.\n", this->id);
+			s->health -= 15;
+			this->health = 0;
+		} else {
+			Enemy *e = Enemy_BulletCollide(this);
+			if(e && e != this->owner) {
+				printf("Tiro %u atingiu o inimigo %d.\n", this->id, e->id);
+				e->health -= 10;
+				this->health = 0;
+			}
+		}
+
+		if(outOfBounds(this->pos)) {
 			this->health = 0;
 		}
-	}
-
-	if(outOfBounds(this->pos)) {
-		this->health = 0;
 	}
 }
 

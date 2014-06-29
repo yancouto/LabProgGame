@@ -11,6 +11,8 @@
 
 Ship *Ship_MainShip;
 
+int Player_Lost;
+
 #define Ship_DEF_HEALTH 100
 #define Ship_DEF_SPEED 200
 
@@ -37,39 +39,42 @@ void Ship_Update(double dt) {
 	/* Melhorar o movimento (usar aceleracao ou algo assim) */
 
 	/* Já limita a posição da nave com o tamanho da cena */
-	if(Controller_keyPressed['w']) { 
-		if ((this->pos[1] + this->v / 1.4 * dt) <= Vector_BOUNDS[1] - this->size[1])
-			this->vel[1] = this->v / 1.4 * dt;
-		else this->pos[1] = Vector_BOUNDS[1] - this->size[1];
-	}
-	if(Controller_keyPressed['s']) {
-		if ((this->pos[1] - this->v / 1.4 * dt) >= 0)
-			this->vel[1] = -this->v / 1.4 * dt;
-		else this->pos[1] = 0;
-	}
-	if(Controller_keyPressed['a']) {
-	 	if((this->pos[0] - this->v / 1.4 * dt) >= 0)
-	 		this->vel[0] = -this->v / 1.4 * dt;
-	 	else this->pos[0] = 0;
-	}
-	if(Controller_keyPressed['d']) {
-		if ((this->pos[0] + this->v / 1.4 * dt) <= Vector_BOUNDS[0] - this->size[0])
-			this->vel[0] = this->v / 1.4 * dt;
-		else this->pos[0] = Vector_BOUNDS[0] - this->size[0];
-	}
+	if(!Player_Lost) {
+		if(Controller_keyPressed['w']) { 
+			if ((this->pos[1] + this->v / 1.4 * dt) <= Vector_BOUNDS[1] - this->size[1])
+				this->vel[1] = this->v / 1.4 * dt;
+			else this->pos[1] = Vector_BOUNDS[1] - this->size[1];
+		}
+		if(Controller_keyPressed['s']) {
+			if ((this->pos[1] - this->v / 1.4 * dt) >= 0)
+				this->vel[1] = -this->v / 1.4 * dt;
+			else this->pos[1] = 0;
+		}
+		if(Controller_keyPressed['a']) {
+		 	if((this->pos[0] - this->v / 1.4 * dt) >= 0)
+		 		this->vel[0] = -this->v / 1.4 * dt;
+		 	else this->pos[0] = 0;
+		}
+		if(Controller_keyPressed['d']) {
+			if ((this->pos[0] + this->v / 1.4 * dt) <= Vector_BOUNDS[0] - this->size[0])
+				this->vel[0] = this->v / 1.4 * dt;
+			else this->pos[0] = Vector_BOUNDS[0] - this->size[0];
+		}
 
-	this->vel[2] = Ship_DEF_SPEED * dt;
-	Vector_addVector(this->pos, this->vel);
 
-	this->vel[0] = this->vel[1] = 0;
+		this->vel[2] = Ship_DEF_SPEED * dt;
+		Vector_addVector(this->pos, this->vel);
 
-	if(this->pos[2] > first->pos[2] + first->size[2]) Scene_Recycle();
-	if(this->health <= 0) {
-		if(Player_Lives == 0)
-			Main_LoseGame();
-		this->health = Ship_DEF_HEALTH;
-		Player_Lives--;
-		printf("Voce perdeu uma vida! (Agora esta com %d)\n", Player_Lives);
+		this->vel[0] = this->vel[1] = 0;
+
+		if(this->pos[2] > first->pos[2] + first->size[2]) Scene_Recycle();
+		if(this->health <= 0) {
+			if(Player_Lives == 1)
+				Main_LoseGame();
+			this->health = Ship_DEF_HEALTH;
+			Player_Lives--;
+			printf("Voce Lost uma vida! (Agora esta com %d)\n", Player_Lives);
+		}
 	}
 }
 

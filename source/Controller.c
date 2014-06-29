@@ -15,6 +15,7 @@
 bool Controller_keyPressed[256];
 static bool lmbDown; /* variavel booleana que diz de o botao esquerdo do mouse esta pressionado */
 static bool paused;
+int Player_Lost;
 
 static void processStep() {
 	unsigned n;
@@ -123,7 +124,8 @@ static void keyReleased(uchar key, int x, int y) {
 			break;
 		case 'p':
 		case 27: /* ESC */
-			switchPause();
+			if(!Player_Lost)
+				switchPause();
 			break;
 	}
 }

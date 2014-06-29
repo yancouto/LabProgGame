@@ -12,7 +12,7 @@
 Ship *Ship_MainShip;
 
 #define Ship_DEF_HEALTH 100
-#define Ship_DEF_SPEED 200
+#define Ship_DEF_SPEED 400
 
 void Ship_Init() {
 	Ship *s;
@@ -76,7 +76,7 @@ void Ship_Update(double dt) {
 				Main_LoseGame();
 			this->health = Ship_DEF_HEALTH;
 			Player_Lives--;
-			Player_Immune = 30;
+			Player_Immune = 20;
 			printf("Voce Lost uma vida! (Agora esta com %d)\n", Player_Lives);
 		}
 	}

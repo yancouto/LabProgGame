@@ -20,8 +20,11 @@ void Player_DisplayInfo() {
 	Graphics_Print(670, 10, temp);
 	sprintf(temp, "Health: %d", Player_Health);
 	Graphics_Print(670, 40, temp);
+	/* 
 	sprintf(temp, "delay: %f", Controller_shootDelay);
 	Graphics_Print(10, 70, temp);
+	
+	Print para testar variaveis */
 	if(Player_Lost){
 		sprintf(temp, "~~YOU WERE DEFEATED!~~\n\n            press 'q' to exit");
 		Graphics_Print(250, 240, temp);

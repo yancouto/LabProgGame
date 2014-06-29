@@ -9,7 +9,6 @@ typedef struct {
 	Vector vel;
 	String* text;
 	bool active;
-	bool alive;
 	bool visible;
 } TextBox;
 

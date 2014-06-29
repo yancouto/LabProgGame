@@ -22,9 +22,8 @@ TextBox* TextBox3D_new(double x, double y, double z, char* text) {
 	Vector_set(this->pos, x, y, z);
 	Vector_set(this->vel, 0, 0, 0);
 	this->text = String_new(text);
-	this->active = true;
 	this->visible = true;
-	this->alive = true;
+	this->active = true;
 
 	TextBox3D_Register(this);
 
@@ -37,9 +36,8 @@ TextBox* TextBox2D_new(double x, double y, char* text) {
 	Vector_set(this->pos, x, y, 0);
 	Vector_set(this->vel, 0, 0, 0);
 	this->text = String_new(text);
-	this->active = true;
 	this->visible = true;
-	this->alive = true;
+	this->active = true;
 
 	TextBox2D_Register(this);
 
@@ -69,18 +67,28 @@ void TextBox_Update(double dt) {
 
 	for(it = labels->head->next; it != labels->head; it = it->next) {
 		TextBox* val = (TextBox*) it->item;
-		if(!val->alive) {
-			TextBox_delete(val);
-			it = Node_remove(it)->prev;
-		} else if(val->active) TextBox_update(val, dt);
+		TextBox_update(val, dt);
 	}
 
 	for(it = boxes->head->next; it != boxes->head; it = it->next) {
 		TextBox* val = (TextBox*) it->item;
-		if(!val->alive) {
+		TextBox_update(val, dt);
+	}
+
+	for(it=labels->head->next;it!=labels->head;it=it->next) {
+		TextBox* val = (TextBox*) it->item;
+		if(!val->active) {
 			TextBox_delete(val);
 			it = Node_remove(it)->prev;
-		} else if(val->active) TextBox_update(val, dt);
+		}
+	}
+
+	for(it=boxes->head->next;it!=boxes->head;it=it->next) {
+		TextBox* val = (TextBox*) it->item;
+		if(!val->active) {
+			TextBox_delete(val);
+			it = Node_remove(it)->prev;
+		}
 	}
 }
 
@@ -116,8 +124,7 @@ void TextBox2D_Remove(TextBox* e) {
 	for(it = labels->head->next; it != labels->head; it = it->next) {
 		TextBox* val = (TextBox*) it->item;
 		if(e == val) {
-			TextBox_delete(val);
-			Node_remove(it);
+			e->active = false;
 			return;
 		}
 	}
@@ -129,8 +136,7 @@ void TextBox3D_Remove(TextBox* e) {
 	for(it = boxes->head->next; it != boxes->head;it = it->next) {
 		TextBox* val = (TextBox*) it->item;
 		if(e == val) {
-			TextBox_delete(val);
-			Node_remove(it);
+			e->active = false;
 			return;
 		}
 	}

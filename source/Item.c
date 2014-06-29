@@ -22,16 +22,11 @@ Item* Item_new(double x, double y, double z, void (*action)(Item*)) {
 	Vector_setVector(this->size, Item_DEF_SIZE);
 
 	this->action = action;
-	this->label = TextBox3D_new(this->pos[0], this->pos[1], this->pos[2], "!");
-
-	TextBox3D_Register(this->label);
 
 	return this;
 }
 
 void Item_update(Item* this, double dt) {
-	Vector_setVector(this->label->pos, this->pos);
-
 	if(collides(this->pos, this->size, Ship_MainShip->pos, Ship_MainShip->size)) {
 		this->action(this);
 		Item_Remove(this);
@@ -44,7 +39,6 @@ void Item_draw(Item* this) {
 }
 
 void Item_delete(Item* this) {
-	TextBox3D_Remove(this->label);
 	free(this);
 }
 
@@ -54,6 +48,14 @@ void Item_Update(double dt) {
 	for(it = items->head->next; it!=items->head; it = it->next) {
 		Item* val = (Item*) it->item;
 		Item_update(val, dt);
+	}
+
+	for(it=items->head->next;it!=items->head;it=it->next) {
+		Item* val = (Item*) it->item;
+		if(!val->active) {
+			Item_delete(val);
+			it = Node_remove(it)->prev;
+		}
 	}
 }
 
@@ -67,6 +69,7 @@ void Item_Draw(void) {
 }
 
 void Item_Register(Item* e) {
+	e->active = true;
 	List_pushBack(items, e);
 }
 
@@ -76,9 +79,7 @@ void Item_Remove(Item* e) {
 	for(it = items->head->next; it != items->head; it = it->next) {
 		Item* val = (Item*) it->item;
 		if(e == val) {
-			Item_delete(val);
-			it->item = NULL;
-			Node_remove(it);
+			e->active = false;
 			return;
 		}
 	}

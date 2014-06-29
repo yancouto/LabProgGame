@@ -2,15 +2,15 @@
 #define ITEM_H
 
 #include "Vector.h"
-#include "TextBox.h"
+#include "Util.h"
 
 typedef struct __item_struct Item;
 struct __item_struct {
 	Vector pos;
 	Vector vel;
 	Vector size;
+	bool active;
 	void (*action)(Item*);
-	TextBox* label;
 };
 
 extern Vector Item_DEF_SIZE;

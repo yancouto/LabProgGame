@@ -1,16 +1,13 @@
 Muito Importante:
-- (Texto na tela com informações)
-- Texto no pause, e liberar o mouse quando pausado
+- Melhorar os 'gráficos' [WIP]
+- Melhorar a camera (a atual fica muito ruim com os novos gráficos)
+- Arrumar as luzes (tudo fica feio sem isso D:)
+- Implementar Score
+- Balancear número de inimigos/velocidade do tiro/fire rate/distância pra atirar/dano
 
 Menos Importante:
 - Calcular a direção que o inimigo tem que atirar para acertar a nave. (E tb tem que ter erro)
-- Melhor geração das seções (inimigos não colidem) [DONE]
 - Inimigos de tipos diferentes
-- Melhorar os 'gráficos' (As vezes não da nem pra saber se algo está 
-	na frente ou atrás de outra coisa, se aproximando ou se afastando)
-	- Nova nave, sem mais linhas...
-	- Fundo
-	- Texto na tela com informações
 - Fazer os inimigos só carregarem o tiro quando estiverem perto da nave (ou não)
 - Fazer número de tiros limitados
 Power-ups:
@@ -19,6 +16,5 @@ Power-ups:
 	- Homing missiles
 	- Mais tiros
 	- etc.
-- Segurar para atirar [DONE]
 - Linha saindo da nave mostrando a direção do tiro (ou algo similar pra ajudar)
 - Melhorar o movimento para os lados (mais smooth, com aceleracao e tals)

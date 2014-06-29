@@ -11,5 +11,5 @@ void Player_DisplayInfo() {
 	sprintf(temp, "Scores: %d", Player_Score);
 	Graphics_Print(10, 10, temp);
 	sprintf(temp, "Lives: %d", Player_Lives);
-	Graphics_Print(10, 25, temp);
+	Graphics_Print(10, 30, temp);
 }

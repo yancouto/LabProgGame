@@ -18,8 +18,9 @@ static bool initGL() {
 	glClearColor(0.f, 0.f, 0.f, 1.f);
 	glClearDepth(1.f);
 	glEnable(GL_DEPTH_TEST);
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	glDepthFunc(GL_LEQUAL);
-	glShadeModel(GL_SMOOTH);
 	glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
 
 	err = glGetError();
@@ -73,6 +74,8 @@ static void render() {
 	
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
+	glEnable(GL_NORMALIZE);
+	glShadeModel(GL_SMOOTH);
 
 	drawBackground();
 	glClear(GL_DEPTH_BUFFER_BIT);
@@ -85,7 +88,6 @@ static void render() {
 	Ship_Draw();
 	TextBox3D_Draw();
 	Item_Draw();
-	Player_DisplayInfo();
 
 	/* Arrumando a camera e a posicao para imprimir texto em 2D */
 	glMatrixMode(GL_PROJECTION);
@@ -95,6 +97,7 @@ static void render() {
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 
+	Player_DisplayInfo();
 	TextBox2D_Draw();
 
 	glutSwapBuffers();
@@ -196,8 +199,48 @@ static void Graphics_DrawAim(Vector p, Vector s) {
 
 void Graphics_DrawShip() {
 	Ship *s = Ship_MainShip;
+	glPushMatrix();
+	glEnable(GL_LIGHTING);
+	glEnable(GL_COLOR_MATERIAL);
+
+	glTranslatef(s->pos[0] + s->size[0]/2, s->pos[1] + s->size[1]/2, 
+		-s->pos[2] - s->size[2]/2);
+
+/*{ TODO - FAZER ISSO FUNCIONAR
+	GLfloat lightColor[]  = {1.f, 1.f, 1.f, 1.f};
+	GLfloat light_position[3];
+	GLfloat mat_specular[] = { 1.0, 1.0, 1.0, 1.0 };
+	GLfloat mat_shininess[] = { 500.0 };
+
+	glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, mat_specular);
+	glMaterialfv(GL_FRONT_AND_BACK, GL_SHININESS, mat_shininess);
+	glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, mat_specular);
+	light_position[0] = s->pos[0] + s->size[0]/2;
+	light_position[1] =  s->pos[1] + s->size[1]*1.2;
+	light_position[2] = -s->pos[2] - s->size[2]/2;
+	glLightfv(GL_LIGHT0, GL_POSITION, light_position);
+	glEnable(GL_LIGHT0);
+}*/
+
+	glScalef(10.f, 10.f, 10.f);
+	{
+		#include "../resources/spaceship.inc"
+	}
+	glDisable(GL_LIGHT0);
+	glDisable(GL_COLOR_MATERIAL);
+	glDisable(GL_LIGHTING);
+	glPopMatrix();
 	Graphics_DrawBlock(s->pos, s->size);
 	Graphics_DrawAim(s->pos, s->size);
+}
+
+void Graphics_DrawBullet(Vector pos) {
+	glPushMatrix();
+	glTranslatef(pos[0], pos[1], -pos[2]);
+	{
+		#include "../resources/bullet.inc"
+	}
+	glPopMatrix();
 }
 
 /* Função em teste pra dar print em textos no jogo */
@@ -270,6 +313,9 @@ static bool loadBackground(char *f) {
 	              GL_RGB, GL_UNSIGNED_BYTE, loc);
 
 	printf("(%d x %d)\n",width, height);
+
+
+
 	return 1;
 }
 

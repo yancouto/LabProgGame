@@ -112,6 +112,6 @@ void Bullet_Draw() {
 	for(n = bullets->head->next; n != bullets->head; n = n->next) {
 		Bullet *b = (Bullet*) n->item;
 		Graphics_SetColor(b->color[0], b->color[1], b->color[2]);
-		Graphics_DrawBlock(b->pos, size);
+		Graphics_DrawBullet(b->pos);
 	}
 }

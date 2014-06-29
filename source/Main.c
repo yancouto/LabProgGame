@@ -10,6 +10,7 @@
 #include "Vector.h"
 #include "TextBox.h"
 #include "Item.h"
+#include "UserInterface.h"
 #include <stdio.h>
 #include <time.h>
 #include <stdlib.h>
@@ -18,8 +19,6 @@
 #define _WIN32_WINNT 0x0500
 #include <windows.h>
 #endif
-
-int Player_Lost;
 
 static void init() {
 	srand(time(NULL));
@@ -36,6 +35,7 @@ static void init() {
 	Item_Init();
 	Scene_Init(Vector_BOUNDS[0], Vector_BOUNDS[1], 100, 12);
 	Player_Init();
+	UserInterface_Init();
 }
 
 #ifdef _WIN32
@@ -69,9 +69,10 @@ void Main_Step() {
 	Enemy_Update(STEP);
 	Item_Update(STEP);
 	Controller_Update(STEP);
+	UserInterface_Update(STEP);
 }
 
 void Main_LoseGame() {
 	printf("\n\nVoce perdeu o jogo!\n");
-	Player_Lost = 1;
+	Player_Lost = true;
 }

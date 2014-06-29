@@ -1,3 +1,6 @@
+#include <stdio.h>
+#include <string.h>
+#include <GL/freeglut.h>
 #include "Graphics.h"
 #include "Enemy.h"
 #include "Ship.h"
@@ -6,11 +9,7 @@
 #include "TextBox.h"
 #include "Item.h"
 #include "Player.h"
-#include <GL/freeglut.h>
-#include <stdio.h>
-#include <string.h>
-
-int Player_Lost;
+#include "UserInterface.h"
 
 static bool loadBackground(char *f);
 
@@ -89,6 +88,8 @@ static void render() {
 	Ship_Draw();
 	TextBox3D_Draw();
 	Item_Draw();
+	UserInterface_Draw();
+	
 
 	/* Arrumando a camera e a posicao para imprimir texto em 2D */
 	glMatrixMode(GL_PROJECTION);
@@ -98,7 +99,6 @@ static void render() {
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 
-	Player_DisplayInfo();
 	TextBox2D_Draw();
 
 	glutSwapBuffers();
@@ -280,22 +280,27 @@ void Graphics_DrawBullet(Vector pos) {
 void Graphics_Print(double x, double y, char *string) {
 	glPushMatrix();
 	glColor3f(1.f, 1.f, 1.f);
+	Graphics_RawPrint(x, y, string);
+	glPopMatrix();
+}
+
+void Graphics_RawPrint(double x, double y, char* string) {
 	glRasterPos2f(SCREEN_WIDTH - x, 
 		SCREEN_HEIGHT - glutBitmapHeight(GLUT_BITMAP_TIMES_ROMAN_24) - y + 9);
-
 	glutBitmapString(GLUT_BITMAP_TIMES_ROMAN_24, (const unsigned char*) string);
-	glPopMatrix();
 }
 
 void Graphics_Print3D(double x, double y, double z, char* str) {
 	glPushMatrix();
 	glColor3f(1.f, 1.f, 1.f);
-
-	glTranslatef(x, y, -z);
 	glScalef(.1f, .1f, .1f);
-	glutStrokeString(GLUT_STROKE_ROMAN, (const unsigned char*) str);
-
+	Graphics_RawPrint3D(x, y, z, str);
 	glPopMatrix();
+}
+
+void Graphics_RawPrint3D(double x, double y, double z, char* str) {
+	glTranslatef(x, y, -z);
+	glutStrokeString(GLUT_STROKE_ROMAN, (const unsigned char*) str);
 }
 
 static bool loadBackground(char *f) {
@@ -374,4 +379,24 @@ void Graphics_SetKeyDownCallback(void (*func)(uchar key, int x, int y)) {
 
 void Graphics_SetKeyUpCallback(void (*func)(uchar key, int x, int y)) {
 	glutKeyboardUpFunc(func);
+}
+
+void Graphics_Scale(double x, double y, double z) {
+	glScaled(x, y, z);
+}
+
+void Graphics_Translate(double x, double y, double z) {
+	glTranslated(x, y, z);
+}
+
+void Graphics_Rotate(double angle, double x, double y, double z) {
+	glRotated(angle, x, y, z);
+}
+
+void Graphics_Push(void) {
+	glPushMatrix();
+}
+
+void Graphics_Pop(void) {
+	glPopMatrix();
 }

@@ -65,7 +65,7 @@ void Ship_Update(double dt) {
 			else this->pos[0] = Vector_BOUNDS[0] - this->size[0];
 		}
 
-		this->vel[2] = Ship_DEF_SPEED * dt;
+		this->vel[2] = this->v * dt;
 		Vector_addVector(this->pos, this->vel);
 
 		this->vel[0] = this->vel[1] = 0;

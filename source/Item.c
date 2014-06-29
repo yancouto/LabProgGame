@@ -11,6 +11,7 @@
 
 static List* items;
 static double mega;
+static double speed;
 
 Vector Item_DEF_SIZE = {10, 10, 10};
 
@@ -55,6 +56,13 @@ void Item_Update(double dt) {
 	else {
 		mega = 0;
 		Controller_shootDelay = .3;
+	}
+
+	if(speed > 0) 
+		speed -= dt;
+	else {
+		speed = 0;
+		Ship_MainShip->v = 200;
 	}
 	for(it = items->head->next; it!=items->head; it = it->next) {
 		Item* val = (Item*) it->item;
@@ -119,7 +127,10 @@ void Item_MEGA(Item* this) {
 }
 
 void Item_BOOSTER(Item* this) {
-	puts("FTL drives available, Major Gubi! Take me now at the speed of light!");
+	puts("FTL drives available, Major Gubi! Go now at the speed of light!");
+	Ship_MainShip->v = 1000;
+	speed = 3.0;
+	Player_Immune = 30;
 }
 
 void Item_LIVES(Item* this) {

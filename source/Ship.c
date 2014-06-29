@@ -26,9 +26,9 @@ void Ship_Init() {
 	s->health = Ship_DEF_HEALTH;
 	s->v = Ship_DEF_SPEED;
 
-	s->size[0] = 25;
+	s->size[0] = 20;
 	s->size[1] = 15;
-	s->size[2] = 80;
+	s->size[2] = 60;
 }
 
 void Ship_Update(double dt) {

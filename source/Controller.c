@@ -152,9 +152,9 @@ void Controller_Update(double dt) {
 		if (lmbDown == true) {
 			shootDelay = 0;
 			
-			Vector_setVector(s->gunDir, s->pos);
-			Vector_add(s->gunDir, s->size[0] / 2 - Camera_GetX(), s->size[1] / 2 - Camera_GetY(),
-	 		 -10 - Camera_GetZ());
+			Vector_set(s->gunDir, Camera_GetToX(), Camera_GetToY(), Camera_GetToZ());
+			Vector_add(s->gunDir, -s->pos[0] - s->size[0]/2, -s->pos[1] - s->size[1]/2,
+			 -s->pos[2] - s->size[2]);
 			Vector_normalize(s->gunDir);
 			
 			Ship_Shoot();

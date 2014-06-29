@@ -37,17 +37,16 @@ static void handleCamera() {
 	gluPerspective(60.0f, (double) SCREEN_WIDTH / SCREEN_HEIGHT, 0.1f, 1700.0f);
 	
 	gluLookAt(Camera_GetX(), Camera_GetY(), -Camera_GetZ(), 
-		s->pos[0] + s->size[0] / 2, s->pos[1] + s->size[1] / 2,
-		-s->pos[2] - s->size[2] / 2, 0, 1, 0);
+		Camera_GetToX(), Camera_GetToY(), -Camera_GetToZ(), 0, 1, 0);
 }
 
 static void drawBackground() {
 	Ship *sh = Ship_MainShip;
 	Vector p;
 	double s[] = {SCREEN_WIDTH, SCREEN_HEIGHT};
-	p[0] = sh->pos[0] - SCREEN_WIDTH/2;
-	p[1] = sh->pos[1] - SCREEN_HEIGHT/2;
-	p[2] = sh->pos[2] + 175;
+	p[0] = Camera_GetX() - SCREEN_WIDTH/2;
+	p[1] = Camera_GetY() - SCREEN_HEIGHT/2;
+	p[2] = Camera_GetZ() + 175;
 	glEnable(GL_TEXTURE_2D);
 	glBegin(GL_QUADS);
 		glTexCoord2f(0.f, 1.f);
@@ -189,12 +188,35 @@ void Graphics_DrawBlock(Vector p, Vector s) {
 	glEnd();
 }
 
-/* Desenha a mira, que atualmente é sempre um ponto no centro da nave */
-static void Graphics_DrawAim(Vector p, Vector s) {
+/* Desenha a mira */
+static void Graphics_DrawAim() {
+	const int s1 = 3, s2 = 1;
 	Graphics_SetColor(1, 23, 20);
-	glBegin(GL_POINTS);
-		glVertex3f(p[0] + s[0]/2, p[1] + s[1]/2, -p[2] - s[2]/2);
+	glPushMatrix();
+	glTranslatef(Camera_GetToX(), Camera_GetToY(), -Camera_GetToZ());
+	glBegin(GL_LINE_STRIP);
+		glVertex3f(-s1, s1, s1);
+		glVertex3f(s1, s1, s1);
+		glVertex3f(s1, -s1, s1);
+		glVertex3f(-s1, -s1, s1);
+		glVertex3f(-s1, s1, s1);
+		glVertex3f(-s2, s2, -s1);
+		glVertex3f(s2, s2, -s1);
+		glVertex3f(s2, -s2, -s1);
+		glVertex3f(-s2, -s2, -s1);
+		glVertex3f(-s2, s2, -s1);
 	glEnd();
+	glBegin(GL_LINES);
+		glVertex3f(s1, s1, s1);
+		glVertex3f(s2, s2, -s1);
+
+		glVertex3f(s1, -s1, s1);
+		glVertex3f(s2, -s2, -s1);
+
+		glVertex3f(-s1, -s1, s1);
+		glVertex3f(-s2, -s2, -s1);
+	glEnd();
+	glPopMatrix();
 }
 
 void Graphics_DrawShip() {
@@ -231,7 +253,7 @@ void Graphics_DrawShip() {
 	glDisable(GL_LIGHTING);
 	glPopMatrix();
 	Graphics_DrawBlock(s->pos, s->size);
-	Graphics_DrawAim(s->pos, s->size);
+	Graphics_DrawAim();
 }
 
 void Graphics_DrawBullet(Vector pos) {

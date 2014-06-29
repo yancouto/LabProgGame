@@ -51,7 +51,7 @@ void Item_delete(Item* this) {
 void Item_Update(double dt) {
 	Node* it;
 
-	for(it=items->head->next;it!=items->head;it=it->next) {
+	for(it = items->head->next; it!=items->head; it = it->next) {
 		Item* val = (Item*) it->item;
 		Item_update(val, dt);
 	}
@@ -73,12 +73,12 @@ void Item_Register(Item* e) {
 void Item_Remove(Item* e) {
 	Node* it;
 
-	for(it = items->head->next; it != items->head;it = it->next) {
+	for(it = items->head->next; it != items->head; it = it->next) {
 		Item* val = (Item*) it->item;
 		if(e == val) {
 			Item_delete(val);
 			it->item = NULL;
-			it = Node_remove(it)->prev;
+			Node_remove(it);
 			return;
 		}
 	}

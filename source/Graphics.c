@@ -10,6 +10,8 @@
 #include <stdio.h>
 #include <string.h>
 
+static bool loadBackground(char *f);
+
 static bool initGL() {
 	GLenum err;
 
@@ -38,10 +40,33 @@ static void handleCamera() {
 		-s->pos[2] - s->size[2] / 2, 0, 1, 0);
 }
 
+static void drawBackground() {
+	glMatrixMode(GL_MODELVIEW);
+	glLoadIdentity();
+	glEnable(GL_TEXTURE_2D);
+	glBegin(GL_QUADS);
+		glTexCoord2f(0.f, 1.f);
+		glVertex2f(0.f, 0.f);
+
+		glTexCoord2f(1.f, 1.f);
+		glVertex2f(SCREEN_WIDTH, 0.f);
+
+		glTexCoord2f(1.f, 0.f);
+		glVertex2f(SCREEN_WIDTH, SCREEN_HEIGHT);
+
+		glTexCoord2f(0.f, 0.f);
+		glVertex2f(0.f, SCREEN_HEIGHT);
+	glEnd();
+	glDisable(GL_TEXTURE_2D);
+}
+
 static void render() {
 	Vector worldBounds = {0, 0, 0};
 	worldBounds[2] += Ship_MainShip->pos[2];
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	glClear(GL_COLOR_BUFFER_BIT);
+	drawBackground();
+	glClear(GL_DEPTH_BUFFER_BIT);
+
 	handleCamera();
 	
 	glMatrixMode(GL_MODELVIEW);
@@ -80,6 +105,7 @@ bool Graphics_Init(int *argN, char *args[]) {
 	glutSetCursor(GLUT_CURSOR_NONE);
 
 	if(!initGL()) return false;
+	loadBackground("../resources/background.ppm");
 
 	return true;
 }
@@ -189,6 +215,57 @@ void Graphics_Print3D(double x, double y, double z, char* str) {
 	glutStrokeString(GLUT_STROKE_ROMAN, (const unsigned char*) str);
 
 	glPopMatrix();
+}
+
+static bool loadBackground(char *f) {
+	GLubyte *loc;
+
+	char l[1024];
+	int  width, height;
+
+	FILE *arq = fopen(f, "rb");
+	if (arq == NULL) return false;
+
+	fgets(l, 1024, arq);
+	if (l[0] != 'P' || l[1] != '6') {
+		fputs("Erro ao carregar a textura\n", stderr);
+		fclose(arq);
+		return 0;
+	}
+
+	{
+		int c;
+		while ((c = fgetc(arq)) == '#')
+			fgets(l, 1024, arq);
+		ungetc(c, arq);
+	}
+
+	if (fscanf(arq, "%d %d %*d\n", &width, &height) != 2) {
+		fputs("Erro ao carregar a textura\n", stderr);
+		fclose(arq);
+		return 0;
+	}
+
+	/* Setup RGB image for the texture. */
+	loc = (GLubyte*) malloc(width * height * 3);
+	if (loc == NULL) {
+		fputs("Erro ao carregar a textura\n", stderr);
+		fclose(arq);
+		return 0;
+	}
+	fread(loc, sizeof(GLubyte), width * height * 3, arq);
+	fclose(arq);
+
+	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
+
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER,
+	              GL_LINEAR_MIPMAP_LINEAR);
+
+	gluBuild2DMipmaps(GL_TEXTURE_2D, 3, width, height,
+	              GL_RGB, GL_UNSIGNED_BYTE, loc);
+
+	printf("(%d x %d)\n",width, height);
+	return 1;
 }
 
 void Graphics_ChangeMousePosition(int x, int y) {

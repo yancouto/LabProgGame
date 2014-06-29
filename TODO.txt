@@ -1,5 +1,6 @@
 Muito Importante:
 - (Texto na tela com informações)
+- Texto no pause, e liberar o mouse quando pausado
 
 Menos Importante:
 - Calcular a direção que o inimigo tem que atirar para acertar a nave. (E tb tem que ter erro)

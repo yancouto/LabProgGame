@@ -113,11 +113,11 @@ void TextBox3D_Register(TextBox* e) {
 void TextBox2D_Remove(TextBox* e) {
 	Node* it;
 
-	for(it = labels->head->next; it != labels->head;it = it->next) {
+	for(it = labels->head->next; it != labels->head; it = it->next) {
 		TextBox* val = (TextBox*) it->item;
 		if(e == val) {
 			TextBox_delete(val);
-			it = Node_remove(it)->prev;
+			Node_remove(it);
 			return;
 		}
 	}
@@ -130,7 +130,7 @@ void TextBox3D_Remove(TextBox* e) {
 		TextBox* val = (TextBox*) it->item;
 		if(e == val) {
 			TextBox_delete(val);
-			it = Node_remove(it)->prev;
+			Node_remove(it);
 			return;
 		}
 	}

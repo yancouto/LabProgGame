@@ -13,9 +13,8 @@
 #include <GL/glut.h>
 
 bool Controller_keyPressed[256];
-bool lmbdown; /* variavel booleana que diz de o botao esquerdo do mouse esta pressionado */
-double ts;
-bool pause;
+static bool lmbDown; /* variavel booleana que diz de o botao esquerdo do mouse esta pressionado */
+static bool paused;
 
 static void processStep() {
 	unsigned n;
@@ -94,9 +93,9 @@ static void mouseClick(int but, int state, int x, int y) {
 static void mouseHold(int but, int state, int x, int y) {
 	if (but == GLUT_LEFT_BUTTON) {
 		if (state == GLUT_DOWN)
-			lmbdown = true;
+			lmbDown = true;
 		else
-			lmbdown = false;
+			lmbDown = false;
 	}
 }
 
@@ -108,18 +107,24 @@ static void keyCliked(uchar key, int x, int y) {
 static void keyReleased(uchar key, int x, int y) {
 	Controller_keyPressed[key] = false;
 
-	if(key == 'q') exit(0);
-	if(key == 'p') pause = !pause;
+	switch(key) {
+		case 'q':
+			exit(0);
+			break;
+		case 'p':
+		case 27: /* ESC */
+			paused = !paused;
+			break;
+	}
 }
 
 bool Controller_isPaused() {
-	return pause;
+	return paused;
 }
 
 void Controller_Init() {
-	lmbdown = false;
-	ts = 0.;
-	pause = false;
+	lmbDown = false;
+	paused = false;
 	memset(Controller_keyPressed, 0, sizeof(Controller_keyPressed));
 	Graphics_SetMouseClickCallback(mouseClick);
 	Graphics_SetMouseClickCallback(mouseHold);
@@ -128,12 +133,12 @@ void Controller_Init() {
 }
 
 void Controller_Update(double dt) {
-	/* timer tosco para fase de testes */
+	static double shootDelay = .3;
 	Ship *s = Ship_MainShip;
-	ts += dt;
-	if(ts >= .3) {
-		if (lmbdown == true) {
-			ts = 0;              /* Jeito não tão bom de resetar já que perde um pouco do que tinha antes, mas garante que voce atira um tiro quando vai clicar (sem delay)*/     
+	shootDelay += dt;
+	if(shootDelay >= .3) {
+		if (lmbDown == true) {
+			shootDelay = 0;
 			
 			Vector_setVector(s->gunDir, s->pos);
 			Vector_add(s->gunDir, s->size[0] / 2 - Camera_GetX(), s->size[1] / 2 - Camera_GetY(),

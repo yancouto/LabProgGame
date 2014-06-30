@@ -215,5 +215,37 @@ Can you...
                          .
                          .
                          .
-	\end{verbatim}		
+	\end{verbatim}
+  \subsection{Decisões Tomadas}
+        Já tinhamos avançado bastante na fase na anterior, já que tinhamos uma base gráfica e a maior parte
+    dos elementos do jogo já prontas. Novamente começamos a terceira parte tirando alguns bugs e melhorando 
+    partes do código para melhor leitura e entendimento, dessa vez adicionando os elementos finais que montam
+    nosso jogo. \\
+    
+        Para melhor polir o jogo, trocamos todos os modelos simples de "caixa" para modelos feitos no blender, que
+    apesar de um pouco toscos, dão um visual mais característico ao projeto (apesar dos prismas na parte anterior
+    terem mais cara de um jogo "clássico").\\
+    
+        A parte de impressão ficou mais clara, e depois de vários desafios de fazer um texto imprimir na tela do jogo, 
+    conseguimos tal feito. Informações essências para o jogador como "continues" restantes, vida atual e pontuação 
+    foram adicionadas, assim como um texto para a tela de pause e de "fim de jogo".\\
+        
+        Junto dessas implementações melhoramos a câmera do jogo para uma que melhor impactava o gameplay do jogo. Foram feitos
+    vários balanceamentos até encontrar uma que fosse razoavelmente melhor em comparação à anterior. A câmera fica 
+    centralizada com a nave, enquanto o mouse movimenta a mira e a movimenta.\\
+    
+    \subsection{Problemas}
+        Tivemos um grande problema \\
+        
+        Para imprimir texto na tela e ter uma interface adequada para o usuário, também tivemos várias complicações.
+        Ainda não conseguimos colocar um HUD mostrando a vida atual, pontuação, etc. Mas é uma de nossas prioridades.\\
+        
+        Prever para onde os inimigos deveriam atirar também não foi fácil. Não nos demos bem com o sistema de         coordernadas do OpenGL, pois estavamos mais acostumados em mexer com 2D, a velocidade da nave deixa mais        dificil, e a gravidade complica tudo ainda mais.
+    
+    
+    \subsection{Próxima Parte}
+    Para a terceira parte do projeto, planejamos polir mais o jogo. Deixar os gráficos melhores (os cubos
+    atualmente dificultam a percepção de distância e orientação), colocar mais conteúdo (power ups, mais          inimigos, mais tiros, e o que mais vier a nossa cabeça), arrumar bugs e deixar o jogo mais fluído.\\
+    
+    Também planejamos comentar mais o código que já existe e o código que ainda vamos criar.		
 \end{document}

@@ -94,6 +94,9 @@ void Ship_Shoot() {
 }
 
 void Ship_Draw() {
-	Graphics_SetColor(.327,.755,0);
+	if(Player_Immune > 0)
+		Graphics_SetColor(.727,.755,.670);
+	else
+		Graphics_SetColor(.327,.755,0);
 	Graphics_DrawShip();
 }

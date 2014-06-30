@@ -19,6 +19,8 @@ typedef struct {
 #define Bullet_DEF_SPEED 1800
 #define Bullet_DEF_GRAVITY 50
 
+extern Vector Bullet_DEF_SIZE;
+
 /* Função que inicializa a lista de tiros */
 void Bullet_Init(void);
 

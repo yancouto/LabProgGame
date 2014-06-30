@@ -12,6 +12,8 @@
 /* #define Bullet_DEF_GRAVITY 50 */
 static List *bullets;
 
+Vector Bullet_DEF_SIZE = {5, 5, 5};
+
 void Bullet_Init() {
 	bullets = List_new();
 }
@@ -38,29 +40,28 @@ void Bullet_delete(Bullet* bullet) {
 
 void Bullet_update(Bullet *this, double dt) {
 	Ship *s = Ship_MainShip;
-	if(!Player_Lost) {
-		this->v[1] -= Bullet_DEF_GRAVITY * dt;  /* Gravidade, tweekar o valor */
-		this->pos[0] += this->v[0] * dt;
-		this->pos[1] += this->v[1] * dt;
-		this->pos[2] += this->v[2] * dt;
+	if(Player_Lost) return;
+	this->v[1] -= Bullet_DEF_GRAVITY * dt;  /* Gravidade, tweekar o valor */
+	this->pos[0] += this->v[0] * dt;
+	this->pos[1] += this->v[1] * dt;
+	this->pos[2] += this->v[2] * dt;
 
-		if(this->owner != s && collidesPoint(s->pos, s->size, this->pos) && Player_Immune == 0) {
-			printf("Tiro %u atingiu a nave.\n", this->id);
-			s->health -= 15;
+	if(this->owner != s && Player_Immune == 0 && collides(s->pos, s->size, this->pos, Bullet_DEF_SIZE)) {
+		printf("Tiro %u atingiu a nave.\n", this->id);
+		s->health -= 15;
+		this->health = 0;
+	} else {
+		Enemy *e = Enemy_BulletCollide(this);
+		if(e && e != this->owner) {
+			printf("Tiro %u atingiu o inimigo %d.\n", this->id, e->id);
+			e->health -= 10;
 			this->health = 0;
-		} else {
-			Enemy *e = Enemy_BulletCollide(this);
-			if(e && e != this->owner) {
-				printf("Tiro %u atingiu o inimigo %d.\n", this->id, e->id);
-				e->health -= 10;
-				this->health = 0;
-				if(e->health <= 0 && this->owner == s) Player_Score += 25;
-			}
+			if(e->health <= 0 && this->owner == s) Player_Score += 25;
 		}
+	}
 
-		if(outOfBounds(this->pos)) {
-			this->health = 0;
-		}
+	if(outOfBounds(this->pos)) {
+		this->health = 0;
 	}
 }
 

@@ -81,13 +81,32 @@ static void render() {
 	glClear(GL_DEPTH_BUFFER_BIT);
 
 	Graphics_SetColor(1, 1, 1);
-	Graphics_DrawBlock(worldBounds, Vector_BOUNDS);
+	/*Graphics_DrawBlock(worldBounds, Vector_BOUNDS);*/
 
 	Enemy_Draw();
+
+	glEnable(GL_LIGHTING);
+	glColorMaterial ( GL_FRONT_AND_BACK, GL_AMBIENT ) ;
+	glEnable(GL_COLOR_MATERIAL);
+{
+	Ship *s = Ship_MainShip;
+	GLfloat light_position[3];
+	light_position[0] = s->pos[0] + s->size[0]/2;
+	light_position[1] =  s->pos[1] + s->size[1] + 10;
+	light_position[2] = -s->pos[2] - s->size[2]/2;
+	glEnable(GL_LIGHT0);
+	glLightfv(GL_LIGHT0, GL_POSITION, light_position);
+}
+
 	Bullet_Draw();
-	Ship_Draw();
-	TextBox3D_Draw();
 	Item_Draw();
+	Ship_Draw();
+	
+	glDisable(GL_LIGHT0);
+	glDisable(GL_COLOR_MATERIAL);
+	glDisable(GL_LIGHTING);
+
+	TextBox3D_Draw();
 	
 	/* Arrumando a camera e a posicao para imprimir texto em 2D */
 	glMatrixMode(GL_PROJECTION);
@@ -251,35 +270,17 @@ void Graphics_DrawShip() {
 	Ship *s = Ship_MainShip;
 	if(Player_Lost || ((int)Player_Immune % 2 == 1)) return;
 	glPushMatrix();
-	glEnable(GL_LIGHTING);
-	glEnable(GL_COLOR_MATERIAL);
+	
 
 	glTranslatef(s->pos[0] + s->size[0]/2, s->pos[1] + s->size[1]/2, 
 		-s->pos[2] - s->size[2]/2);
 
-/*{ TODO - FAZER ISSO FUNCIONAR
-	GLfloat lightColor[]  = {1.f, 1.f, 1.f, 1.f};
-	GLfloat light_position[3];
-	GLfloat mat_specular[] = { 1.0, 1.0, 1.0, 1.0 };
-	GLfloat mat_shininess[] = { 500.0 };
 
-	glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, mat_specular);
-	glMaterialfv(GL_FRONT_AND_BACK, GL_SHININESS, mat_shininess);
-	glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, mat_specular);
-	light_position[0] = s->pos[0] + s->size[0]/2;
-	light_position[1] =  s->pos[1] + s->size[1]*1.2;
-	light_position[2] = -s->pos[2] - s->size[2]/2;
-	glLightfv(GL_LIGHT0, GL_POSITION, light_position);
-	glEnable(GL_LIGHT0);
-}*/
 
 	glScalef(10.f, 10.f, 10.f);
 	{
 		#include "../resources/spaceship.inc"
 	}
-	glDisable(GL_LIGHT0);
-	glDisable(GL_COLOR_MATERIAL);
-	glDisable(GL_LIGHTING);
 	glPopMatrix();
 	Graphics_DrawBlock(s->pos, s->size);
 	Graphics_DrawAim();
@@ -288,6 +289,7 @@ void Graphics_DrawShip() {
 void Graphics_DrawBullet(Vector pos) {
 	glPushMatrix();
 	glTranslatef(pos[0], pos[1], -pos[2]);
+	glScalef(3., 3., 3.);
 	{
 		#include "../resources/bullet.inc"
 	}
@@ -374,7 +376,20 @@ static bool loadBackground(char *f) {
 
 	printf("(%d x %d)\n",width, height);
 
+{
+	GLfloat ambientLight[] = { 1, 1, 1, 1.0f };
+	GLfloat diffuseLight[] = { 1, 1, 1, 1.0f };
+	GLfloat specularLight[] = { 1, 1, 1, 1.0f };
+	GLfloat position[] = { 600.f, 600.f, 200.f, 1.0f };
 
+	glEnable(GL_LIGHTING);
+	glEnable(GL_LIGHT0);
+
+	glLightfv(GL_LIGHT0, GL_AMBIENT, ambientLight);
+	glLightfv(GL_LIGHT0, GL_DIFFUSE, diffuseLight);
+	glLightfv(GL_LIGHT0, GL_SPECULAR, specularLight);
+	glLightfv(GL_LIGHT0, GL_POSITION, position);
+}
 
 	return 1;
 }

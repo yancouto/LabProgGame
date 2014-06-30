@@ -28,8 +28,7 @@ bool collidesPoint(Vector v1, Vector d1, Vector v2) {
 }
 
 bool outOfBounds(Vector p) {
-	return p[0] < 0 || p[0] > Vector_BOUNDS[0] || p[1] < 0 || p[1] > Vector_BOUNDS[1] ||
-	p[2] < Ship_MainShip->pos[2] - 100 || p[2] > Ship_MainShip->pos[2] + Vector_BOUNDS[2];
+	return p[2] < Ship_MainShip->pos[2] - 100 || p[2] > Ship_MainShip->pos[2] + Vector_BOUNDS[2];
 }
 
 double random() {

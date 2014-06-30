@@ -77,7 +77,7 @@ Enemy *Enemy_BulletCollide(Bullet *b) {
 		if(b->pos[2] < s->pos[2] || b->pos[2] > s->pos[2] + s->size[2]) continue;
 		for(j = list->head->next; j != list->head; j = j->next) {
 			Enemy* e = (Enemy*) j->item;
-			if(collidesPoint(e->pos, Enemy_DEF_SIZE, b->pos)) return e;
+			if(collides(e->pos, Enemy_DEF_SIZE, b->pos, Bullet_DEF_SIZE)) return e;
 		}
 	}
 

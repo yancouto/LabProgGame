@@ -39,7 +39,7 @@ void Item_update(Item* this, double dt) {
 }
 
 void Item_draw(Item* this) {
-	Graphics_SetColor(.220,.20,.60);
+	Graphics_SetColor(.720,.720,.0);
 	Graphics_DrawItem(this->pos, Item_DEF_SIZE, this->action);
 }
 

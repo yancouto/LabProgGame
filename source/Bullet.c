@@ -12,7 +12,7 @@
 /* #define Bullet_DEF_GRAVITY 50 */
 static List *bullets;
 
-Vector Bullet_DEF_SIZE = {5, 5, 5};
+Vector Bullet_DEF_SIZE = {8, 8, 8};
 
 void Bullet_Init() {
 	bullets = List_new();
@@ -117,6 +117,6 @@ void Bullet_Draw() {
 	for(n = bullets->head->next; n != bullets->head; n = n->next) {
 		Bullet *b = (Bullet*) n->item;
 		Graphics_SetColor(b->color[0], b->color[1], b->color[2]);
-		Graphics_DrawBullet(b->pos);
+		Graphics_DrawBullet(b->pos, Bullet_DEF_SIZE);
 	}
 }

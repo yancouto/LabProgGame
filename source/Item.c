@@ -41,7 +41,6 @@ void Item_update(Item* this, double dt) {
 void Item_draw(Item* this) {
 	Graphics_SetColor(.220,.20,.60);
 	Graphics_DrawItem(this->pos, Item_DEF_SIZE, this->action);
-	Graphics_DrawBlock(this->pos, Item_DEF_SIZE);
 }
 
 void Item_delete(Item* this) {
@@ -139,5 +138,9 @@ void Item_LIVES(Item* this) {
 }
 
 __action_ptr Item_GetAction(void) {
-	return ACTIONS[randomInterval(0, sizeof(ACTIONS)/sizeof(*ACTIONS))];
+	double r = random();
+	if(r < .05) return Item_LIVES;
+	else if(r < .3) return Item_BOOSTER;
+	else if(r < .6) return Item_HEALTH;
+	else return Item_MEGA;
 }

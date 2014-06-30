@@ -296,14 +296,15 @@ void Graphics_DrawShip() {
 	Graphics_DrawAim();
 }
 
-void Graphics_DrawBullet(Vector pos) {
+void Graphics_DrawBullet(Vector pos, Vector s) {
 	glPushMatrix();
-	glTranslatef(pos[0], pos[1], -pos[2]);
-	glScalef(3., 3., 3.);
+	glTranslatef(pos[0] + s[0]/2, pos[1] + s[1]/2, -pos[2] - s[2]/2);
+	glScalef(6., 6., 6.);
 	{
 		#include "../resources/bullet.inc"
 	}
 	glPopMatrix();
+
 }
 
 /* Função em teste pra dar print em textos no jogo */

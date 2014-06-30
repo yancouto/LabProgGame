@@ -20,7 +20,7 @@ void Graphics_DrawBlock(Vector p, Vector s);
 /* Função que desenha a nave */
 void Graphics_DrawShip();
 
-void Graphics_DrawBullet(Vector pos);
+void Graphics_DrawBullet(Vector pos, Vector s);
 
 /* Função que define as cores na hora de desenhar com openGL */
 void Graphics_SetColor(double r, double g, double b);

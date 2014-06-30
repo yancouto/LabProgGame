@@ -40,7 +40,7 @@ void Item_update(Item* this, double dt) {
 }
 
 void Item_draw(Item* this) {
-	Graphics_SetColor(0, 0, 1);
+	Graphics_SetColor(.220,.20,.60);
 	Graphics_DrawItem(this->pos, Item_DEF_SIZE, this->action);
 	Graphics_DrawBlock(this->pos, Item_DEF_SIZE);
 }

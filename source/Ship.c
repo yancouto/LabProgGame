@@ -94,6 +94,6 @@ void Ship_Shoot() {
 }
 
 void Ship_Draw() {
-	Graphics_SetColor(1, 0, 0);
+	Graphics_SetColor(.327,.755,0);
 	Graphics_DrawShip();
 }

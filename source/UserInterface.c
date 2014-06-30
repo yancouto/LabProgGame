@@ -29,12 +29,12 @@ void UserInterface_Update(double dt) {
 void UserInterface_Draw(void) {
 	static char temp[80];
 
-	Graphics_Print(10, 10, lives);
-	Graphics_Print(10, 30, score);
-	Graphics_Print(10, 50, health);
+	Graphics_Print(670, 10, lives);
+	Graphics_Print(670, 40, health);
+	Graphics_Print(10, 10, score);
 
-	sprintf(temp, "delay: %f", Controller_shootDelay);
-	Graphics_Print(10, 70, temp);
+	/*sprintf(temp, "delay: %f", Controller_shootDelay);
+	Graphics_Print(10, 70, temp);*/
 
 	if(Controller_isPaused() || Player_Lost)
 		Graphics_Print(250, 240, message);

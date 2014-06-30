@@ -41,8 +41,8 @@ void Camera_Init() {
 }
 
 void Camera_Update(double dt) {
-	static const double varX = 80.;
-	static const double varY = 80.;
+	static const double varX = 70.;
+	static const double varY = 70.;
 
 	x = mouseXRelative * varX;
 	y = mouseYRelative * varY;

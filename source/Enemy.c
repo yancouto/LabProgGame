@@ -123,11 +123,7 @@ void Enemy_Print() {
 
 void Enemy_Draw() {
 	Node *i, *j;
-<<<<<<< HEAD
 	Graphics_SetColor(.720,.020,.060);
-=======
-	Graphics_SetColor(.2, .3, 0);
->>>>>>> origin/dev
 	for(i = Scene_MainScene->sections->head->next; i != Scene_MainScene->sections->head; i = i->next) {
 		List* list = ((Section*) i->item)->entities;
 		for(j = list->head->next; j != list->head; j = j->next) {

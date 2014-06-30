@@ -14,6 +14,8 @@ void Controller_Init();
 /* Retorna se o jogo está pausado ou não */
 bool Controller_isPaused();
 
+void Controller_Pause();
+
 /* Função que constantemente verifica estados de input do jogador */
 void Controller_Update(double dt);
 

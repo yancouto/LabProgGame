@@ -111,6 +111,12 @@ static void switchPause() {
 	paused = !paused;
 }
 
+void Controller_Pause() {
+	Graphics_ChangeMousePosition(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2);
+	glutSetCursor(GLUT_CURSOR_NONE);
+	paused = true;
+}
+
 static void keyCliked(uchar key, int x, int y) {
 	Controller_keyPressed[key] = true;
 }

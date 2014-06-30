@@ -8,7 +8,6 @@
 #include "Player.h"
 #include "Controller.h"
 
-
 static List* items;
 static double mega;
 static double speed;

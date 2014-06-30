@@ -9,21 +9,18 @@ static char lives[100];
 static char score[100];
 static char health[100];
 
-static char message[200];
+static char pause[200];
+static char death[200];
 
 void UserInterface_Init(void) {
-	UserInterface_Update(0);
+	sprintf(pause, "~~GAME IS PAUSED~~");
+	sprintf(death, "~~YOU WERE DEFEATED!~~\n\n            press 'q' to exit");
 }
 
 void UserInterface_Update(double dt) {
 	sprintf(score, "Score: %.1f", Player_Score);
 	sprintf(lives, "Lives: %d", Player_Lives);
-	sprintf(health, "Health: %d", Player_Health);
-
-	if(Controller_isPaused())
-		sprintf(message, "~~GAME IS PAUSED~~");
-	if(Player_Lost)
-		sprintf(message, "~~YOU WERE DEFEATED!~~\n\n            press 'q' to exit");
+	sprintf(health, "Health: %d", Player_Health);	
 }
 
 void UserInterface_Draw(void) {
@@ -36,6 +33,8 @@ void UserInterface_Draw(void) {
 	/*sprintf(temp, "delay: %f", Controller_shootDelay);
 	Graphics_Print(10, 70, temp);*/
 
-	if(Controller_isPaused() || Player_Lost)
-		Graphics_Print(250, 240, message);
+	if(Controller_isPaused())
+		Graphics_Print(250, 240, pause);
+	else if(Player_Lost)
+		Graphics_Print(250, 240, death);
 }

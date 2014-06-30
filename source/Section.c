@@ -28,14 +28,14 @@ Section* Section_new(double x, double y, double z,
 
 		List_pushBack(inst->entities, Enemy_new(
 			spawn[0], spawn[1], spawn[2], random(),
-			random() * 5 + 1, 800));
+			random() * 5 + 1, 400));
 
 		spacing += Enemy_DEF_SIZE[2] + length/enemies;
 	}
 
 	/* Items generation */
 
-	items = enemies/2;
+	items = random() < .2;
 
 	for(i=0, spacing=0; i<items; ++i) {
 		spawn[0] = randomInterval(x, x + width - Item_DEF_SIZE[0]);

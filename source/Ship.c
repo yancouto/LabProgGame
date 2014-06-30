@@ -6,6 +6,7 @@
 #include "Main.h"
 #include "Graphics.h"
 #include "Controller.h"
+#include "Item.h"
 #include <stdlib.h>
 #include <stdio.h>
 
@@ -94,6 +95,11 @@ void Ship_Shoot() {
 }
 
 void Ship_Draw() {
-	Graphics_SetColor(.327,.755,0);
+	if (Item_isBooster())
+		Graphics_SetColor(.320,.330,.660);
+	else if(Player_Immune > 0)
+		Graphics_SetColor(.727,.755,.670);
+	else
+		Graphics_SetColor(.327,.755,0);
 	Graphics_DrawShip();
 }

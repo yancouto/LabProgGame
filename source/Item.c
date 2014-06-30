@@ -11,12 +11,14 @@
 static List* items;
 static double mega;
 static double speed;
+static bool isbooster;
 
 Vector Item_DEF_SIZE = {10, 10, 10};
 
 void Item_Init(void) {
 	items = List_new(items);
 	mega = 0;
+	isbooster = false;
 }
 
 Item* Item_new(double x, double y, double z, void (*action)(Item*)) {
@@ -61,6 +63,7 @@ void Item_Update(double dt) {
 		speed -= dt;
 	else {
 		speed = 0;
+		isbooster = false;
 		Ship_MainShip->v = 400;
 	}
 	for(it = items->head->next; it!=items->head; it = it->next) {
@@ -103,6 +106,10 @@ void Item_Remove(Item* e) {
 	}
 }
 
+bool Item_isBooster(){
+	return isbooster;
+}
+
 void Item_Clear() {
 	List_clear(items);
 }
@@ -129,6 +136,7 @@ void Item_BOOSTER(Item* this) {
 	puts("FTL drives available, Major Gubi! Go now at the speed of light!");
 	Ship_MainShip->v = 1000;
 	speed = 2.0;
+	isbooster = true;
 	Player_Immune = 20;
 }
 

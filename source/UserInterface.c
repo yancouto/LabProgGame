@@ -4,6 +4,7 @@
 #include "Ship.h"
 #include "Camera.h"
 #include "Controller.h"
+#include "Item.h"
 
 static char lives[100];
 static char score[100];
@@ -29,9 +30,6 @@ void UserInterface_Draw(void) {
 	Graphics_Print(670, 10, lives);
 	Graphics_Print(670, 40, health);
 	Graphics_Print(10, 10, score);
-
-	/*sprintf(temp, "delay: %f", Controller_shootDelay);
-	Graphics_Print(10, 70, temp);*/
 
 	if(Controller_isPaused())
 		Graphics_Print(250, 240, pause);

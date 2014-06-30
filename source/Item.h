@@ -35,6 +35,8 @@ void Item_Remove(Item*);
 
 void Item_Clear(void);
 
+bool Item_isBooster();
+
 /********************* Item "action" functions *********************/
 
 void Item_HEALTH(Item*);

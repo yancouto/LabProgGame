@@ -68,6 +68,7 @@ void Ship_Update(double dt) {
 
 		this->vel[2] = this->v * dt;
 		Vector_addVector(this->pos, this->vel);
+		Player_Distance += this->vel[2];
 
 		this->vel[0] = this->vel[1] = 0;
 

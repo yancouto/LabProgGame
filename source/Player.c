@@ -10,32 +10,10 @@ int Player_Lives;
 bool Player_Lost;
 int Player_Health;
 double Player_Immune;
-
-
-void Player_DisplayInfo() {
-	static char temp[80];
-	sprintf(temp, "Score: %.1f", Player_Score);
-	Graphics_Print(10, 10, temp);
-	sprintf(temp, "Lives: %d", Player_Lives);
-	Graphics_Print(670, 10, temp);
-	sprintf(temp, "Health: %d", Player_Health);
-	Graphics_Print(670, 40, temp);
-	/* 
-	sprintf(temp, "delay: %f", Controller_shootDelay);
-	Graphics_Print(10, 70, temp);
-	
-	Print para testar variaveis */
-	if(Player_Lost){
-		sprintf(temp, "~~YOU WERE DEFEATED!~~\n\n            press 'q' to exit");
-		Graphics_Print(250, 240, temp);
-	}
-	if(Controller_isPaused()) {
-		sprintf(temp, "~~GAME IS PAUSED~~");
-		Graphics_Print(250, 240, temp);
-	}
-}
+double Player_Distance;
 
 void Player_Init() {
 	Player_Lost = false;
 	Player_Immune = 0;
+	Player_Distance = 0;
 }

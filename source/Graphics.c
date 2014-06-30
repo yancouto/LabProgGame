@@ -88,9 +88,7 @@ static void render() {
 	Ship_Draw();
 	TextBox3D_Draw();
 	Item_Draw();
-	UserInterface_Draw();
 	
-
 	/* Arrumando a camera e a posicao para imprimir texto em 2D */
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
@@ -100,6 +98,7 @@ static void render() {
 	glLoadIdentity();
 
 	TextBox2D_Draw();
+	UserInterface_Draw();
 
 	glutSwapBuffers();
 }
@@ -304,9 +303,11 @@ void Graphics_Print(double x, double y, char *string) {
 }
 
 void Graphics_RawPrint(double x, double y, char* string) {
+	glPushMatrix();
 	glRasterPos2f(SCREEN_WIDTH - x, 
 		SCREEN_HEIGHT - glutBitmapHeight(GLUT_BITMAP_TIMES_ROMAN_24) - y + 9);
 	glutBitmapString(GLUT_BITMAP_TIMES_ROMAN_24, (const unsigned char*) string);
+	glPopMatrix();
 }
 
 void Graphics_Print3D(double x, double y, double z, char* str) {
@@ -318,8 +319,10 @@ void Graphics_Print3D(double x, double y, double z, char* str) {
 }
 
 void Graphics_RawPrint3D(double x, double y, double z, char* str) {
+	glPushMatrix();
 	glTranslatef(x, y, -z);
 	glutStrokeString(GLUT_STROKE_ROMAN, (const unsigned char*) str);
+	glPopMatrix();
 }
 
 static bool loadBackground(char *f) {
@@ -401,15 +404,15 @@ void Graphics_SetKeyUpCallback(void (*func)(uchar key, int x, int y)) {
 }
 
 void Graphics_Scale(double x, double y, double z) {
-	glScaled(x, y, z);
+	glScalef(x, y, z);
 }
 
 void Graphics_Translate(double x, double y, double z) {
-	glTranslated(x, y, z);
+	glTranslatef(x, y, z);
 }
 
 void Graphics_Rotate(double angle, double x, double y, double z) {
-	glRotated(angle, x, y, z);
+	glRotatef(angle, x, y, z);
 }
 
 void Graphics_Push(void) {

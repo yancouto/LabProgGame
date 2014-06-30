@@ -2,9 +2,12 @@
 #include "Player.h"
 #include "Graphics.h"
 #include "Ship.h"
+#include "Camera.h"
+#include "Controller.h"
 
 static char lives[100];
 static char score[100];
+static char health[100];
 
 static char message[200];
 
@@ -15,39 +18,24 @@ void UserInterface_Init(void) {
 void UserInterface_Update(double dt) {
 	sprintf(score, "Score: %.1f", Player_Score);
 	sprintf(lives, "Lives: %d", Player_Lives);
-	
+	sprintf(health, "Health: %d", Player_Health);
+
+	if(Controller_isPaused())
+		sprintf(message, "~~GAME IS PAUSED~~");
 	if(Player_Lost)
 		sprintf(message, "~~YOU WERE DEFEATED!~~\n\n            press 'q' to exit");
 }
 
 void UserInterface_Draw(void) {
-	Graphics_Push();
+	static char temp[80];
 
-	Graphics_SetColor(1, 1, 1);
-	Graphics_Scale(.8, .8, .8);
-	/*Graphics_Rotate(30, 0, 1, 0);*/
-	Graphics_RawPrint3D(Ship_MainShip->pos[0], 
-		Ship_MainShip->pos[1], Ship_MainShip->pos[2], lives);
-	Graphics_RawPrint3D(Ship_MainShip->pos[0], 
-		Ship_MainShip->pos[1], Ship_MainShip->pos[2], score);
+	Graphics_Print(10, 10, lives);
+	Graphics_Print(10, 30, score);
+	Graphics_Print(10, 50, health);
 
-	Graphics_Pop();
-
-	/* TODO:
-	sprintf(temp, "Health: %d", Player_Health);
-	Graphics_Print(10, 50, temp);
-	sprintf(temp, "Imune?: %f", Player_Immune);
+	sprintf(temp, "delay: %f", Controller_shootDelay);
 	Graphics_Print(10, 70, temp);
-	if(Player_Lost){
-		sprintf(temp, "~~YOU WERE DEFEATED!~~\n\n            press 'q' to exit");
-		Graphics_Print(250, 240, temp);
-	}
-	if(Controller_isPaused()) {
-		sprintf(temp, "~~GAME IS PAUSED~~");
-		Graphics_Print(250, 240, temp);
-	}
-	*/
 
-	if(Player_Lost)
+	if(Controller_isPaused() || Player_Lost)
 		Graphics_Print(250, 240, message);
 }

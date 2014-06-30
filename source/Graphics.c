@@ -287,7 +287,7 @@ void Graphics_DrawShip() {
 		-s->pos[2] - s->size[2]/2);
 
 
-
+	glRotatef(180, 0, 1, 0);
 	glScalef(10.f, 10.f, 10.f);
 	{
 		#include "../resources/spaceship.inc"

@@ -126,6 +126,9 @@ static void keyReleased(uchar key, int x, int y) {
 
 	switch(key) {
 		case 'q':
+		/* glutLeaveMainLoop() é melhor e evita SEGFAULT,
+			mas descobrimos que esta função não está implementada
+			em todas as versões do glut, então deixamos assim mesmo */
 			glutDestroyWindow(glutGetWindow());
 			exit(0);
 			break;

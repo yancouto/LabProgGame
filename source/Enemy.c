@@ -77,7 +77,7 @@ Enemy *Enemy_BulletCollide(Bullet *b) {
 		if(b->pos[2] < s->pos[2] || b->pos[2] > s->pos[2] + s->size[2]) continue;
 		for(j = list->head->next; j != list->head; j = j->next) {
 			Enemy* e = (Enemy*) j->item;
-			if(collidesPoint(e->pos, Enemy_DEF_SIZE, b->pos)) return e;
+			if(collides(e->pos, Enemy_DEF_SIZE, b->pos, Bullet_DEF_SIZE)) return e;
 		}
 	}
 
@@ -123,12 +123,16 @@ void Enemy_Print() {
 
 void Enemy_Draw() {
 	Node *i, *j;
+<<<<<<< HEAD
 	Graphics_SetColor(.720,.020,.060);
+=======
+	Graphics_SetColor(.2, .3, 0);
+>>>>>>> origin/dev
 	for(i = Scene_MainScene->sections->head->next; i != Scene_MainScene->sections->head; i = i->next) {
 		List* list = ((Section*) i->item)->entities;
 		for(j = list->head->next; j != list->head; j = j->next) {
 			Enemy* e = (Enemy*) j->item;
-			Graphics_DrawBlock(e->pos, Enemy_DEF_SIZE);
+			Graphics_DrawEnemy(e->pos, Enemy_DEF_SIZE);
 		}
 	}
 }

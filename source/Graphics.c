@@ -190,6 +190,28 @@ void Graphics_DrawBlock(Vector p, Vector s) {
 	glEnd();
 }
 
+void Graphics_DrawItem(Vector p, Vector s, __action_ptr type) {
+	glPushMatrix();
+	glTranslatef(p[0] + s[0]/2, p[1] + s[1]/2, -p[2] - s[2]/2);
+	glScalef(6., 6., 6.);
+	if(type == Item_BOOSTER) {
+		glTranslatef(11/6., 0, 0);
+		{
+			#include "../resources/item_booster.inc"
+		}
+	} else if(type == Item_HEALTH) {
+		glRotatef(90, 0, 1, 0);
+		{
+			#include "../resources/item_health.inc"
+		}
+	} else if(type == Item_MEGA) {
+		#include "../resources/item_life.inc"
+	} else if(type == Item_LIVES) {
+		#include "../resources/item_life.inc"
+	} else puts("unrecognized icon");
+	glPopMatrix();
+}
+
 /* Desenha a mira */
 static void Graphics_DrawAim() {
 	const int s1 = 5, s2 = 2;

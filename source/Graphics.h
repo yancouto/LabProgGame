@@ -2,6 +2,7 @@
 #define GRAPHICS_H
 
 #include "Util.h"
+#include "Item.h"
 #define SCREEN_WIDTH 800
 #define SCREEN_HEIGHT 600
 #define SCREEN_FPS 60
@@ -29,6 +30,8 @@ int Graphics_GetWindowWidth();
 
 /* Retorna a altura da janela */
 int Graphics_GetWindowHeight();
+
+void Graphics_DrawItem(Vector p, Vector s, __action_ptr type);
 
 /*Função que imprime algum texto no jogo */ /* em teste ainda */
 void Graphics_Print(double x, double y, char *string);

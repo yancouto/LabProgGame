@@ -65,17 +65,17 @@ Ground control to Major Gubi: commencing countdown, report go-bi!
 	  	Logo no começo foi visto decisões sobre movimentos dos objetos dos jogo. Naves se moveriam
 		sempre para frente com uma velocidade que pode variar, e além disso se moveriam lateralmente
 		e verticalmente em relação à tela. Entretanto decidimos por praticidade fazer ela temporariamente
-		paralela ao "chão", ou seja angularmente o que variaria nela seria apenas o inicio do percurso
+		paralela ao ``chão'', ou seja angularmente o que variaria nela seria apenas o inicio do percurso
 		dos projéteis atirados. Logo a nave teria como características sua posição em coordenadas no
-		Cenário (x, y, z), uma velocidade e os valores de direção da "arma" acoplada nela.\\
+		Cenário (x, y, z), uma velocidade e os valores de direção da ``arma'' acoplada nela.\\
 		
-	  	Com essa decisão não teriamos de nos preocupar muito no inicio com colisões ou a nave "fugir"
+	  	Com essa decisão não teriamos de nos preocupar muito no inicio com colisões ou a nave ``fugir''
 		da tela já que nos testes iniciais utilizamos apenas o terminal, sem nenhuma parte gráfica. Por
 		essa mesma razão de praticidade por enquanto só mudamos diretamente a posição x e y da nave,
 		sem nenhuma aceleração individual nessas coordenadas para o movimento, e não rotacionamos a nave
 		para facilitar a colisão.\\
 		
-	  	Logo a direção "vetorial" será mais utilizada no tiros, que ao serem criados, terão sua
+	  	Logo a direção ``vetorial'' será mais utilizada no tiros, que ao serem criados, terão sua
 		posição e direção definidas pelas iniciais da nave. Tiros tambpem foram decididos inicialmente
 		para serem pontos em vez de terem tamanhos 3D como inimigos ou a nave principal (novamente para
 		facilitar na hora de colisão nessa etapa de desenvolvimento).\\
@@ -84,7 +84,7 @@ Ground control to Major Gubi: commencing countdown, report go-bi!
 		tiros que inimigos atiram podem destruir outros inimigos. Isso foi escolhido tanto por razões de
 		praticidade nos testes, como seria uma feature bacana no jogo, onde o próprio cenário é sujeito
 		a sua auto destruição. Em fases futuras isso será decidido se permanece no projeto final.
-    		Desta forma os tiros tem um valor de "vida" assim como inimigos e a nave principal. Se por
+    		Desta forma os tiros tem um valor de ``vida'' assim como inimigos e a nave principal. Se por
 		acaso ao desenvolver melhor o jogo certos tiros tiverem a habilidade de atravessar inimigos ou
 		objetos, a manipulação de sua vida para que não abaixe de 0 instantanemente seria útil.\\
 		
@@ -152,7 +152,7 @@ This is ground control to Major Gubi, you've really made the grade!
 		tiros, ...).\\
 		
     		Percebemos que estava muito difícil jogar o jogo e perceber se o que estava acontecendo estava
-		correto sem nenhum feedback além de texto dizendo 'o tiro colidiu com o inimigo'. Logo decidimos já começar
+		correto sem nenhum feedback além de texto dizendo ``o tiro colidiu com o inimigo''. Logo decidimos já começar
 		fazer parte da visualização 3D do jogo.\\
 		
     		Inicialmente utilizamos um bule 3D para testar o OpenGL. Posteriormente colocamos a nave, tiros e inimigos
@@ -160,7 +160,7 @@ This is ground control to Major Gubi, you've really made the grade!
     		
     		Decidimos deixar o movimento da nave independente da câmera do jogo, ou seja ela pode se mover
 		nos eixos X e Y sempre orientada para frente e com velocidade constante. A câmera, controlada pelo mouse,
-		como definido na parte 1, muda a orientação da "arma da nave", ou seja a orientação que os tiros serão 				disparados.\\
+		como definido na parte 1, muda a orientação da ``arma da nave'', ou seja a orientação que os tiros serão 				disparados.\\
 		
 		\subsection{Problemas}
 		Poder controlar a camera com o mouse foi um desafio, no começo ficou bem ruim, a distância da câmera à nave
@@ -205,28 +205,25 @@ Can you...
 
 	\end{verbatim}
   \subsection{Decisões Tomadas}
-        Já tinhamos avançado bastante na fase na anterior, já que tinhamos uma base gráfica e a maior parte
-    dos elementos do jogo já prontas. Novamente começamos a terceira parte tirando alguns bugs e melhorando 
-    partes do código para melhor leitura e entendimento, dessa vez adicionando os elementos finais que montam
-    nosso jogo. \\
+        Já tinhamos avançado bastante na fase na anterior, já que tinhamos uma base gráfica e a maior parte dos elementos do jogo já prontas. Novamente começamos a terceira parte tirando alguns bugs e melhorando partes do código para melhor leitura e entendimento, dessa vez adicionando os elementos finais que montam nosso jogo. \\
     
-        Para melhor polir o jogo, trocamos todos os modelos simples de "caixa" para modelos feitos no blender, que
-    apesar de um pouco toscos, dão um visual mais característico ao projeto (apesar dos prismas na parte anterior
-    terem mais cara de um jogo "clássico").\\
+        Para melhor polir o jogo, trocamos todos os modelos simples de ``caixa'' para modelos feitos no Blender, que apesar de um pouco toscos, dão um visual mais característico ao projeto (apesar dos prismas na parte anterior terem mais cara de um jogo ``clássico'').\\
     
-        A parte de impressão ficou mais clara, e depois de vários desafios de fazer um texto imprimir na tela do jogo, 
-    conseguimos tal feito. Informações essências para o jogador como "continues" restantes, vida atual e pontuação 
-    foram adicionadas, assim como um texto para a tela de pause e de "fim de jogo".\\
+        A parte de impressão ficou mais clara, e depois de vários desafios de fazer um texto imprimir na tela do jogo, conseguimos tal feito. Informações essências para o jogador como ``continues'' restantes, vida atual e pontuação foram adicionadas, assim como um texto para a tela de pause e de ``fim de jogo''.\\
         
-        Junto dessas implementações melhoramos a câmera do jogo para uma que melhor impactava o gameplay do jogo. Foram feitos
-    vários balanceamentos até encontrar uma que fosse razoavelmente melhor em comparação à anterior. A câmera fica 
-    centralizada com a nave, enquanto o mouse movimenta a mira e a movimenta.\\
+        Junto dessas implementações melhoramos a câmera do jogo para uma que melhor impactava o gameplay do jogo. Foram feitos vários balanceamentos até encontrar uma que fosse razoavelmente melhor em comparação à anterior. A câmera fica centralizada com a nave, enquanto o mouse movimenta a mira e consequentemente a câmera.\\
     
-    \subsection{Problemas}
-      Foi um pouco trabalhoso implementar o texto, já que o OpenGL não tem quase nenhum suporte nativo a texto, e mostrar texto 2D quando se está trabalhando em um ambiente 3D não é tão simples.\\
-      
-      Texto em 3D funcionou. Algumas transformações como glTranslated funcionavam. Mas glScaled por alguma razão fazia com que o texto andasse para "trás" com uma velocidade dependendo de sua escala. Por exemplo, glScaled(1, 1, 1) funcionava perfeitamente. O texto ficava na posição desejada. Porém ficava enorme na tela. Ao escalarmos para glScaled(.8, .8, .8), o texto movia-se lentamente em direção a câmera. Não conseguimos descobrir o porquê nem conseguimos arrumar este problema. Por essa razão nós abandonamos o texto em 3D. Uma nota importante é que, por meio da classe TextBox (em específico a variação TextBox3D), quando em conjunto com a classe Item, produzia o texto 3D perfeitamente. Na posição correta e com escala gScaled(.1, .1, .1). No entanto, ao utilizarmos o texto em outras ocasiões, o problema aparecia.\\
+        Um dos pontos cruciais do projeto foi deixar o projeto mais cross-platform. Antes apenas sistemas Linux tinham um Console para verificar o \emph{stdout}, após darmos uma fuçada no WinAPI, nós adicionamos também um console para Windows. Além disso, o método de compilação também tornou-se mais flexível, com tanto os comandos de compilação (\emph{make all}) como de limpeza (\emph{make clean}) funcionarem independentemente do sistema operacional. Isso poupou muito o tempo, além de se mostrar essencial ao debugarmos o projeto (afinal debugar sem \emph{stdout} fica difícil).
+    
+    \subsection{Problemas}     
+        Também foi um pouco trabalhoso implementar o texto, já que o OpenGL não tem quase nenhum suporte nativo a texto, e mostrar texto 2D quando se está trabalhando em um ambiente 3D não é tão simples. \\
 
-      Porém, iluminação foi a parte mais difícil, as luzes não funcionavam como queriamos e os modelos pareciam não ter profundidade 
-		
+        Texto em 3D funcionou parcialmente. Algumas transformações como glTranslated funcionavam. Mas glScaled por alguma razão fazia com que o texto andasse para ``trás'' com uma velocidade dependendo de sua escala. Por exemplo, glScaled(1, 1, 1) funcionava perfeitamente. O texto ficava na posição desejada. Porém ficava enorme na tela. Ao escalarmos para glScaled(.8, .8, .8), o texto movia-se lentamente em direção a câmera. Não conseguimos descobrir o porquê nem conseguimos arrumar este problema. Por essa razão nós abandonamos o texto em 3D. Uma nota importante é que, por meio da classe TextBox (em específico a variação TextBox3D), quando em conjunto com a classe Item, produzia o texto 3D perfeitamente. Na posição correta e com escala gScaled(.1, .1, .1). No entanto, ao utilizarmos o texto em outras ocasiões, o problema aparecia. \\
+
+        Iluminação foi a parte mais difícil, as luzes não funcionavam como queriamos e os modelos pareciam não ter profundidade. \\
+
+        Testamos vários tipos de fontes de luz, posições e intensidades. No entanto, os objetos continuavam parecendo uma projeção 2D do modelo. O mais perto que chegamos foi mudar a intensidade da luz e posição de tal forma que a cor dos modelos mudavam para uma coloração mais clara. Porém, continuavam parecendo não ter profundidade. Ao final desistimos de colocar fontes de luz.\\
+    
+    \subsection{Próxima Parte}
+      	Planejamos talvez continuar esse projeto, melhorando o que já fizemos e adicionando mais conteúdo para torna-lo ao menos ``jogável''. Gostamos de trabalhar com o OpenGL, apesar de ter sido bem sofrido a falta de classes ou de uma framework em volta do OpenGL que facilitasse o trabalho.
 \end{document}

@@ -89,12 +89,13 @@ static void render() {
 	glEnable(GL_COLOR_MATERIAL);
 {
 	Ship *s = Ship_MainShip;
-	GLfloat light_position[3];
-	light_position[0] = s->pos[0] + s->size[0]/2;
-	light_position[1] =  s->pos[1] + s->size[1] + 10;
-	light_position[2] = -s->pos[2] - s->size[2]/2;
+	GLfloat light_position[3] = { 0, .5, 0, 0 };
+	glPushMatrix();
+	glTranslated(s->pos[0] + s->size[0]/2, s->pos[1] + s->size[1] + 10,
+		-s->pos[2] - s->size[2]/2);
 	glEnable(GL_LIGHT0);
 	glLightfv(GL_LIGHT0, GL_POSITION, light_position);
+	glPopMatrix();
 }
 
 	Enemy_Draw();

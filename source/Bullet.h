@@ -16,7 +16,7 @@ typedef struct {
 #include "Ship.h"
 #include "Enemy.h"
 
-#define Bullet_DEF_SPEED 700
+#define Bullet_DEF_SPEED 1800
 #define Bullet_DEF_GRAVITY 50
 
 /* Função que inicializa a lista de tiros */

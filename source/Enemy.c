@@ -22,7 +22,7 @@ Enemy* Enemy_new(int x, int y, int z, double precision, int freq, double range) 
 	inst->precision = precision;
 	inst->freq = freq;
 	inst->range = range;
-	inst->health = 30;
+	inst->health = 15;
 	inst->id = i++;
 	
 	return inst;

@@ -55,7 +55,7 @@ void Item_Update(double dt) {
 		mega -= dt;
 	else {
 		mega = 0;
-		Controller_shootDelay = .3;
+		Controller_shootDelay = .1;
 	}
 
 	if(speed > 0) 
@@ -122,7 +122,7 @@ void Item_HEALTH(Item* this) {
 void Item_MEGA(Item* this) {
 	puts("Mega Blasters at your disposal Major Gubi, fire at will!");
 	mega = 3.0;
-	Controller_shootDelay = .2;
+	Controller_shootDelay = .05;
 
 }
 

@@ -120,7 +120,8 @@ static void keyReleased(uchar key, int x, int y) {
 
 	switch(key) {
 		case 'q':
-			glutLeaveMainLoop();
+			glutDestroyWindow(glutGetWindow());
+			exit(0);
 			break;
 		case 'p':
 		case 27: /* ESC */
@@ -137,7 +138,7 @@ bool Controller_isPaused() {
 void Controller_Init() {
 	lmbDown = false;
 	paused = false;
-	Controller_shootDelay = .3;
+	Controller_shootDelay = .1;
 	memset(Controller_keyPressed, 0, sizeof(Controller_keyPressed));
 
 	Graphics_ChangeMousePosition(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2);
@@ -148,12 +149,12 @@ void Controller_Init() {
 }
 
 void Controller_Update(double dt) {
-	static double Controller_shootDelay = .3;
+	static double shootDelay = .1;
 	Ship *s = Ship_MainShip;
-	Controller_shootDelay += dt;
-	if(Controller_shootDelay >= .3) {
+	shootDelay += dt;
+	if(shootDelay >= Controller_shootDelay) {
 		if (lmbDown == true) {
-			Controller_shootDelay = 0;
+			shootDelay = 0;
 			
 			Vector_set(s->gunDir, Camera_GetToX(), Camera_GetToY(), Camera_GetToZ());
 			Vector_add(s->gunDir, -s->pos[0] - s->size[0]/2, -s->pos[1] - s->size[1]/2,

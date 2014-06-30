@@ -91,7 +91,7 @@ void Ship_Update(double dt) {
 			Main_LoseGame();
 		this->health = Ship_DEF_HEALTH;
 		Player_Lives--;
-		Player_Immune = 20;
+		Player_Immune = 7;
 		printf("Voce Lost uma vida! (Agora esta com %d)\n", Player_Lives);
 	}
 	lostLife();

@@ -234,7 +234,7 @@ void Graphics_DrawItem(Vector p, Vector s, __action_ptr type) {
 			#include "../resources/item_health.inc"
 		}
 	} else if(type == Item_MEGA) {
-		#include "../resources/item_life.inc"
+		#include "../resources/item_mega.inc"
 	} else if(type == Item_LIVES) {
 		#include "../resources/item_life.inc"
 	} else puts("unrecognized icon");
@@ -293,7 +293,6 @@ void Graphics_DrawShip() {
 		#include "../resources/spaceship.inc"
 	}
 	glPopMatrix();
-	Graphics_DrawBlock(s->pos, s->size);
 	Graphics_DrawAim();
 }
 

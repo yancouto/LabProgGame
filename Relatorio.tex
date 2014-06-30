@@ -5,7 +5,6 @@
 \usepackage{amssymb}
 \usepackage[utf8]{inputenc}
 \usepackage[portuguese]{babel}
-\usepackage[T1]{fontenc}
 \usepackage{hyperref}
 \usepackage{float}
 \usepackage[usenames,dvipsnames]{xcolor}
@@ -178,7 +177,10 @@ This is ground control to Major Gubi, you've really made the grade!
 		atualmente dificultam a percepção de distância e orientação), colocar mais conteúdo (power ups, mais 					inimigos, mais tiros, e o que mais vier a nossa cabeça), arrumar bugs e deixar o jogo mais fluído.\\
 		
 		Também planejamos comentar mais o código que já existe e o código que ainda vamos criar.
-		\section{Terceira Fase}
+		
+		
+	\newpage	
+	\section{Terceira Fase}
 	\begin{verbatim}
 Your circuit's dead, there's something wrong
 Can you hear me Major Gubi?
@@ -235,17 +237,10 @@ Can you...
     centralizada com a nave, enquanto o mouse movimenta a mira e a movimenta.\\
     
     \subsection{Problemas}
-        Tivemos um grande problema \\
-        
-        Para imprimir texto na tela e ter uma interface adequada para o usuário, também tivemos várias complicações.
-        Ainda não conseguimos colocar um HUD mostrando a vida atual, pontuação, etc. Mas é uma de nossas prioridades.\\
-        
-        Prever para onde os inimigos deveriam atirar também não foi fácil. Não nos demos bem com o sistema de         coordernadas do OpenGL, pois estavamos mais acostumados em mexer com 2D, a velocidade da nave deixa mais        dificil, e a gravidade complica tudo ainda mais.
-    
-    
-    \subsection{Próxima Parte}
-    Para a terceira parte do projeto, planejamos polir mais o jogo. Deixar os gráficos melhores (os cubos
-    atualmente dificultam a percepção de distância e orientação), colocar mais conteúdo (power ups, mais          inimigos, mais tiros, e o que mais vier a nossa cabeça), arrumar bugs e deixar o jogo mais fluído.\\
-    
-    Também planejamos comentar mais o código que já existe e o código que ainda vamos criar.		
+      Foi um pouco trabalhoso implementar o texto, já que o OpenGL não tem quase nenhum suporte nativo a texto, e mostrar texto 2D quando se está trabalhando em um ambiente 3D não é tão simples.\\
+      
+      Texto em 3D funcionou. Algumas transformações como glTranslated funcionavam. Mas glScaled por alguma razão fazia com que o texto andasse para "trás" com uma velocidade dependendo de sua escala. Por exemplo, glScaled(1, 1, 1) funcionava perfeitamente. O texto ficava na posição desejada. Porém ficava enorme na tela. Ao escalarmos para glScaled(.8, .8, .8), o texto movia-se lentamente em direção a câmera. Não conseguimos descobrir o porquê nem conseguimos arrumar este problema. Por essa razão nós abandonamos o texto em 3D. Uma nota importante é que, por meio da classe TextBox (em específico a variação TextBox3D), quando em conjunto com a classe Item, produzia o texto 3D perfeitamente. Na posição correta e com escala gScaled(.1, .1, .1). No entanto, ao utilizarmos o texto em outras ocasiões, o problema aparecia.\\
+
+      Porém, iluminação foi a parte mais difícil, as luzes não funcionavam como queriamos e os modelos pareciam não ter profundidade 
+		
 \end{document}

@@ -83,7 +83,6 @@ static void render() {
 	Graphics_SetColor(1, 1, 1);
 	/*Graphics_DrawBlock(worldBounds, Vector_BOUNDS);*/
 
-	Enemy_Draw();
 
 	glEnable(GL_LIGHTING);
 	glColorMaterial ( GL_FRONT_AND_BACK, GL_AMBIENT ) ;
@@ -98,6 +97,7 @@ static void render() {
 	glLightfv(GL_LIGHT0, GL_POSITION, light_position);
 }
 
+	Enemy_Draw();
 	Bullet_Draw();
 	Item_Draw();
 	Ship_Draw();
@@ -206,6 +206,16 @@ void Graphics_DrawBlock(Vector p, Vector s) {
 		glVertex3f(x, y + dy, z + dz);
 		glVertex3f(x, y, z + dz);
 	glEnd();
+}
+
+void Graphics_DrawEnemy(Vector p, Vector s) {
+	glPushMatrix();
+	glTranslatef(p[0] + s[0]/2, p[1] + s[1]/2, -p[2] - s[2]/2);
+	glScalef(8., 8., 8.);
+	{
+		#include "../resources/enemy.inc"
+	}
+	glPopMatrix();
 }
 
 void Graphics_DrawItem(Vector p, Vector s, __action_ptr type) {

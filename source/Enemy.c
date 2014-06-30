@@ -123,12 +123,12 @@ void Enemy_Print() {
 
 void Enemy_Draw() {
 	Node *i, *j;
-	Graphics_SetColor(0, 1, 0);
+	Graphics_SetColor(.2, .3, 0);
 	for(i = Scene_MainScene->sections->head->next; i != Scene_MainScene->sections->head; i = i->next) {
 		List* list = ((Section*) i->item)->entities;
 		for(j = list->head->next; j != list->head; j = j->next) {
 			Enemy* e = (Enemy*) j->item;
-			Graphics_DrawBlock(e->pos, Enemy_DEF_SIZE);
+			Graphics_DrawEnemy(e->pos, Enemy_DEF_SIZE);
 		}
 	}
 }

@@ -15,10 +15,16 @@ Ship *Ship_MainShip;
 #define Ship_DEF_HEALTH 100
 #define Ship_DEF_SPEED 400
 
-void Ship_Init() {
-	Ship *s;
-	s = Ship_MainShip = (Ship*) malloc(sizeof(Ship));
+static int actLife;
 
+static double lostTimer;
+
+void Ship_Init() {
+	
+	Ship *s;
+	lostTimer = 0;
+	s = Ship_MainShip = (Ship*) malloc(sizeof(Ship));
+	actLife = Ship_DEF_HEALTH;
 	Vector_set(s->pos, Vector_BOUNDS[0]/2, Vector_BOUNDS[1]/2, 20);
 	Vector_set(s->vel, 0, 0, Ship_DEF_SPEED);
 
@@ -41,6 +47,12 @@ void Ship_Update(double dt) {
 		Player_Immune -= 10*dt;
 	else 
 		Player_Immune = 0;
+
+	if(lostTimer > 0)
+		lostTimer -= dt;
+	else 
+		lostTimer = 0;
+
 	Player_Score += 2 * dt;
 	/* Melhorar o movimento (usar aceleracao ou algo assim) */
 
@@ -82,7 +94,7 @@ void Ship_Update(double dt) {
 		Player_Immune = 20;
 		printf("Voce Lost uma vida! (Agora esta com %d)\n", Player_Lives);
 	}
-	
+	lostLife();
 }
 
 void Ship_Print() {
@@ -94,11 +106,20 @@ void Ship_Shoot() {
 	Bullet_ShipShoot(Ship_MainShip);
 }
 
+void lostLife() {
+	if(Ship_MainShip->health < actLife) {
+		lostTimer = .05;
+	}
+	actLife = Ship_MainShip->health;
+}
+
 void Ship_Draw() {
 	if (Item_isBooster())
 		Graphics_SetColor(.320,.330,.660);
 	else if(Player_Immune > 0)
 		Graphics_SetColor(.727,.755,.670);
+	else if(lostTimer > 0)
+		Graphics_SetColor(1,0,0);
 	else if (Item_isMega())
 		Graphics_SetColor(.527,.755,.070);
 	else

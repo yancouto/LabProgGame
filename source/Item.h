@@ -37,6 +37,8 @@ void Item_Clear(void);
 
 bool Item_isBooster();
 
+bool Item_isMega();
+
 /********************* Item "action" functions *********************/
 
 void Item_HEALTH(Item*);

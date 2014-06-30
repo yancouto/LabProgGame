@@ -99,6 +99,8 @@ void Ship_Draw() {
 		Graphics_SetColor(.320,.330,.660);
 	else if(Player_Immune > 0)
 		Graphics_SetColor(.727,.755,.670);
+	else if (Item_isMega())
+		Graphics_SetColor(.527,.755,.070);
 	else
 		Graphics_SetColor(.327,.755,0);
 	Graphics_DrawShip();

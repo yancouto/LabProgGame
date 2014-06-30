@@ -144,7 +144,7 @@ bool Controller_isPaused() {
 void Controller_Init() {
 	lmbDown = false;
 	paused = false;
-	Controller_shootDelay = .1;
+	Controller_shootDelay = .15;
 	memset(Controller_keyPressed, 0, sizeof(Controller_keyPressed));
 
 	Graphics_ChangeMousePosition(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2);
@@ -155,7 +155,7 @@ void Controller_Init() {
 }
 
 void Controller_Update(double dt) {
-	static double shootDelay = .1;
+	static double shootDelay = .15;
 	Ship *s = Ship_MainShip;
 	shootDelay += dt;
 	if(shootDelay >= Controller_shootDelay) {

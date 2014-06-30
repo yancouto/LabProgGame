@@ -12,6 +12,7 @@ static List* items;
 static double mega;
 static double speed;
 static bool isbooster;
+static bool ismega;
 
 Vector Item_DEF_SIZE = {10, 10, 10};
 
@@ -19,6 +20,7 @@ void Item_Init(void) {
 	items = List_new(items);
 	mega = 0;
 	isbooster = false;
+	ismega = false;
 }
 
 Item* Item_new(double x, double y, double z, void (*action)(Item*)) {
@@ -56,7 +58,8 @@ void Item_Update(double dt) {
 		mega -= dt;
 	else {
 		mega = 0;
-		Controller_shootDelay = .1;
+		ismega = false;
+		Controller_shootDelay = .15;
 	}
 
 	if(speed > 0) 
@@ -110,6 +113,10 @@ bool Item_isBooster(){
 	return isbooster;
 }
 
+bool Item_isMega(){
+	return ismega;
+}
+
 void Item_Clear() {
 	List_clear(items);
 }
@@ -127,7 +134,8 @@ void Item_HEALTH(Item* this) {
 
 void Item_MEGA(Item* this) {
 	puts("Mega Blasters at your disposal Major Gubi, fire at will!");
-	mega = 3.0;
+	mega = 5.0;
+	ismega = true;
 	Controller_shootDelay = .05;
 
 }
